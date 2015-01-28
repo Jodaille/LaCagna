@@ -1,0 +1,7 @@
+esscul
+vendor
+config/autoload/doctrine.local.php
+config/application.config.old
+config/autoload/
+module/Product
+module/Application

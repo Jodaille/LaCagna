@@ -1,0 +1,28 @@
+LaCagnaProduct\Entity\CharacteristicValue:
+    type: entity
+    table: characteristicvalues
+    repositoryClass:  LaCagnaProduct\Repository\CharacteristicValueRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            length: 255
+            nullable: false
+    manyToOne:
+        characteristic:
+            targetEntity: LaCagnaProduct\Entity\Characteristic
+            inversedBy: characteristicsvalues
+            joinColumn:
+                name: characteristic_id
+                referencedColumnName: id
+    manyToMany:
+        articles:
+            targetEntity: LaCagnaProduct\Entity\Article
+            mappedBy: characteristicsvalues
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

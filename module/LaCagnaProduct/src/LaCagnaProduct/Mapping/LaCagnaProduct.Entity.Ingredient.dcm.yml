@@ -1,0 +1,28 @@
+LaCagnaProduct\Entity\Ingredient:
+    type: entity
+    table: ingredients
+    repositoryClass:  LaCagnaProduct\Repository\IngredientRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+            nullable: false
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    manyToMany:
+        products:
+            targetEntity: LaCagnaProduct\Entity\Product
+            mappedBy: ingredients
+
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

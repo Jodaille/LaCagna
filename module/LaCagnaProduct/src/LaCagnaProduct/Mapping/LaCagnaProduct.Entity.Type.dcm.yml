@@ -1,0 +1,19 @@
+LaCagnaProduct\Entity\Type:
+    type: entity
+    table: types
+    repositoryClass: LaCagnaProduct\Repository\TypeRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+            nullable: true
+    oneToMany:
+        products:
+            targetEntity: LaCagnaProduct\Entity\Product
+            mappedBy: products
+            cascade: ["persist"]

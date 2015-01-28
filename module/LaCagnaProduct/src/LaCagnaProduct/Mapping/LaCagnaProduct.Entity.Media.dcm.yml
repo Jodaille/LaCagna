@@ -1,0 +1,75 @@
+LaCagnaProduct\Entity\Media:
+    type: entity
+    table: medias
+    repositoryClass: LaCagnaProduct\Repository\MediaRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        type:
+            type: string
+            length: 64
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            nullable: true
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    manyToMany:
+        categories:
+            targetEntity: LaCagnaProduct\Entity\Category
+            inversedBy: medias
+            joinTable:
+                name: medias__categories
+                joinColumns:
+                    media_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
+        articles:
+            targetEntity: LaCagnaProduct\Entity\Article
+            inversedBy: medias
+            joinTable:
+                name: medias__articles
+                joinColumns:
+                    media_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    article_id:
+                        referencedColumnName: id
+            fetch: EXTRA_LAZY
+        products:
+            targetEntity: LaCagnaProduct\Entity\Product
+            inversedBy: medias
+            joinTable:
+                name: medias__products
+                joinColumns:
+                    media_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    product_id:
+                        referencedColumnName: id
+            fetch: EXTRA_LAZY
+        brands:
+            targetEntity: LaCagnaProduct\Entity\Brand
+            inversedBy: medias
+            joinTable:
+                name: medias__brands
+                joinColumns:
+                    media_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    brand_id:
+                        referencedColumnName: id
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

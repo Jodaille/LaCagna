@@ -1,0 +1,97 @@
+LaCagnaProduct\Entity\Product:
+    type: entity
+    table: products
+    repositoryClass: LaCagnaProduct\Repository\ProductRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        code:
+            type: string
+            unique: true
+            length: 32
+            nullable: false
+        title:
+            type: string
+            unique: true
+            length: 255
+            nullable: false
+        description:
+            type: text
+            nullable: true
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    manyToOne:
+        mainmedia:
+            targetEntity: LaCagnaProduct\Entity\Media
+            mappedBy: media
+        brand:
+            targetEntity: LaCagnaProduct\Entity\Brand
+            mappedBy: brand
+        type:
+            targetEntity: LaCagnaProduct\Entity\Type
+            mappedBy: type
+        state:
+            targetEntity: LaCagnaProduct\Entity\State
+            mappedBy: state
+    manyToMany:
+        ingredients:
+            targetEntity: LaCagnaProduct\Entity\Ingredient
+            inversedBy: products
+            joinTable:
+                name: products__ingredients
+                joinColumns:
+                    product_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    ingredient_id:
+                        referencedColumnName: id
+        categories:
+            targetEntity: LaCagnaProduct\Entity\Category
+            inversedBy: products
+            joinTable:
+                name: products__categories
+                joinColumns:
+                    product_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
+        flags:
+            targetEntity: LaCagnaProduct\Entity\Flag
+            inversedBy: flags
+            joinTable:
+                name: products__flags
+                joinColumns:
+                    product_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    flag_id:
+                        referencedColumnName: id
+            fetch: EXTRA_LAZY
+            cascade: ["persist"]
+        articles:
+            targetEntity: LaCagnaProduct\Entity\Article
+            inversedBy: products
+            joinTable:
+                name: products__articles
+                joinColumns:
+                    product_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    article_id:
+                        referencedColumnName: id
+            fetch: EXTRA_LAZY
+            cascade: ["persist"]
+        medias:
+            targetEntity: LaCagnaProduct\Entity\Media
+            mappedBy: products
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

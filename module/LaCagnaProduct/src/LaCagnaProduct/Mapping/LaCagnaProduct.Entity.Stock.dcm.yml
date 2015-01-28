@@ -1,0 +1,30 @@
+LaCagnaProduct\Entity\Stock:
+    type: entity
+    table: stocks
+    repositoryClass:  LaCagnaProduct\Repository\StockRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        quantity:
+            type: integer
+            nullable: false
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    manyToOne:
+        article:
+            targetEntity: LaCagnaProduct\Entity\Article
+            inversedBy: stocks
+            joinColumn:
+                name: article_id
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

@@ -1,0 +1,12 @@
+<form action="{{ url(addrecipe)}}" method="POST">
+
+  <input type="hidden" name="id" value="{{ cocktail.getId() }}" />
+
+  <label for="name">Nom du cocktail</label>
+  <input type="text" name="name" value="{{ cocktail.getName() }}" /><br />
+
+  <label for="type">type</label>
+  <input type="text" name="type" value="{{ cocktail.getType() }}" /><br />
+
+  <input type="submit" value="add" />
+</form>

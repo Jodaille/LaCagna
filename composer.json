@@ -1,0 +1,23 @@
+{
+    "name": "Jodaille/LaCagna",
+    "description": "Menu Application for La Cagna",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "framework",
+        "zf2"
+    ],
+    "homepage": "http://jodaille.org/",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.3.*",
+        "zendframework/zftool": "dev-master",
+        "symfony/yaml": "2.2.*",
+        "doctrine/doctrine-module": "0.*",
+        "doctrine/doctrine-orm-module": "0.*",
+        "cbsi/doctrine2-nestedset": "dev-master",
+        "zf-commons/zfc-twig": "dev-master",
+        "twig/extensions": "dev-master",
+        "zf-commons/zfc-user-doctrine-orm": "~1.0",
+        "bjyoungblood/bjy-authorize": "1.4.*"
+    }
+}

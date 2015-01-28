@@ -1,0 +1,61 @@
+LaCagnaProduct\Entity\Article:
+    type: entity
+    table: articles
+    repositoryClass:  LaCagnaProduct\Repository\ArticleRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        code:
+            type: string
+            unique: true
+            length: 32
+            nullable: false
+        codeprovider:
+            type: string
+            length: 45
+            nullable: true
+        state:
+            type: string
+            length: 45
+            nullable: true
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    oneToMany:
+        stocks:
+            targetEntity: LaCagnaProduct\Entity\Stock
+            mappedBy: article
+            cascade: ["persist"]
+        prices:
+            targetEntity: LaCagnaProduct\Entity\Price
+            mappedBy: article
+            cascade: ["persist"]
+    manyToMany:
+        products:
+            targetEntity: LaCagnaProduct\Entity\Product
+            mappedBy: articles
+            fetch: EXTRA_LAZY
+        medias:
+            targetEntity: LaCagnaProduct\Entity\Media
+            mappedBy: articles
+        characteristicsvalues:
+            targetEntity: LaCagnaProduct\Entity\CharacteristicValue
+            inversedBy: articles
+            joinTable:
+                name: articles__characteristicsvalues
+                joinColumns:
+                    article_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    characteristicvalue_id:
+                        referencedColumnName: id
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

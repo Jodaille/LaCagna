@@ -1,0 +1,55 @@
+LaCagnaProduct\Entity\Category:
+    type: entity
+    table: categories
+    repositoryClass: LaCagnaProduct\Repository\CategoryRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        code:
+            type: string
+            length: 32
+            nullable: false
+        title:
+            type: string
+            length: 255
+            nullable: false
+        lft:
+            type: integer
+            nullable: true
+        rgt:
+            type: integer
+            nullable: true
+        displayorder:
+            type: integer
+            nullable: truee
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    manyToMany:
+        products:
+            targetEntity: LaCagnaProduct\Entity\Product
+            mappedBy: categories
+            fetch: EXTRA_LAZY
+        medias:
+            targetEntity: LaCagnaProduct\Entity\Media
+            mappedBy: categories
+        characteristics:
+            targetEntity: LaCagnaProduct\Entity\Characteristic
+            inversedBy: categories
+            joinTable:
+                name: categories__characteristics
+                joinColumns:
+                    category_id:
+                        referencedColumns: id
+                inverseJoinColumns:
+                    characteristic_id:
+                        referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

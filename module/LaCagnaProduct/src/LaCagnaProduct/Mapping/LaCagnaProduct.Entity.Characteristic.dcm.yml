@@ -1,0 +1,36 @@
+LaCagnaProduct\Entity\Characteristic:
+    type: entity
+    table: characteristics
+    repositoryClass:  LaCagnaProduct\Repository\CharacteristicRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        abbreviation:
+            type: string
+            length: 255
+            nullable: false
+        type:
+            type: string
+            length: 20
+            nullable: true
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    oneToMany:
+        characteristicsvalues:
+            targetEntity: LaCagnaProduct\Entity\CharacteristicValue
+            mappedBy: characteristic
+    manyToMany:
+        categories:
+            targetEntity: LaCagnaProduct\Entity\Category
+            mappedBy: characteristics
+
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]
