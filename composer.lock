@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f19f8bc2877da9f2c9a6388ac0ad91f",
+    "hash": "86f200f35975241d61bd68e868cb11c5",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -1058,6 +1058,67 @@
             "time": "2015-01-25 17:32:08"
         },
         {
+            "name": "zendframework/zend-developer-tools",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/ZendDeveloperTools.git",
+                "reference": "4cb1864711eaa2856d2a0c698faedaaf167af248"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/4cb1864711eaa2856d2a0c698faedaaf167af248",
+                "reference": "4cb1864711eaa2856d2a0c698faedaaf167af248",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-debug": "2.*",
+                "zendframework/zend-eventmanager": "2.*",
+                "zendframework/zend-mvc": "2.*",
+                "zendframework/zend-servicemanager": "2.*",
+                "zendframework/zend-stdlib": "2.*",
+                "zendframework/zend-version": "2.*"
+            },
+            "suggest": {
+                "bjyoungblood/bjy-profiler": "Version: dev-master, allows the usage of the (Zend) Db collector.",
+                "ocramius/ocra-service-manager": "OcraServiceManager can help you track dependencies within your application."
+            },
+            "type": "zf-module",
+            "autoload": {
+                "psr-0": {
+                    "ZendDeveloperTools": "src/"
+                },
+                "classmap": [
+                    "./Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evan Coury",
+                    "email": "me@evancoury.com",
+                    "homepage": "http://blog.evan.pro/"
+                },
+                {
+                    "name": "Eric Boh",
+                    "email": "cossish@gmail.com"
+                }
+            ],
+            "description": "Module for developer and debug tools for working with the ZF2 MVC layer.",
+            "homepage": "https://github.com/zendframework/ZendDeveloperTools",
+            "keywords": [
+                "debug",
+                "developer",
+                "module",
+                "zf2"
+            ],
+            "time": "2015-01-08 20:45:35"
+        },
+        {
             "name": "zendframework/zenddiagnostics",
             "version": "v1.0.3",
             "source": {
@@ -1576,7 +1637,8 @@
         "zendframework/zftool": 20,
         "cbsi/doctrine2-nestedset": 20,
         "zf-commons/zfc-twig": 20,
-        "twig/extensions": 20
+        "twig/extensions": 20,
+        "zendframework/zend-developer-tools": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

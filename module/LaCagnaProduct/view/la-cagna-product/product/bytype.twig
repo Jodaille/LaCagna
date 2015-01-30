@@ -3,9 +3,9 @@
 {% for product in products %}
 <h3>{{ product.getTitle() }}</h3>
 <p>{{ product.getDescription() }}</p>
-<p>{{ product.getType().getName() }}</p>
+<!-- p>{{ product.getType().getName() }}</p -->
 
-{% if product.getMedias() %}
+{% if product.getMainMedia() %}
     <img src="{{ product.getMainMedia().slug() }}" />
 {% endif %}
     {% if product.getIngredients() %}

@@ -27,10 +27,23 @@ return array(
         // Using the authentication identity provider, which basically reads the roles from the auth service's identity
         'identity_provider' => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
 
+        'resource_providers' => array(
+            'BjyAuthorize\Provider\Resource\Config' => array(
+                'product' => array(),
+            ),
+        ),
+        'rule_providers' => array(
+            'BjyAuthorize\Provider\Rule\Config' => array(
+                'allow' => array(
+                    //          role
+                    array(array('administrator'), 'product', array('list', 'add')),
+                ),
+            ),
+        ),
         'role_providers'        => array(
             // using an object repository (entity repository) to load all roles into our ACL
             'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
-                'object_manager'    => 'doctrine.entity_manager.orm_default',
+                'object_manager'    => 'doctrine.entitymanager.orm_default',
                 'role_entity_class' => 'LaCagnaUser\Entity\Role',
             ),
         ),

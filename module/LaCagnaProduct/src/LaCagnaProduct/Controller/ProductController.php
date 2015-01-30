@@ -38,34 +38,58 @@ class ProductController extends AbstractActionController
     }
     public function addAction()
     {
+        if (!$this->isAllowed('product', 'add')) {
+            throw new \BjyAuthorize\Exception\UnAuthorizedException('Grow a beard first!');
+        }
         /**
         * get data from our form
         */
         $id          = $this->params()->fromPost('id', FALSE);
         $name        = $this->params()->fromPost('name', FALSE);
+        $code        = $this->params()->fromPost('code', FALSE);
         $type        = $this->params()->fromPost('type', FALSE);
 
-        $cocktailRepository = $this->getEntityManager()->getRepository('LaCagnaProduct\Entity\Cocktail');
+        if(!$code)
+            $code = preg_replace("/[^A-Za-z0-9]/", "", $name);
 
+        $ProductManager = $this->getServiceLocator()->get('ProductManager');
+        $ProductsListing = $this->getServiceLocator()->get('ProductsListing');
+        $Categories = $this->getServiceLocator()->get('Categories');
+
+        $cocktailRepository = $this->getEntityManager()
+                                ->getRepository('LaCagnaProduct\Entity\Product');
+        $typeRepository = $this->getEntityManager()
+                                ->getRepository('LaCagnaProduct\Entity\Type');
         // initialize view result
         $viewElements = array();
 
+        $viewElements['types'] = $ProductsListing->getTypes();
+        $viewElements['categories'] = $Categories->getList();
+        $viewElements['ingredients'] = $ProductManager->getIngedients()->getList();
+
+
+
+        //echo '<pre>';\Doctrine\Common\Util\Debug::dump($ProductManager->getIngedients()->getList());die();
         // in case we receive something from form
         if($this->request->isPost() && $name)
         {
 
-            $cocktail = $cocktailRepository->find($id);
+            $cocktail = $cocktailRepository->findOneByTitle($name);
 
             // We cannot find catalog: create a new one
             if(!$cocktail)
             {
-                $cocktail = new \LaCagnaProduct\Entity\Cocktail();
+                $cocktail = new \LaCagnaProduct\Entity\Product();
             }
 
             // Change properties
-            $cocktail->setName($name);
-            //$cocktail->setVersion($catalogversion);
+            $cocktail->setTitle($name);
 
+
+            $cocktail->setCode($code);
+            //$cocktail->setVersion($catalogversion);
+            $type = $typeRepository->find($type);
+            $cocktail->setType($type);
             // apply modifications
             $this->getEntityManager()->persist($cocktail);
 
@@ -73,7 +97,7 @@ class ProductController extends AbstractActionController
             $this->getEntityManager()->flush();
 
             // assign result to view
-            $viewElements = array('cocktail' => $cocktail);
+            $viewElements['cocktail'] = $cocktail;
         }
 
         return new ViewModel($viewElements);

@@ -16,7 +16,8 @@ return array(
         'BjyAuthorize',
         'ZfcTwig',
         'LaCagnaUser',
-        'LaCagnaProduct'
+        'LaCagnaProduct',
+        'ZendDeveloperTools',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
