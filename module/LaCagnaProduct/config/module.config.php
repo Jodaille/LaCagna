@@ -154,6 +154,17 @@ return array(
                     ),
                 ),
             ),
+
+            'ingredientslisting' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/ingredients',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'ingredientslisting',
+                    ),
+                ),
+            ),
             'adminproductslist' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

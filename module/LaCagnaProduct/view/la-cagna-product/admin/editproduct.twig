@@ -34,6 +34,8 @@
         <option value="{{ category.getId() }}" >{{ category.getTitle() }}</option>
         {% endfor %}
     </select>
+    <br />
+    <a href="{{ url('admineditcategory') }}" >Ajouter une catégorie</a>
     <hr />
     <label for="ingredients">Ingrédients : </label>
     <select multiple name="ingredients[]">
@@ -44,3 +46,8 @@
     <hr />
     <input type="submit" value="Valider" />
 </form>
+<p>
+    <a href="{{ url('admincategorieslist') }}">Listing catégories</a>|
+    <a href="{{ url('adminproductslist') }}">Listing produits</a>
+
+</p>

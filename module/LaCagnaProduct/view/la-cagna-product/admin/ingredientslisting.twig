@@ -1,0 +1,18 @@
+<table name="ingredients">
+    <tr>
+        <th width="40%">Nom</th>
+        <th width="20%">Action</th>
+    </tr>
+    {% for ingredient in ingredients %}
+    <tr>
+        <td>{{ ingredient.getName() }}</td>
+        <td><a href="#{{ ingredient.getId() }}" >Éditer</a></td>
+    </tr>
+{% endfor %}
+</table>
+<hr />
+<p>
+    <a href="{{ url('adminproductslist') }}">Listing produits</a>
+
+</p>
+</p>
