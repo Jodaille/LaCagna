@@ -39,7 +39,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'LaCagnaProduct\Controller\Product' => 'LaCagnaProduct\Controller\ProductController'
+            'LaCagnaProduct\Controller\Product' => 'LaCagnaProduct\Controller\ProductController',
+            'LaCagnaProduct\Controller\Admin' => 'LaCagnaProduct\Controller\AdminController'
+
         ),
     ),
     'service_manager' => array(
@@ -49,12 +51,12 @@ return array(
             // every time.
         ),
         'factories' => array(
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-            'ProductsListing' => 'LaCagnaProduct\Factory\ProductsListingFactory',
-            'Categories' => 'LaCagnaProduct\Factory\CategoriesFactory',
-            'ProductManager' => 'LaCagnaProduct\Factory\ProductManager',
+            'navigation'        => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'ProductsListing'   => 'LaCagnaProduct\Factory\ProductsListingFactory',
+            'Categories'        => 'LaCagnaProduct\Factory\CategoriesFactory',
+            'Products'          => 'LaCagnaProduct\Factory\ProductsFactory',
 
-
+            'ProductManager'    => 'LaCagnaProduct\Factory\ProductManager',
         ),
     ),
     'view_manager' => array(
@@ -126,6 +128,52 @@ return array(
                         'controller' => 'LaCagnaProduct\Controller\Product',
                         'action'     => 'bytype',
                         'type'       => 'jus',
+                    ),
+                ),
+            ),
+            'admincategorieslist' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/categories',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'categorylisting',
+                    ),
+                ),
+            ),
+            'admineditcategory' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/category[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editcategory',
+                    ),
+                ),
+            ),
+            'adminproductslist' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/produits',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'productlisting',
+                    ),
+                ),
+            ),
+            'admineditproduct' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/produit[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editproduct',
                     ),
                 ),
             ),

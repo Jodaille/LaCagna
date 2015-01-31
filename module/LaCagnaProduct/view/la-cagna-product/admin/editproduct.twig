@@ -1,0 +1,46 @@
+<form action="{{ url(admineditproduct)}}" method="POST">
+
+    <input type="hidden" name="id" value="{{ product.getId() }}" />
+
+    <label for="titre">Titre du produit</label>
+    <input type="text" name="titre" value="{{ product.getTitle() }}" />
+    <hr />
+    <label for="description">Description : </label>
+    <input type="text" name="description" value="{{ product.getDescription() }}" />
+    <br /><br />
+    <label for="state">Status : </label>
+    <select name="state">
+        <option value="" >Choisir</option>
+        {% for state in states %}
+        <option value="{{ state.getId() }}"
+        {% if product.getState() == state %}selected="selected"{% endif %}
+        >{{ state.getName() }}</option>
+        {% endfor %}
+    </select>
+    <hr />
+    <label for="type">Type : </label>
+    <select name="type">
+        <option value="" >Choisir</option>
+        {% for type in types %}
+        <option value="{{ type.getId() }}"
+            {% if product.getType() == type %}selected="selected"{% endif %}
+            >{{ type.getName() }}</option>
+        {% endfor %}
+    </select>
+    <hr />
+    <label for="categories">Catégories : </label>
+    <select multiple name="categories[]">
+        {% for category in categories %}
+        <option value="{{ category.getId() }}" >{{ category.getTitle() }}</option>
+        {% endfor %}
+    </select>
+    <hr />
+    <label for="ingredients">Ingrédients : </label>
+    <select multiple name="ingredients[]">
+        {% for ingredient in ingredients %}
+        <option value="{{ ingredient.getId() }}" >{{ ingredient.getName() }}</option>
+        {% endfor %}
+    </select>
+    <hr />
+    <input type="submit" value="Valider" />
+</form>

@@ -1,0 +1,15 @@
+<div style="float:left; padding-right:16px;"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail()) ?></div>
+<h3><?php echo $this->translate('Hello'); ?>, <?php echo $this->zfcUserDisplayName() ?>!</h3>
+<a href="<?php echo $this->url('zfcuser/logout') ?>">[<?php echo $this->translate('Sign Out'); ?>]</a>
+<div style="clear:both;">
+<?php
+    if($this->isAllowed('product', 'add'))
+    {
+        echo '<hr /><a href="'. $this->url('addproduct'). '">Ajouter un produit</a>';
+        echo '&nbsp;|&nbsp;<a href="'. $this->url('admincategorieslist'). '">Lister les catégories</a>';
+        echo '&nbsp;|&nbsp;<a href="'. $this->url('adminproductslist'). '">Lister les poduits</a>';
+
+
+    }
+?>
+</div>

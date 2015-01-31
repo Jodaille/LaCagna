@@ -1,0 +1,17 @@
+<form action="{{ url('admineditcategory')}}{{ category.getId() }}" method="POST">
+
+    <input type="hidden" name="id" value="{{ category.getId() }}" />
+    <label for="title">Titre : </label><br />
+    <input type="text" name="title" value="{{ category.getTitle() }}" />
+    <hr />
+
+    <label for="code">Code : </label>
+    <input type="text" name="code" value="{{ category.getCode() }}" />
+    &nbsp;
+    <label for="displayorder">Ordre d'affichage : </label>&nbsp;
+    <input type="text" name="displayorder" value="{{ category.getDisplayorder() }}" />
+    <hr />
+    <input type="submit" value="Valider" />
+</form>
+<hr />
+<p><a href="{{ url('admincategorieslist') }}">Listing catégories</a></p>

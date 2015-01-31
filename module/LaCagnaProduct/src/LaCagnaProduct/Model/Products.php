@@ -5,53 +5,55 @@ namespace LaCagnaProduct\Model;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
 
-class Categories
+class Products
 {
     protected $em;
     protected $servicelocator;
 
     public function getList()
     {
-        $categoryRepository = $this->getEntityManager()
-                                ->getRepository('LaCagnaProduct\Entity\Category');
-        return $categoryRepository->findAll();
+        $ProductRepository = $this->getEntityManager()
+                                ->getRepository('LaCagnaProduct\Entity\Product');
+        return $ProductRepository->findAll();
     }
 
     public function get($id)
     {
-        return $categoryRepository = $this->getEntityManager()
-        ->getRepository('LaCagnaProduct\Entity\Category')
+        return $ProductRepository = $this->getEntityManager()
+        ->getRepository('LaCagnaProduct\Entity\Product')
         ->find($id);
     }
 
     public function edit($id = false, $values)
     {
-        $category = false;
-        $categoryRepository = $this->getEntityManager()
-                            ->getRepository('LaCagnaProduct\Entity\Category');
+        $Product = false;
+        $ProductRepository = $this->getEntityManager()
+                            ->getRepository('LaCagnaProduct\Entity\Product');
         //echo '<pre>'; var_dump($id, $values);die();
         if($id)
         {
-            $category = $categoryRepository->find($id);
+            $Product = $ProductRepository->find($id);
         }
-        if(!$category)
-            $category = new \LaCagnaProduct\Entity\Category();
+        if(!$Product)
+            $Product = new \LaCagnaProduct\Entity\Product();
 
         $code           = $values['code'];
         $title          = $values['title'];
         $displayorder   = $values['displayorder'];
+        $description    = $values['description'];
 
         if(empty($code))
             $code = preg_replace("/[^A-Za-z0-9]/", "", $title);
 
-        $category->setCode($code);
-        $category->setTitle($title);
-        $category->setDisplayorder($displayorder);
+        $Product->setCode($code);
+        $Product->setTitle($title);
+        $Product->setDisplayorder($displayorder);
+        $Product->setDescription($description);
 
-        $this->getEntityManager()->persist($category);
+        $this->getEntityManager()->persist($Product);
         $this->getEntityManager()->flush();
 
-        return $category;
+        return $Product;
     }
 
     public function getEntityManager()

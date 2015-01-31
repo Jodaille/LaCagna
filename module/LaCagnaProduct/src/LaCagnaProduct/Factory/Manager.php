@@ -19,21 +19,37 @@ class Manager implements ServiceLocatorAwareInterface
         return $this->servicelocator;
     }
 
+    public function Products()
+    {
+        $model = new \LaCagnaProduct\Model\Products();
+        $model->setServiceLocator($this->servicelocator);
+        return $model;
+    }
+
     public function Categories()
     {
         $model = new \LaCagnaProduct\Model\Categories();
         $model->setServiceLocator($this->servicelocator);
         return $model;
     }
-    public function getIngedients()
+
+    public function Ingredients()
     {
         $model = new \LaCagnaProduct\Model\Ingredients();
         $model->setServiceLocator($this->servicelocator);
         return $model;
     }
+
     public function States()
     {
         $model = new \LaCagnaProduct\Model\States();
+        $model->setServiceLocator($this->servicelocator);
+        return $model;
+    }
+
+    public function Types()
+    {
+        $model = new \LaCagnaProduct\Model\Types();
         $model->setServiceLocator($this->servicelocator);
         return $model;
     }

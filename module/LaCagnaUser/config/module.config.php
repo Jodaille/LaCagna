@@ -1,5 +1,10 @@
 <?php
 return array(
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'zfcuser' => __DIR__ . '/../view',
+        ),
+    ),
     'doctrine' => array(
         'driver' => array(
             // overriding zfc-user-doctrine-orm's config

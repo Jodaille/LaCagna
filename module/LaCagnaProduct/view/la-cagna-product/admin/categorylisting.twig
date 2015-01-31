@@ -1,0 +1,20 @@
+<table name="categories">
+    <tr>
+        <th width="10%">Code</th>
+        <th width="40%">Titre</th>
+        <th width="10%">Ordre</th>
+        <th width="20%">Action</th>
+    </tr>
+{% for category in categories %}
+<tr>
+    <td>{{ category.getCode() }}</td>
+    <td>{{ category.getTitle() }}</td>
+    <td>{{ category.getDisplayorder() }}</td>
+    <td><a href="{{ url('admineditcategory') }}{{ category.getId() }}" >Éditer</a></td>
+</tr>
+{% endfor %}
+</table>
+<hr />
+<p>
+    <a href="{{ url('admineditcategory') }}" >Ajouter une catégorie</a>.
+</p>

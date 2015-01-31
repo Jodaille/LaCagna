@@ -10,6 +10,13 @@ class ProductsListing
     protected $em;
     protected $servicelocator;
 
+    public function getList()
+    {
+        $pRepository = $this->getEntityManager()
+        ->getRepository('LaCagnaProduct\Entity\Product');
+        return $pRepository->findAll();
+    }
+
     public function getTypes()
     {
         $typeRepository = $this->getEntityManager()

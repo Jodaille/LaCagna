@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "86f200f35975241d61bd68e868cb11c5",
+    "hash": "521b04e21d5e0f73e8de75114ba7bae0",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -843,6 +843,57 @@
             "time": "2014-12-16 13:45:01"
         },
         {
+            "name": "hrevert/ht-session",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hrevert/HtSession.git",
+                "reference": "c11c73af1b1ed4fdf45a95bc59c39d921905b128"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hrevert/HtSession/zipball/c11c73af1b1ed4fdf45a95bc59c39d921905b128",
+                "reference": "c11c73af1b1ed4fdf45a95bc59c39d921905b128",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-modulemanager": "~2.1",
+                "zendframework/zend-mvc": "~2.1",
+                "zendframework/zend-session": "~2.1",
+                "zendframework/zend-stdlib": "~2.1"
+            },
+            "suggest": {
+                "zendframework/zend-db": "To store session in database"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HtSession": "src/"
+                },
+                "classmap": [
+                    "./Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "ojhaujjwal",
+                    "email": "bring2uo@gmail.com"
+                },
+                {
+                    "name": "Hrevert Technologies",
+                    "email": "info@hrevert.com"
+                }
+            ],
+            "description": "A Zend Framework 2 module to manage session configurations, session validators, storing session data in database.",
+            "homepage": "https://github.com/hrevert/HtSession",
+            "keywords": [
+                "zf2"
+            ],
+            "time": "2014-02-10 13:35:40"
+        },
+        {
             "name": "symfony/console",
             "version": "v2.6.3",
             "target-dir": "Symfony/Component/Console",
@@ -1120,16 +1171,16 @@
         },
         {
             "name": "zendframework/zenddiagnostics",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDiagnostics.git",
-                "reference": "2ae657df8ffafff26fe2963ebb47e677946b0263"
+                "reference": "b855b48f6539038270a3c0935b6bd2c51fa43f7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/ZendDiagnostics/zipball/2ae657df8ffafff26fe2963ebb47e677946b0263",
-                "reference": "2ae657df8ffafff26fe2963ebb47e677946b0263",
+                "url": "https://api.github.com/repos/zendframework/ZendDiagnostics/zipball/b855b48f6539038270a3c0935b6bd2c51fa43f7c",
+                "reference": "b855b48f6539038270a3c0935b6bd2c51fa43f7c",
                 "shasum": ""
             },
             "require": {
@@ -1175,7 +1226,7 @@
                 "php",
                 "test"
             ],
-            "time": "2014-08-11 16:12:58"
+            "time": "2014-12-07 18:10:07"
         },
         {
             "name": "zendframework/zendframework",

@@ -10,6 +10,7 @@ return array(
         'Application',
         'DoctrineModule',
         'DoctrineORMModule',
+        //'HtSession',
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',

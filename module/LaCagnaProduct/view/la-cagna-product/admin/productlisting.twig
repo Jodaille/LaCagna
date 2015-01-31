@@ -1,0 +1,22 @@
+<table name="products">
+    <tr>
+        <th width="10%">Code</th>
+        <th width="20%">Titre</th>
+        <th width="40%">Description</th>
+        <th width="10%">Ordre</th>
+        <th width="20%">Action</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.getCode() }}</td>
+        <td>{{ product.getTitle() }}</td>
+        <td>{{ product.getDescription() }}</td>
+        <td>{{ product.getDisplayorder() }}</td>
+        <td><a href="{{ url('admineditproduct') }}{{ product.getId() }}" >Éditer</a></td>
+    </tr>
+{% endfor %}
+</table>
+<hr />
+<p>
+    <a href="{{ url('admineditproduct') }}" >Ajouter un produit</a>.
+</p>

@@ -1,15 +1,15 @@
 <?php
 
-namespace Product\Factory;
+namespace LaCagnaProduct\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class CocktailTypeFactory implements FactoryInterface
+class ProductsFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator) {
 
-        $model = new \Product\Model\CocktailType();
+        $model = new \LaCagnaProduct\Model\Products();
         $model->setServiceLocator($serviceLocator);
         return $model;
     }
