@@ -92,9 +92,11 @@ class AdminController extends AbstractActionController
             $values['code']         = $this->params()->fromPost('code', FALSE);
             $values['title']        = $this->params()->fromPost('title', FALSE);
             $values['description']  = $this->params()->fromPost('description', FALSE);
-            $values['displayorder'] = $this->params()->fromPost('displayorder', FALSE);
+            $values['type'] = $this->params()->fromPost('type', FALSE);
+            $values['state'] = $this->params()->fromPost('state', FALSE);
 
-            $product                = $products->edit($id, $values);
+
+            $product                = $products->edit($posted_id, $values);
         }
         else
         {

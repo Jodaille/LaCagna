@@ -1,9 +1,9 @@
-<form action="{{ url(admineditproduct)}}" method="POST">
+<form action="{{ url(admineditproduct)}}{{ product.getId() }}" method="POST">
 
     <input type="hidden" name="id" value="{{ product.getId() }}" />
 
     <label for="titre">Titre du produit</label>
-    <input type="text" name="titre" value="{{ product.getTitle() }}" />
+    <input type="text" name="title" value="{{ product.getTitle() }}" />
     <hr />
     <label for="description">Description : </label>
     <input type="text" name="description" value="{{ product.getDescription() }}" />

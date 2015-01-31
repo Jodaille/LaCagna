@@ -29,7 +29,7 @@ class Products
         $Product = false;
         $ProductRepository = $this->getEntityManager()
                             ->getRepository('LaCagnaProduct\Entity\Product');
-        //echo '<pre>'; var_dump($id, $values);die();
+
         if($id)
         {
             $Product = $ProductRepository->find($id);
@@ -39,7 +39,8 @@ class Products
 
         $code           = $values['code'];
         $title          = $values['title'];
-        $displayorder   = $values['displayorder'];
+        $typeid         = $values['type'];
+        $stateid        = $values['state'];
         $description    = $values['description'];
 
         if(empty($code))
@@ -47,8 +48,24 @@ class Products
 
         $Product->setCode($code);
         $Product->setTitle($title);
-        $Product->setDisplayorder($displayorder);
+
         $Product->setDescription($description);
+
+        if($stateid)
+        {
+            $state = $this->getEntityManager()
+            ->getRepository('LaCagnaProduct\Entity\State')
+            ->find($stateid);
+            if($state)
+                $Product->setState($state);
+        }
+
+
+        $type = $this->getEntityManager()
+                ->getRepository('LaCagnaProduct\Entity\Type')
+                ->find($typeid);
+
+        $Product->setType($type);
 
         $this->getEntityManager()->persist($Product);
         $this->getEntityManager()->flush();
