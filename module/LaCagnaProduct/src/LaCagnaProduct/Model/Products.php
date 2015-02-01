@@ -53,21 +53,28 @@ class Products
         {
             $Product->removeCategory($category);
         }
-        foreach($categories as $category_id)
+        if($categories)
         {
-            $category = $CategoryRepository->find($category_id);
-            if($category)
-                $Product->addCategory($category);
+            foreach($categories as $category_id)
+            {
+                $category = $CategoryRepository->find($category_id);
+                if($category)
+                    $Product->addCategory($category);
+            }
         }
+
         foreach($Product->getIngredients() as $ingredient)
         {
             $Product->removeIngredient($ingredient);
         }
-        foreach($ingredients as $ingredient_id)
+        if($ingredients)
         {
-            $ingredient = $IngredientRepository->find($ingredient_id);
-            if($ingredient)
-                $Product->addIngredient($ingredient);
+            foreach($ingredients as $ingredient_id)
+            {
+                $ingredient = $IngredientRepository->find($ingredient_id);
+                if($ingredient)
+                    $Product->addIngredient($ingredient);
+            }
         }
         if(empty($code))
             $code = preg_replace("/[^A-Za-z0-9]/", "", $title);
