@@ -10,7 +10,6 @@ return array(
         'Application',
         'DoctrineModule',
         'DoctrineORMModule',
-        //'HtSession',
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
@@ -19,6 +18,7 @@ return array(
         'LaCagnaUser',
         'LaCagnaProduct',
         'ZendDeveloperTools',
+        'LaCagnaContent',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

@@ -24,7 +24,7 @@ LaCagnaProduct\Entity\Category:
             nullable: true
         displayorder:
             type: integer
-            nullable: truee
+            nullable: true
         created_at:
             type: datetime
             nullable: false

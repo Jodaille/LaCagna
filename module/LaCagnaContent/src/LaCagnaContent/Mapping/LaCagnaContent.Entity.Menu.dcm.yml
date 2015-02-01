@@ -1,0 +1,21 @@
+LaCagnaContent\Entity\Menu:
+    type: entity
+    table: menu
+    repositoryClass: LaCagnaContent\Repository\MenuRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        label:
+            type: string
+            length: 255
+            nullable: false
+        route:
+            type: string
+            length: 255
+            nullable: false
+        displayorder:
+            type: integer
+            nullable: true

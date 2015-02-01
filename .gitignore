@@ -7,3 +7,5 @@ module/Product
 module/Application
 module/LaCagnaProduct/src/LaCagnaProduct/Mapping/Product*
 module/LaCagnaProduct/src/LaCagnaProduct/Proxy/__*
+module/LaCagnaContent/src/LaCagnaContent/Proxy/__*
+*.directory
