@@ -10,18 +10,6 @@ return array(
             array(
                 'label' => 'Bières',
                 'route' => 'bieres',
-                'pages' => array(
-                    array(
-                        'label' => 'Ajouter',
-                        'route' => 'addproduct',
-                        'action' => 'add',
-                    ),
-                    array(
-                        'label' => 'Add',
-                        'route' => 'addproduct',
-                        'action' => 'add',
-                    ),
-                ),
             ),
             array(
                 'label' => 'Cocktails',
@@ -55,7 +43,6 @@ return array(
             'ProductsListing'   => 'LaCagnaProduct\Factory\ProductsListingFactory',
             'Categories'        => 'LaCagnaProduct\Factory\CategoriesFactory',
             'Products'          => 'LaCagnaProduct\Factory\ProductsFactory',
-
             'ProductManager'    => 'LaCagnaProduct\Factory\ProductManager',
         ),
     ),
@@ -155,6 +142,19 @@ return array(
                 ),
             ),
 
+            'admineditingredient' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/ingredient[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editingredient',
+                    ),
+                ),
+            ),
             'ingredientslisting' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

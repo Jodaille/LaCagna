@@ -2,13 +2,14 @@
 
     <input type="hidden" name="id" value="{{ product.getId() }}" />
 
-    <label for="titre">Titre du produit</label>
+    <label for="titre">Titre produit</label><br />
     <input type="text" name="title" value="{{ product.getTitle() }}" />
     <hr />
-    <label for="description">Description : </label>
-    <input type="text" name="description" value="{{ product.getDescription() }}" />
+    <label for="description">Description : </label><br />
+    <textarea name="description"
+        style="min-width: 480px;">{{ product.getDescription() }}</textarea>
     <br /><br />
-    <label for="state">Status : </label>
+    <label for="state">Status : </label><br />
     <select name="state">
         <option value="" >Choisir</option>
         {% for state in states %}
@@ -18,7 +19,7 @@
         {% endfor %}
     </select>
     <hr />
-    <label for="type">Type : </label>
+    <label for="type">Type : </label><br />
     <select name="type">
         <option value="" >Choisir</option>
         {% for type in types %}
@@ -28,21 +29,27 @@
         {% endfor %}
     </select>
     <hr />
-    <label for="categories">Catégories : </label>
+    <label for="categories">Catégories : </label><br />
     <select multiple name="categories[]">
         {% for category in categories %}
-        <option value="{{ category.getId() }}" >{{ category.getTitle() }}</option>
+        <option value="{{ category.id }}"
+        {% if category.selected %}selected="selected"{% endif %}
+        >{{ category.title }}</option>
         {% endfor %}
     </select>
     <br />
     <a href="{{ url('admineditcategory') }}" >Ajouter une catégorie</a>
     <hr />
-    <label for="ingredients">Ingrédients : </label>
+    <label for="ingredients">Ingrédients : </label><br />
     <select multiple name="ingredients[]">
         {% for ingredient in ingredients %}
-        <option value="{{ ingredient.getId() }}" >{{ ingredient.getName() }}</option>
+        <option value="{{ ingredient.id }}"
+        {% if ingredient.selected %}selected="selected"{% endif %}
+        >{{ ingredient.name }}</option>
         {% endfor %}
     </select>
+    <br />
+    <a href="{{ url('admineditingredient') }}" >Ajouter un ingrédient</a>
     <hr />
     <input type="submit" value="Valider" />
 </form>

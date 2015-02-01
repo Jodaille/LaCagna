@@ -1,0 +1,14 @@
+<form action="{{ url('admineditingredient')}}{{ ingredient.id }}" method="POST">
+
+    <input type="hidden" name="id" value="{{ ingredient.id }}" />
+    <label for="name">Titre : </label><br />
+    <input type="text" name="name" value="{{ ingredient.getName() }}" />
+    <hr />
+    <input type="submit" value="Valider" />
+</form>
+<hr />
+<p>
+    <a href="{{ url('admincategorieslist') }}">Listing catégories</a>|
+    <a href="{{ url('adminproductslist') }}">Listing produits</a>
+
+</p>

@@ -65,7 +65,7 @@ class ProductController extends AbstractActionController
 
         $viewElements['types'] = $ProductsListing->getTypes();
         $viewElements['categories'] = $Categories->getList();
-        $viewElements['ingredients'] = $ProductManager->getIngedients()->getList();
+        $viewElements['ingredients'] = $ProductManager->Ingredients()->getList();
 
 
 

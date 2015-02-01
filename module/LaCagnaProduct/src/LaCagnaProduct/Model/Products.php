@@ -29,6 +29,10 @@ class Products
         $Product = false;
         $ProductRepository = $this->getEntityManager()
                             ->getRepository('LaCagnaProduct\Entity\Product');
+        $CategoryRepository = $this->getEntityManager()
+                            ->getRepository('LaCagnaProduct\Entity\Category');
+        $IngredientRepository = $this->getEntityManager()
+                            ->getRepository('LaCagnaProduct\Entity\Ingredient');
 
         if($id)
         {
@@ -42,7 +46,29 @@ class Products
         $typeid         = $values['type'];
         $stateid        = $values['state'];
         $description    = $values['description'];
+        $categories     = $values['categories'];
+        $ingredients    = $values['ingredients'];
 
+        foreach($Product->getCategories() as $category)
+        {
+            $Product->removeCategory($category);
+        }
+        foreach($categories as $category_id)
+        {
+            $category = $CategoryRepository->find($category_id);
+            if($category)
+                $Product->addCategory($category);
+        }
+        foreach($Product->getIngredients() as $ingredient)
+        {
+            $Product->removeIngredient($ingredient);
+        }
+        foreach($ingredients as $ingredient_id)
+        {
+            $ingredient = $IngredientRepository->find($ingredient_id);
+            if($ingredient)
+                $Product->addIngredient($ingredient);
+        }
         if(empty($code))
             $code = preg_replace("/[^A-Za-z0-9]/", "", $title);
 
@@ -50,6 +76,7 @@ class Products
         $Product->setTitle($title);
 
         $Product->setDescription($description);
+
 
         if($stateid)
         {

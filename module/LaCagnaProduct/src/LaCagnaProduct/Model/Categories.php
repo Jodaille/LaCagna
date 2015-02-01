@@ -10,11 +10,41 @@ class Categories
     protected $em;
     protected $servicelocator;
 
+
     public function getList()
     {
         $categoryRepository = $this->getEntityManager()
                                 ->getRepository('LaCagnaProduct\Entity\Category');
+
         return $categoryRepository->findAll();
+    }
+
+    public function getProductList($product)
+    {
+        $categories = array();
+        if($product)
+        {
+            foreach($product->getCategories() as $category)
+            {
+                $categories[$category->getId()] = array(
+                    'id'        => $category->getId(),
+                    'title'     => $category->getTitle(),
+                    'selected'  => true,
+                );
+            }
+        }
+
+        foreach($this->getList() as $category)
+        {
+            if(!isset($categories[$category->getId()]))
+            {
+                $categories[$category->getId()] = array(
+                    'id' => $category->getId(),
+                    'title' => $category->getTitle(),
+                );
+            }
+        }
+        return $categories;
     }
 
     public function get($id)
