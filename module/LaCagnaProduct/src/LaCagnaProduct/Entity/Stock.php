@@ -38,7 +38,7 @@ class Stock
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class Stock
     /**
      * Get quantity
      *
-     * @return integer
+     * @return integer 
      */
     public function getQuantity()
     {
@@ -84,7 +84,7 @@ class Stock
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -107,7 +107,7 @@ class Stock
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -130,7 +130,7 @@ class Stock
     /**
      * Get article
      *
-     * @return \LaCagnaProduct\Entity\Article
+     * @return \LaCagnaProduct\Entity\Article 
      */
     public function getArticle()
     {

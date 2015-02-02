@@ -38,7 +38,7 @@ class Lang
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class Lang
     /**
      * Get code
      *
-     * @return string
+     * @return string 
      */
     public function getCode()
     {
@@ -84,7 +84,7 @@ class Lang
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -107,7 +107,7 @@ class Lang
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -130,7 +130,7 @@ class Lang
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {

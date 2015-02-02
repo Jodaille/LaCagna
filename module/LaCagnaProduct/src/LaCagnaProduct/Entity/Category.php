@@ -77,7 +77,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -100,7 +100,7 @@ class Category
     /**
      * Get code
      *
-     * @return string
+     * @return string 
      */
     public function getCode()
     {
@@ -123,7 +123,7 @@ class Category
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -146,7 +146,7 @@ class Category
     /**
      * Get lft
      *
-     * @return integer
+     * @return integer 
      */
     public function getLft()
     {
@@ -169,7 +169,7 @@ class Category
     /**
      * Get rgt
      *
-     * @return integer
+     * @return integer 
      */
     public function getRgt()
     {
@@ -192,7 +192,7 @@ class Category
     /**
      * Get displayorder
      *
-     * @return integer
+     * @return integer 
      */
     public function getDisplayorder()
     {
@@ -215,7 +215,7 @@ class Category
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -238,7 +238,7 @@ class Category
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -271,7 +271,7 @@ class Category
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getProducts()
     {
@@ -304,7 +304,7 @@ class Category
     /**
      * Get medias
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getMedias()
     {
@@ -337,27 +337,25 @@ class Category
     /**
      * Get characteristics
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCharacteristics()
     {
         return $this->characteristics;
     }
-
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
-        $this->created_at = new \DateTime("now");
-        $this->updated_at = new \DateTime("now");
+        // Add your code here
     }
 
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function preUpdate()
     {
-        $this->updated_at = new \DateTime("now");
+        // Add your code here
     }
 }

@@ -79,7 +79,7 @@ class Article
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -102,7 +102,7 @@ class Article
     /**
      * Get code
      *
-     * @return string
+     * @return string 
      */
     public function getCode()
     {
@@ -125,7 +125,7 @@ class Article
     /**
      * Get codeprovider
      *
-     * @return string
+     * @return string 
      */
     public function getCodeprovider()
     {
@@ -148,7 +148,7 @@ class Article
     /**
      * Get state
      *
-     * @return string
+     * @return string 
      */
     public function getState()
     {
@@ -171,7 +171,7 @@ class Article
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -194,7 +194,7 @@ class Article
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -227,7 +227,7 @@ class Article
     /**
      * Get stocks
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getStocks()
     {
@@ -260,7 +260,7 @@ class Article
     /**
      * Get prices
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPrices()
     {
@@ -293,7 +293,7 @@ class Article
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getProducts()
     {
@@ -326,7 +326,7 @@ class Article
     /**
      * Get medias
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getMedias()
     {
@@ -359,7 +359,7 @@ class Article
     /**
      * Get characteristicsvalues
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCharacteristicsvalues()
     {

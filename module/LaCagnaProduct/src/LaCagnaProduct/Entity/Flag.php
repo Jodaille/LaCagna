@@ -55,7 +55,7 @@ class Flag
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class Flag
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -101,7 +101,7 @@ class Flag
     /**
      * Get class
      *
-     * @return string
+     * @return string 
      */
     public function getClass()
     {
@@ -124,7 +124,7 @@ class Flag
     /**
      * Get icon
      *
-     * @return string
+     * @return string 
      */
     public function getIcon()
     {
@@ -147,7 +147,7 @@ class Flag
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -170,7 +170,7 @@ class Flag
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -203,7 +203,7 @@ class Flag
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getProducts()
     {

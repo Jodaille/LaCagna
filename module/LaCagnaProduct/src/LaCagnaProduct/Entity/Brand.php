@@ -37,11 +37,6 @@ class Brand
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $products;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
     private $medias;
 
     /**
@@ -49,14 +44,13 @@ class Brand
      */
     public function __construct()
     {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -79,7 +73,7 @@ class Brand
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -102,7 +96,7 @@ class Brand
     /**
      * Get id_manufacturer
      *
-     * @return integer
+     * @return integer 
      */
     public function getIdManufacturer()
     {
@@ -125,7 +119,7 @@ class Brand
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -148,44 +142,11 @@ class Brand
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
         return $this->updated_at;
-    }
-
-    /**
-     * Add products
-     *
-     * @param \LaCagnaProduct\Entity\Product $products
-     * @return Brand
-     */
-    public function addProduct(\LaCagnaProduct\Entity\Product $products)
-    {
-        $this->products[] = $products;
-
-        return $this;
-    }
-
-    /**
-     * Remove products
-     *
-     * @param \LaCagnaProduct\Entity\Product $products
-     */
-    public function removeProduct(\LaCagnaProduct\Entity\Product $products)
-    {
-        $this->products->removeElement($products);
-    }
-
-    /**
-     * Get products
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProducts()
-    {
-        return $this->products;
     }
 
     /**
@@ -214,7 +175,7 @@ class Brand
     /**
      * Get medias
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getMedias()
     {

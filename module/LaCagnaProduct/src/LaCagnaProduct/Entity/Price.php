@@ -38,7 +38,7 @@ class Price
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class Price
     /**
      * Get value
      *
-     * @return float
+     * @return float 
      */
     public function getValue()
     {
@@ -84,7 +84,7 @@ class Price
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -107,7 +107,7 @@ class Price
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -130,7 +130,7 @@ class Price
     /**
      * Get article
      *
-     * @return \LaCagnaProduct\Entity\Article
+     * @return \LaCagnaProduct\Entity\Article 
      */
     public function getArticle()
     {

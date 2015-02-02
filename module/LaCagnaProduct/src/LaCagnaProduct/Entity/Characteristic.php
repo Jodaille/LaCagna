@@ -56,7 +56,7 @@ class Characteristic
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -79,7 +79,7 @@ class Characteristic
     /**
      * Get abbreviation
      *
-     * @return string
+     * @return string 
      */
     public function getAbbreviation()
     {
@@ -102,7 +102,7 @@ class Characteristic
     /**
      * Get type
      *
-     * @return string
+     * @return string 
      */
     public function getType()
     {
@@ -125,7 +125,7 @@ class Characteristic
     /**
      * Get created_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -148,7 +148,7 @@ class Characteristic
     /**
      * Get updated_at
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -181,7 +181,7 @@ class Characteristic
     /**
      * Get characteristicsvalues
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCharacteristicsvalues()
     {
@@ -214,7 +214,7 @@ class Characteristic
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCategories()
     {

@@ -40,7 +40,7 @@ class CharacteristicValue
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -63,7 +63,7 @@ class CharacteristicValue
     /**
      * Get value
      *
-     * @return string
+     * @return string 
      */
     public function getValue()
     {
@@ -86,7 +86,7 @@ class CharacteristicValue
     /**
      * Get characteristic
      *
-     * @return \LaCagnaProduct\Entity\Characteristic
+     * @return \LaCagnaProduct\Entity\Characteristic 
      */
     public function getCharacteristic()
     {
@@ -119,7 +119,7 @@ class CharacteristicValue
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getArticles()
     {
