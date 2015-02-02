@@ -15,12 +15,10 @@ class LaCagnaNavigation extends DefaultNavigationFactory
 
             //FETCH data from table menu :
             $em = $serviceLocator->get('Doctrine\ORM\EntityManager');
-            if(!$auth->isAllowed('product', 'add'))
-                $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
-                            ->getItems();
-            else
-                $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
-                            ->getAdminItems();
+
+            $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
+                        ->getItems();
+
 
             foreach($menuItems as $key=>$item)
             {
@@ -31,7 +29,17 @@ class LaCagnaNavigation extends DefaultNavigationFactory
             }
 
             if (!isset($configuration['navigation'])) {
-                throw new \InvalidArgumentException('Could not find navigation configuration key');
+                $configuration = array(
+                    'navigation' => array(
+                        'default' => array(
+                            array(
+                                'label' => 'Home',
+                                'route' => 'home',
+                            ),
+                        )
+                    )
+                );
+                //throw new \InvalidArgumentException('Could not find navigation configuration key');
             }
             if (!isset($configuration['navigation'][$this->getName()])) {
                 throw new \InvalidArgumentException(sprintf(
