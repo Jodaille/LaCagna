@@ -13,4 +13,11 @@ class MenuRepository extends EntityRepository
         return $menuRepository->findAll();*/
         return $this->findBy(array(), array('displayorder' => 'ASC'));
     }
+    public function getAdminItems()
+    {
+        /*$menuRepository = $this->getEntityManager()
+        ->getRepository('LaCagnaContent\Entity\Menu');
+        return $menuRepository->findAll();*/
+        return $this->findBy(array(), array('displayorder' => 'ASC'));
+    }
 }

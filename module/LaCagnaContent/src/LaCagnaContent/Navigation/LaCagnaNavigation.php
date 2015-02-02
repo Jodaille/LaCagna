@@ -10,10 +10,17 @@ class LaCagnaNavigation extends DefaultNavigationFactory
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
         if (null === $this->pages) {
+
+            $auth = $serviceLocator->get('BjyAuthorize\Service\Authorize');
+
             //FETCH data from table menu :
             $em = $serviceLocator->get('Doctrine\ORM\EntityManager');
-            $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
+            if(!$auth->isAllowed('product', 'add'))
+                $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
                             ->getItems();
+            else
+                $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
+                            ->getAdminItems();
 
             foreach($menuItems as $key=>$item)
             {
