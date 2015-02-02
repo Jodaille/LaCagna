@@ -19,3 +19,6 @@ LaCagnaContent\Entity\Menu:
         displayorder:
             type: integer
             nullable: true
+        role:
+            type: integer
+            nullable: true

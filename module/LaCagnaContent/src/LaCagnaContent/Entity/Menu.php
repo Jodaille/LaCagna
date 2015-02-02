@@ -29,6 +29,11 @@ class Menu
      */
     private $displayorder;
 
+    /**
+     * @var integer
+     */
+    private $role;
+
 
     /**
      * Get id
@@ -107,5 +112,28 @@ class Menu
     public function getDisplayorder()
     {
         return $this->displayorder;
+    }
+
+    /**
+     * Set role
+     *
+     * @param integer $role
+     * @return Menu
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return integer 
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

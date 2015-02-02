@@ -39,7 +39,11 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <?php // <-- Update this !!
-                        echo $this->navigation('navigation')
+                        $navtype = 'navigation';
+                        if($this->isAllowed('product', 'add'))
+                            $navtype = 'adminNavigation';
+
+                        echo $this->navigation($navtype)
                         ->menu()
                         ->setMinDepth(0)
                         ->setMaxDepth(0)

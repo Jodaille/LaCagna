@@ -8,16 +8,22 @@ class MenuRepository extends EntityRepository
 {
     public function getItems()
     {
-        /*$menuRepository = $this->getEntityManager()
-                            ->getRepository('LaCagnaContent\Entity\Menu');
-        return $menuRepository->findAll();*/
-        return $this->findBy(array(), array('displayorder' => 'ASC'));
+        $level = 1;
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('m')
+        ->from('LaCagnaContent\Entity\Menu', 'm')
+        ->where('m.role <= :level')
+        ->orderBy('m.displayorder', 'ASC')
+        ->setParameter('level', $level);
+
+        $query = $qb->getQuery();
+        $r = $query->getResult();
+        return $r;
     }
     public function getAdminItems()
     {
-        /*$menuRepository = $this->getEntityManager()
-        ->getRepository('LaCagnaContent\Entity\Menu');
-        return $menuRepository->findAll();*/
         return $this->findBy(array(), array('displayorder' => 'ASC'));
     }
 }

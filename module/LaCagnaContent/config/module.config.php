@@ -14,6 +14,7 @@ return array(
         ),
         'factories' => array(
             'navigation'        => 'LaCagnaContent\Factory\NavigationFactory',
+            'adminNavigation'   => 'LaCagnaContent\Factory\AdminNavigationFactory',            
         ),
     ),
     // Doctrine config

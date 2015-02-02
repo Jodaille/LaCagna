@@ -7,6 +7,13 @@ use Zend\Navigation\Service\DefaultNavigationFactory;
 
 class LaCagnaNavigation extends DefaultNavigationFactory
 {
+    protected $role;
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
         if (null === $this->pages) {
@@ -16,8 +23,16 @@ class LaCagnaNavigation extends DefaultNavigationFactory
             //FETCH data from table menu :
             $em = $serviceLocator->get('Doctrine\ORM\EntityManager');
 
-            $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
-                        ->getItems();
+            if('admin' == $this->role)
+            {
+                $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
+                ->getAdminItems();
+            }
+            else
+            {
+                $menuItems = $em->getRepository('LaCagnaContent\Entity\Menu')
+                ->getItems();
+            }
 
 
             foreach($menuItems as $key=>$item)
