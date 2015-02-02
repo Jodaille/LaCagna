@@ -2,10 +2,10 @@ esscul
 vendor
 config/autoload/doctrine.local.php
 config/application.config.old
-config/autoload/
+config/autoload/*.php
 module/Product
-module/Application
 module/LaCagnaProduct/src/LaCagnaProduct/Mapping/Product*
 module/LaCagnaProduct/src/LaCagnaProduct/Proxy/__*
 module/LaCagnaContent/src/LaCagnaContent/Proxy/__*
 *.directory
+*~
