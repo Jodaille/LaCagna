@@ -30,16 +30,24 @@ LaCagnaProduct\Entity\Product:
     manyToOne:
         mainmedia:
             targetEntity: LaCagnaProduct\Entity\Media
-            mappedBy: media
+            joinColumn:
+                name: main_media_id
+                referencedColumnName: id
         brand:
             targetEntity: LaCagnaProduct\Entity\Brand
-            mappedBy: brand
+            joinColumn:
+                name: brand_id
+                referencedColumnName: id
         type:
             targetEntity: LaCagnaProduct\Entity\Type
-            mappedBy: type
+            joinColumn:
+                name: type_id
+                referencedColumnName: id
         state:
             targetEntity: LaCagnaProduct\Entity\State
-            mappedBy: state
+            joinColumn:
+                name: state_id
+                referencedColumnName: id
     manyToMany:
         ingredients:
             targetEntity: LaCagnaProduct\Entity\Ingredient
@@ -65,7 +73,7 @@ LaCagnaProduct\Entity\Product:
                         referencedColumnName: id
         flags:
             targetEntity: LaCagnaProduct\Entity\Flag
-            inversedBy: flags
+            inversedBy: products
             joinTable:
                 name: products__flags
                 joinColumns:

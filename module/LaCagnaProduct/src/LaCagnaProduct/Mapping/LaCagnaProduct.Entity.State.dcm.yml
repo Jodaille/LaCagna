@@ -12,11 +12,6 @@ LaCagnaProduct\Entity\State:
             type: string
             length: 64
             nullable: true
-    oneToMany:
-        products:
-            targetEntity: LaCagnaProduct\Entity\Product
-            mappedBy: products
-            cascade: ["persist"]
     lifecycleCallbacks:
         prePersist: [ prePersist ]
         preUpdate: [ preUpdate ]

@@ -12,8 +12,3 @@ LaCagnaProduct\Entity\Type:
             type: string
             length: 255
             nullable: true
-    oneToMany:
-        products:
-            targetEntity: LaCagnaProduct\Entity\Product
-            mappedBy: products
-            cascade: ["persist"]

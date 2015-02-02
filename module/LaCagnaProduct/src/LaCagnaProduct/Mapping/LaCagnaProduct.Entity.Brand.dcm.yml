@@ -21,11 +21,6 @@ LaCagnaProduct\Entity\Brand:
         updated_at:
             type: datetime
             nullable: false
-    oneToMany:
-        products:
-            targetEntity: LaCagnaProduct\Entity\Product
-            mappedBy: products
-            cascade: ["persist"]
     manyToMany:
         medias:
             targetEntity: LaCagnaProduct\Entity\Media
