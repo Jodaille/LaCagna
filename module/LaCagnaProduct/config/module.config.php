@@ -107,14 +107,14 @@ return array(
                     ),
                 ),
             ),
-            'jus' => array(
+            'softs' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/jus',
+                    'route'    => '/softs',
                     'defaults' => array(
                         'controller' => 'LaCagnaProduct\Controller\Product',
                         'action'     => 'bytype',
-                        'type'       => 'jus',
+                        'type'       => 'soft',
                     ),
                 ),
             ),
