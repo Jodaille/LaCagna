@@ -118,6 +118,17 @@ return array(
                     ),
                 ),
             ),
+            'vins' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/vins',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Product',
+                        'action'     => 'bytype',
+                        'type'       => 'vins',
+                    ),
+                ),
+            ),
             'admincategorieslist' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
