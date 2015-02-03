@@ -50,7 +50,7 @@ class Brand
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -73,7 +73,7 @@ class Brand
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -96,7 +96,7 @@ class Brand
     /**
      * Get id_manufacturer
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdManufacturer()
     {
@@ -119,7 +119,7 @@ class Brand
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -142,7 +142,7 @@ class Brand
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -175,25 +175,27 @@ class Brand
     /**
      * Get medias
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getMedias()
     {
         return $this->medias;
     }
+
     /**
-     * @ORM\PrePersist
-     */
+    * @ORM\PrePersist
+    */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
-     * @ORM\PreUpdate
-     */
+    * @ORM\PreUpdate
+    */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }

@@ -45,7 +45,7 @@ class Ingredient
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -68,7 +68,7 @@ class Ingredient
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,7 +91,7 @@ class Ingredient
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -114,7 +114,7 @@ class Ingredient
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -147,25 +147,27 @@ class Ingredient
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {
         return $this->products;
     }
+
     /**
-     * @ORM\PrePersist
-     */
+    * @ORM\PrePersist
+    */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
-     * @ORM\PreUpdate
-     */
+    * @ORM\PreUpdate
+    */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }

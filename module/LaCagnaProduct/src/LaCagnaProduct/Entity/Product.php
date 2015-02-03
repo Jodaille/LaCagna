@@ -99,7 +99,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -122,7 +122,7 @@ class Product
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -145,7 +145,7 @@ class Product
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -168,7 +168,7 @@ class Product
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -191,7 +191,7 @@ class Product
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -214,7 +214,7 @@ class Product
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -237,7 +237,7 @@ class Product
     /**
      * Get mainmedia
      *
-     * @return \LaCagnaProduct\Entity\Media 
+     * @return \LaCagnaProduct\Entity\Media
      */
     public function getMainmedia()
     {
@@ -260,7 +260,7 @@ class Product
     /**
      * Get brand
      *
-     * @return \LaCagnaProduct\Entity\Brand 
+     * @return \LaCagnaProduct\Entity\Brand
      */
     public function getBrand()
     {
@@ -283,7 +283,7 @@ class Product
     /**
      * Get type
      *
-     * @return \LaCagnaProduct\Entity\Type 
+     * @return \LaCagnaProduct\Entity\Type
      */
     public function getType()
     {
@@ -306,7 +306,7 @@ class Product
     /**
      * Get state
      *
-     * @return \LaCagnaProduct\Entity\State 
+     * @return \LaCagnaProduct\Entity\State
      */
     public function getState()
     {
@@ -339,7 +339,7 @@ class Product
     /**
      * Get ingredients
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIngredients()
     {
@@ -372,7 +372,7 @@ class Product
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -405,7 +405,7 @@ class Product
     /**
      * Get flags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFlags()
     {
@@ -438,7 +438,7 @@ class Product
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
@@ -471,25 +471,27 @@ class Product
     /**
      * Get medias
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getMedias()
     {
         return $this->medias;
     }
+
     /**
-     * @ORM\PrePersist
-     */
+    * @ORM\PrePersist
+    */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
-     * @ORM\PreUpdate
-     */
+    * @ORM\PreUpdate
+    */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }
