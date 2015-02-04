@@ -18,6 +18,16 @@ class AdminController extends AbstractActionController
         return new ViewModel();
     }
 
+    public function qrcodeAction()
+    {
+        $url = 'http://lacagna.jodaille.org';
+        $img = "/img/qrcode.png";
+        $destination_dir = "./public";
+        //($text, $outfile = false, $level = Constants::QR_ECLEVEL_L, $size = 3, $margin = 4, $saveandprint=false)
+        \PHPQRCode\QRcode::png($url, $destination_dir . $img, 'L', 10, 2);
+        die('<img src="' . $img . '" />');
+    }
+
     public function productlistingAction()
     {
         $productsListing    = $this->getServiceLocator()->get('ProductsListing');

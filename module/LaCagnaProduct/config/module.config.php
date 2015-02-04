@@ -64,6 +64,17 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+
+            'qrcode' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/flashme',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'qrcode',
+                    ),
+                ),
+            ),
             'addproduct' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
