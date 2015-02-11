@@ -12,9 +12,14 @@ class ProductsListing
 
     public function getList()
     {
-        $pRepository = $this->getEntityManager()
-        ->getRepository('LaCagnaProduct\Entity\Product');
-        return $pRepository->findAll();
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', 'p')
+        ->add('from', 'LaCagnaProduct\Entity\Product p')
+        ->leftJoin('p.type', 't');
+        $qb->orderBy('t.name', 'ASC');
+        $query = $qb->getQuery();
+        $results = $query->getResult();
+        return $results;
     }
 
     public function getTypes()
@@ -24,19 +29,19 @@ class ProductsListing
         return $typeRepository->findAll();
     }
 
-    public function byType($typename)
+    public function byType($typename, $state = 'disponible')
     {
         //\Doctrine\Common\Util\Debug::dump($typename);
-
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->add('select', 'p')
         ->add('from', 'LaCagnaProduct\Entity\Product p')
         ->leftJoin('p.type', 't')
+        ->leftJoin('p.state', 'state')
         ->where('t.name = :typename')
+        ->andWhere('state.name = :state')
+        ->setParameter(':state', $state)
         ->setParameter(':typename', $typename);
-        //$qb = $this->buildOrder($qb, $order);
-        //$qb->setFirstResult($offset)
-        //->setMaxResults($limit);
+        $qb->orderBy('p.title', 'ASC');
         $query = $qb->getQuery();
         $results = $query->getResult();
         return $results;

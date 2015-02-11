@@ -6,6 +6,8 @@ body {
 .zf-green {
     color: #68b604;
 }
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
 
 .btn-success {
   background-color: #57a900;

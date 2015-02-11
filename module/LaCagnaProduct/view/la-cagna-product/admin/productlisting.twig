@@ -1,17 +1,18 @@
 <table name="products">
     <tr>
-        <th width="10%">Code</th>
+
         <th width="15%">Titre</th>
         <th width="45%">Description</th>
         <th width="20%" style="text-align: center">Type</th>
+        <th width="10%">Status</th>
         <th width="10%">Action</th>
     </tr>
     {% for product in products %}
     <tr>
-        <td>{{ product.getCode() }}</td>
         <td><strong>{{ product.getTitle() }}</strong></td>
         <td>{{ product.getDescription() }}</td>
         <td style="text-align: center">{{ product.getType().getName() }}</td>
+        <td>{{ product.getState().getName() }}</td>
         <td><a href="{{ url('admineditproduct') }}{{ product.getId() }}" >Éditer</a></td>
     </tr>
 {% endfor %}
