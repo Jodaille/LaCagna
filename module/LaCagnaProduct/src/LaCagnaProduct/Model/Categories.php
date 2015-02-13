@@ -83,6 +83,71 @@ class Categories
 
         return $category;
     }
+    public function createRoot($categorytitle = "Accueil") {
+
+        $nsm = $this->getNestedSetManager();
+
+        $categoryRepository = $this->getEntityManager()
+        ->getRepository('LaCagnaProduct\Entity\Category');
+
+        $category = $categoryRepository->findOneByTitle($categorytitle);
+
+        if(!$category)
+            $category = new \LaCagnaProduct\Entity\Category();
+
+        $category->setCode('Root Category');
+        $category->setTitle($categorytitle);
+
+        $rootNode = $nsm->createRoot($category);
+
+        $this->getEntityManager()->persist($category);
+
+        $this->getEntityManager()->flush();
+        return $category;
+    }
+    /**
+    *
+    * @param type $categoryId
+    * @param \LaCagna\Entity\Category $category
+    */
+    public function addChild(\LaCagna\Entity\Category $category, \LaCagna\Entity\Category $parentCategory)
+    {
+        $nsm = $this->getNestedSetManager();
+        $node = $nsm->wrapNode($parentCategory);
+        $node->addChild($category);
+    }
+
+    /**
+    *
+    * @param type $categoryId
+    * @param \LaCagna\Entity\Category $category
+    */
+    public function moveAsLastChild(\LaCagna\Entity\Category $category, \LaCagna\Entity\Category $parentCategory)
+    {
+        $nsm = $this->getNestedSetManager();
+        $nodeParentCategory = $nsm->wrapNode($parentCategory);
+        $node = $nsm->wrapNode($category);
+        $node->moveAsLastChildOf($nodeParentCategory);
+    }
+
+    /**
+    *
+    * @param type $categoryId
+    * @param \LaCagna\Entity\Category $category
+    */
+    public function insertAsLastChild(\LaCagna\Entity\Category $category, \LaCagna\Entity\Category $parentCategory)
+    {
+        $nsm = $this->getNestedSetManager();
+        $nodeParentCategory = $nsm->wrapNode($parentCategory);
+        $node = $nsm->wrapNode($category);
+        $node->insertAsLastChildOf($nodeParentCategory);
+    }
+    public function getNestedSetManager()
+    {
+        $config = new \DoctrineExtensions\NestedSet\Config($this->getEntityManager(), 'LaCagnaProduct\Entity\Category');
+        $nsm = new \DoctrineExtensions\NestedSet\Manager($config);
+        return $nsm;
+    }
 
     public function getEntityManager()
     {

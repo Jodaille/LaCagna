@@ -3,11 +3,11 @@
 namespace LaCagnaProduct\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use DoctrineExtensions\NestedSet\Node;
 /**
  * Category
  */
-class Category
+class Category implements Node
 {
     /**
      * @var integer
@@ -72,6 +72,25 @@ class Category
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
         $this->characteristics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    public function getLeftValue()
+    {
+        return $this->lft;
+    }
+    public function setLeftValue($lft)
+    {
+        $this->lft = $lft;
+    }
+    public function getRightValue()
+    {
+        return $this->rgt;
+    }
+    public function setRightValue($rgt)
+    {
+        $this->rgt = $rgt;
+    }
+    public function __toString(){
+        return $this->code;
     }
 
     /**
