@@ -47,8 +47,8 @@ return array(
         ),
     ),
     'view_manager' => array(
-        'display_not_found_reason' => true,
-        'display_exceptions'       => true,
+        'display_not_found_reason' => false,
+        'display_exceptions'       => false,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
@@ -79,7 +79,75 @@ return array(
     ),
     'router' => array(
         'routes' => array(
-
+            'admincategorieslist' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/categories',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'categorylisting',
+                    ),
+                ),
+            ),
+            'admineditcategory' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/category[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editcategory',
+                    ),
+                ),
+            ),
+            'admineditingredient' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/ingredient[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editingredient',
+                    ),
+                ),
+            ),
+            'ingredientslisting' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/ingredients',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'ingredientslisting',
+                    ),
+                ),
+            ),
+            'adminproductslist' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/produits',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'productlisting',
+                    ),
+                ),
+            ),
+            'admineditproduct' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/produit[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editproduct',
+                    ),
+                ),
+            ),
             'qrcode' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -97,6 +165,17 @@ return array(
                     'defaults' => array(
                         'controller' => 'LaCagnaProduct\Controller\Product',
                         'action'     => 'add',
+                    ),
+                ),
+            ),
+            'aperitifs' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/aperitifs',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Product',
+                        'action'     => 'bytype',
+                        'type'       => 'apéritifs',
                     ),
                 ),
             ),
@@ -155,76 +234,7 @@ return array(
                     ),
                 ),
             ),
-            'admincategorieslist' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/gestion/categories',
-                    'defaults' => array(
-                        'controller' => 'LaCagnaProduct\Controller\Admin',
-                        'action'     => 'categorylisting',
-                    ),
-                ),
-            ),
-            'admineditcategory' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route'    => '/gestion/edition/category[/][/:id[/]]',
-                    'constraints' => array(
-                        'id'    => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'LaCagnaProduct\Controller\Admin',
-                        'action'     => 'editcategory',
-                    ),
-                ),
-            ),
 
-            'admineditingredient' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route'    => '/gestion/edition/ingredient[/][/:id[/]]',
-                    'constraints' => array(
-                        'id'    => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'LaCagnaProduct\Controller\Admin',
-                        'action'     => 'editingredient',
-                    ),
-                ),
-            ),
-            'ingredientslisting' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/gestion/ingredients',
-                    'defaults' => array(
-                        'controller' => 'LaCagnaProduct\Controller\Admin',
-                        'action'     => 'ingredientslisting',
-                    ),
-                ),
-            ),
-            'adminproductslist' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/gestion/produits',
-                    'defaults' => array(
-                        'controller' => 'LaCagnaProduct\Controller\Admin',
-                        'action'     => 'productlisting',
-                    ),
-                ),
-            ),
-            'admineditproduct' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route'    => '/gestion/edition/produit[/][/:id[/]]',
-                    'constraints' => array(
-                        'id'    => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'LaCagnaProduct\Controller\Admin',
-                        'action'     => 'editproduct',
-                    ),
-                ),
-            ),
         ),
 	),
     'translator' => array(
