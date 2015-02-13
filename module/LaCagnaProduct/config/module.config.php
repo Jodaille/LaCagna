@@ -62,6 +62,21 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+                'create-root' => array(
+                    'options' => array(
+                        'route'    => 'create root [--verbose|-v] <categoryTitle>',
+                        'defaults' => array(
+                            'controller' => 'LaCagnaProduct\Controller\Admin',
+                            'action'     => 'createroot'
+                        )
+                    )
+                )
+            )
+        )
+    ),
     'router' => array(
         'routes' => array(
 
