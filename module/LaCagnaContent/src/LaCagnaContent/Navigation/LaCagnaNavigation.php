@@ -50,7 +50,7 @@ class LaCagnaNavigation extends DefaultNavigationFactory
                 {
                     if($identity)
                     {
-                        $label = $t->translate('Logout');
+                        $label = $t->translate('Sign Out');
                         $route = 'zfcuser/logout';
                     }
                     else
