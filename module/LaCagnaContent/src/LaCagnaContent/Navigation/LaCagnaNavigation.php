@@ -18,7 +18,14 @@ class LaCagnaNavigation extends DefaultNavigationFactory
     {
         if (null === $this->pages) {
 
-            $auth = $serviceLocator->get('BjyAuthorize\Service\Authorize');
+            $identity = false;
+            $t = $serviceLocator->get('translator');
+
+            $zfcuserauth = $serviceLocator->get('zfcuserauthservice');
+            if($zfcuserauth->hasIdentity())
+            {
+                $identity = $zfcuserauth->getIdentity();
+            }
 
             //FETCH data from table menu :
             $em = $serviceLocator->get('Doctrine\ORM\EntityManager');
@@ -37,9 +44,24 @@ class LaCagnaNavigation extends DefaultNavigationFactory
 
             foreach($menuItems as $key=>$item)
             {
+                $label = $item->getLabel();
+                $route = $item->getRoute();
+                if('zfcuser/login' == $route)
+                {
+                    if($identity)
+                    {
+                        $label = $t->translate('Logout');
+                        $route = 'zfcuser/logout';
+                    }
+                    else
+                    {
+                        $label = $t->translate('Sign In');
+                    }
+                }
+
                 $configuration['navigation'][$this->getName()][$item->getLabel()] = array(
-                'label' => $item->getLabel(),
-                'route' => $item->getRoute(),
+                'label' => $label,
+                'route' => $route,
                 );
             }
 
