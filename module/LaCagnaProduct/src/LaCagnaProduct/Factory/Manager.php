@@ -19,6 +19,13 @@ class Manager implements ServiceLocatorAwareInterface
         return $this->servicelocator;
     }
 
+    public function Medias()
+    {
+        $model = new \LaCagnaProduct\Model\Medias();
+        $model->setServiceLocator($this->servicelocator);
+        return $model;
+    }
+
     public function Products()
     {
         $model = new \LaCagnaProduct\Model\Products();

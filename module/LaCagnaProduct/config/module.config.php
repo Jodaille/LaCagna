@@ -1,5 +1,12 @@
 <?php
 namespace LaCagnaProduct;
+
+$display_errors = false;
+$app_env = getenv('APPLICATION_ENV');
+if($app_env == 'development')
+{
+  $display_errors = true;
+}
 return array(
     'navigation' => array(
         'default' => array(
@@ -28,8 +35,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'LaCagnaProduct\Controller\Product' => 'LaCagnaProduct\Controller\ProductController',
-            'LaCagnaProduct\Controller\Admin' => 'LaCagnaProduct\Controller\AdminController'
-
+            'LaCagnaProduct\Controller\Admin' => 'LaCagnaProduct\Controller\AdminController',
+            'LaCagnaProduct\Controller\Media' => 'LaCagnaProduct\Controller\MediaController',
         ),
     ),
     'service_manager' => array(
@@ -45,10 +52,14 @@ return array(
             'Products'          => 'LaCagnaProduct\Factory\ProductsFactory',
             'ProductManager'    => 'LaCagnaProduct\Factory\ProductManager',
         ),
+        'invokables' => array(
+          'ImagineGd'           => 'Imagine\Gd\Imagine',
+          'ImagineImagick' => 'Imagine\Imagick\Imagine',          
+        ),
     ),
     'view_manager' => array(
-        'display_not_found_reason' => false,
-        'display_exceptions'       => false,
+        'display_not_found_reason' => $display_errors,
+        'display_exceptions'       => $display_errors,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
@@ -79,6 +90,16 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+          'fetchimage' => array(
+              'type' => 'Zend\Mvc\Router\Http\Literal',
+              'options' => array(
+                  'route'    => '/gestion/fetchimage',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaProduct\Controller\Media',
+                      'action'     => 'fetchimage',
+                  ),
+              ),
+          ),
             'admincategorieslist' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

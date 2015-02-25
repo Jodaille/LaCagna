@@ -77,7 +77,7 @@ class Products
             }
         }
         if(empty($code))
-            $code = preg_replace("/[^A-Za-z0-9]/", "", $title);
+            $code = self::cleanString($title);
 
         $Product->setCode($code);
         $Product->setTitle($title);
@@ -105,6 +105,44 @@ class Products
         $this->getEntityManager()->flush();
 
         return $Product;
+    }
+
+    public function setMainMedia($product, $media)
+    {
+      $product->setMainmedia($media);
+      $this->getEntityManager()->persist($product);
+      $this->getEntityManager()->flush();
+      return $product;
+    }
+
+    public static function cleanString($text) {
+        $utf8 = array(
+            '/[áàâãªä]/u'   =>   'a',
+            '/[ÁÀÂÃÄ]/u'    =>   'A',
+            '/[ÍÌÎÏ]/u'     =>   'I',
+            '/[íìîï]/u'     =>   'i',
+            '/[éèêë]/u'     =>   'e',
+            '/[ÉÈÊË]/u'     =>   'E',
+            '/[óòôõºö]/u'   =>   'o',
+            '/[ÓÒÔÕÖ]/u'    =>   'O',
+            '/[úùûü]/u'     =>   'u',
+            '/[ÚÙÛÜ]/u'     =>   'U',
+            '/ç/'           =>   'c',
+            '/Ç/'           =>   'C',
+            '/ñ/'           =>   'n',
+            '/Ñ/'           =>   'N',
+            '/–/'           =>   '-', // UTF-8 hyphen to "normal" hyphen
+            '/[’‘‹›‚]/u'    =>   ' ', // Literally a single quote
+            '/[“”«»„]/u'    =>   ' ', // Double quote
+            '/ /'           =>   ' ', // nonbreaking space (equiv. to 0x160)
+        );
+        $string = preg_replace(array_keys($utf8), array_values($utf8), $text);
+        $string = strtolower($string);
+        $string = preg_replace(
+          array( '#[\\s-]+#', '#[^A-Za-z0-9\. -]+#' ),
+          array( '-', '' ),
+          $string);
+        return $string;
     }
 
     public function getEntityManager()

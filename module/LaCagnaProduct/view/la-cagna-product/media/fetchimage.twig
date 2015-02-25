@@ -1,0 +1,21 @@
+<form action="{{ url(fetchimage)}}" method="POST">
+
+    <input type="hidden" name="media_id" value="{{ media_id }}" />
+    <input type="hidden" name="product_id" value="{{ product_id }}" />
+
+    <p><a target="_blank"
+          href="https://www.google.fr/search?tbm=isch&q={{ productName }}" >Recherche de l'image</a></p>
+    <label for="url">Url de l'image à récupérer</label>
+    <input type="text" name="url" value="{{ url }}" /><br />
+
+    <label for="productName">Nom de l'image</label>
+    <input type="text" name="productName" value="{{ productName }}" /><br />
+<hr />
+
+    <input type="submit" value="Récupérer" />
+</form>
+{% if product and product.getMainMedia() %}
+    <img src="{{ product.getMainMedia().slug() }}" />
+{% endif %}
+<hr />
+<a href="{{ url('adminproductslist') }}">Listing produits</a>

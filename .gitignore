@@ -9,3 +9,6 @@ module/LaCagnaProduct/src/LaCagnaProduct/Proxy/__*
 module/LaCagnaContent/src/LaCagnaContent/Proxy/__*
 *.directory
 *~
+public/img/*
+data/uploads/*
+!data/uploads/README.md
