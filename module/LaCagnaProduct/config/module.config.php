@@ -53,9 +53,14 @@ return array(
             'ProductManager'    => 'LaCagnaProduct\Factory\ProductManager',
         ),
         'invokables' => array(
-          'ImagineGd'           => 'Imagine\Gd\Imagine',
-          'ImagineImagick' => 'Imagine\Imagick\Imagine',          
+          'ImagineGd'      => 'Imagine\Gd\Imagine',
+          'ImagineImagick' => 'Imagine\Imagick\Imagine',
         ),
+    ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'thumb' => 'LaCagnaProduct\View\Helper\Thumb',
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => $display_errors,
@@ -97,6 +102,21 @@ return array(
                   'defaults' => array(
                       'controller' => 'LaCagnaProduct\Controller\Media',
                       'action'     => 'fetchimage',
+                  ),
+              ),
+          ),
+          'thumbnail' => array(
+              'type'    => 'Segment',
+              'options' => array(
+                  'route'    => '/img[/:format][/:image]',
+                  'constraints' => array(
+                      'image'          => '([a-zA-Z0-9_-]*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)',
+                      'format'         => '[a-zA-Z0-9_-]*',
+                  ),
+                  'defaults' => array(
+                       '__NAMESPACE__' => 'LaCagnaProduct\Controller',
+                       'controller'    => 'Media',
+                       'action'        => 'thumb',
                   ),
               ),
           ),

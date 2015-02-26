@@ -6,7 +6,7 @@
 <span itemprop="description">{{ product.getDescription() }}</span>
 <p>
 {% if product.getMainMedia() %}
-    <img src="{{ product.getMainMedia().slug() }}" />
+    <img src="{{ thumb().getSlug(product.getMainMedia().slug(),60) }}" />
 {% endif %}
 
 </article>

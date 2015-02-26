@@ -14,6 +14,35 @@ class MediaController extends AbstractActionController
         return new ViewModel();
     }
 
+    public function thumbAction()
+    {
+      $imageslug  = $this->params('image', false);
+      $format         = $this->params('format', 60);
+      $thumb_dir = 'public/img/' . $format . "/";
+      $localFile = 'public/img/' . $imageslug;
+      if(!is_dir($thumb_dir))
+      {
+          $bCreated = @mkdir($thumb_dir);
+          if(!$bCreated)
+          {
+              throw new \Exception('Could not create thumbnail directory: ' . $thumb_dir);
+          }
+      }
+      $productManager = $this->getServiceLocator()->get('ProductManager');
+      $medias = $productManager->Medias();
+      $medias->mkThumb($localFile, $thumb_dir . $imageslug, $format);
+
+      $response = new \Zend\Http\Response\Stream();
+      $response->setStream(fopen($thumb_dir . $imageslug, 'r'));
+      $response->setStatusCode(200);
+
+      $headers = new \Zend\Http\Headers();
+      $headers->addHeaderLine('Content-Type', 'image/png');
+
+      $response->setHeaders($headers);
+      return $response;
+    }
+
     public function fetchimageAction()
     {
       $view = new ViewModel();
