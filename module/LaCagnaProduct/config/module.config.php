@@ -110,7 +110,7 @@ return array(
               'options' => array(
                   'route'    => '/img[/:format][/:image]',
                   'constraints' => array(
-                      'image'          => '([a-zA-Z0-9_-]*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)',
+                      'image'          => '([a-zA-Z0-9_.-]*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)',
                       'format'         => '[a-zA-Z0-9_-]*',
                   ),
                   'defaults' => array(
