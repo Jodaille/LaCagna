@@ -13,10 +13,43 @@ class AdminController extends AbstractActionController
     {
         return new ViewModel();
     }
-
     public function addcategoryAction()
     {
-        return new ViewModel();
+      $categories = $this->getServiceLocator()->get('Categories');
+      $request = $this->getRequest();
+
+      if (!$request instanceof ConsoleRequest)
+      {
+        $title  = $this->params()->fromPost('title', FALSE);
+      }
+      else
+      {
+        $title  = $request->getParam('title');
+      }
+      $values   = array('title' => $title);
+      $category = $categories->edit(false, $values);
+
+      return new ViewModel();
+    }
+
+    public function parentcategoryAction()
+    {
+      $categories = $this->getServiceLocator()->get('Categories');
+      $request = $this->getRequest();
+
+      if (!$request instanceof ConsoleRequest)
+      {
+        $cid        = $this->params()->fromPost('category_id', FALSE);
+        $parent_id  = $this->params()->fromPost('parent_id', FALSE);
+      }
+      else
+      {
+        $cid        = $request->getParam('category_id');
+        $parent_id  = $request->getParam('parent_id');
+      }
+
+      $categories->chooseParent($cid, $parent_id);
+      return new ViewModel();
     }
 
     public function qrcodeAction()
@@ -45,12 +78,27 @@ class AdminController extends AbstractActionController
     {
         $categories     = $this->getServiceLocator()->get('Categories');
         $categoriesList = $categories->getList();
-
+        $listCategoriesAsTree = $categories->listCategoriesAsTree();
         return new ViewModel(
-        array(
-            'categories' => $categoriesList
-            )
+          array(
+              'categories' => $categoriesList,
+              'listCategoriesAsTree' => $listCategoriesAsTree,
+              )
         );
+    }
+
+
+    public function productsCategoryAction()
+    {
+      $id         = $this->params('id', false);
+      $categories = $this->getServiceLocator()
+                    ->get('Categories');
+      $products   = $categories->productsCategory($id);
+      return new ViewModel(
+        array(
+            'products' => $products,
+            )
+      );
     }
 
     public function editcategoryAction()
@@ -94,8 +142,8 @@ class AdminController extends AbstractActionController
         }
 
         // Get category title from console and check if we used --verbose or -v flag
-        $categoryTitle   = $request->getParam('categoryTitle');
-        $verbose     = $request->getParam('verbose') || $request->getParam('v');
+        $categoryTitle  = $request->getParam('categoryTitle');
+        $verbose        = $request->getParam('verbose') || $request->getParam('v');
         $productManager = $this->getServiceLocator()->get('ProductManager');
 
         $categories     = $productManager->Categories();
@@ -104,7 +152,7 @@ class AdminController extends AbstractActionController
         if($category)
             return "Category created\n";
         else
-            return "Category not created\n";        
+            return "Category not created\n";
     }
 
     public function editproductAction()

@@ -1,3 +1,27 @@
+<table name="categoriesTree">
+    <tr>
+        <th width="30%">Nom de la catégorie</th>
+        <th width="20%"></th>
+        <th width="10%"></th>
+        <th width="10%"></th>
+        <th width="10%"></th>
+
+    </tr>
+{% for category in listCategoriesAsTree %}
+<tr>
+    <td>{{ category.treeview }} <strong>{{ category.title }}</strong></td>
+    <td></td>
+    <td><!--{{ category.indentation }}--></td>
+    <td>
+      <a href="{{ url('admineditcategory') }}{{ category.category_id }}" >Éditer</a>
+    </td>
+    <td>
+      <a href="{{ url('adminproductsCategory') }}{{ category.category_id }}" >Produits</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+<hr />
 <table name="categories">
     <tr>
         <th width="10%">Code</th>
@@ -7,7 +31,7 @@
     </tr>
 {% for category in categories %}
 <tr>
-    <td>{{ category.getCode() }}</td>
+    <td>{{ category.getid() }} - [ {{ category.getLeftValue() }} ] [ {{ category.getRightValue() }} ]</td>
     <td>{{ category.getTitle() }}</td>
     <td>{{ category.getDisplayorder() }}</td>
     <td><a href="{{ url('admineditcategory') }}{{ category.getId() }}" >Éditer</a></td>
@@ -15,6 +39,7 @@
 {% endfor %}
 </table>
 <hr />
+
 <p>
     <a href="{{ url('admineditcategory') }}" >Ajouter une catégorie</a>|
     <a href="{{ url('adminproductslist') }}">Listing produits</a>

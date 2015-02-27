@@ -7,6 +7,7 @@ if($app_env == 'development')
 {
   $display_errors = true;
 }
+
 return array(
     'navigation' => array(
         'default' => array(
@@ -89,7 +90,25 @@ return array(
                             'action'     => 'createroot'
                         )
                     )
-                )
+                ),
+                'addcategory' => array(
+                    'options' => array(
+                        'route'    => 'addcategory <title>',
+                        'defaults' => array(
+                            'controller' => 'LaCagnaProduct\Controller\Admin',
+                            'action'     => 'addcategory'
+                        )
+                    )
+                ),
+                'parentcategory' => array(
+                    'options' => array(
+                        'route'    => 'parentcategory <category_id> <parent_id>',
+                        'defaults' => array(
+                            'controller' => 'LaCagnaProduct\Controller\Admin',
+                            'action'     => 'parentcategory'
+                        )
+                    )
+                ),
             )
         )
     ),
@@ -117,6 +136,20 @@ return array(
                        '__NAMESPACE__' => 'LaCagnaProduct\Controller',
                        'controller'    => 'Media',
                        'action'        => 'thumb',
+                  ),
+              ),
+          ),
+
+          'adminproductsCategory' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/gestion/productscategory[/][/:id[/]]',
+                  'constraints' => array(
+                      'id'    => '[0-9]+',
+                  ),
+                  'defaults' => array(
+                      'controller' => 'LaCagnaProduct\Controller\Admin',
+                      'action'     => 'productsCategory',
                   ),
               ),
           ),
