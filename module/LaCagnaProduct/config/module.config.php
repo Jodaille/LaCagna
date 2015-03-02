@@ -38,6 +38,8 @@ return array(
             'LaCagnaProduct\Controller\Product' => 'LaCagnaProduct\Controller\ProductController',
             'LaCagnaProduct\Controller\Admin' => 'LaCagnaProduct\Controller\AdminController',
             'LaCagnaProduct\Controller\Media' => 'LaCagnaProduct\Controller\MediaController',
+            'LaCagnaProduct\Controller\PaperMenu' => 'LaCagnaProduct\Controller\PaperMenuController',
+
         ),
     ),
     'service_manager' => array(
@@ -114,6 +116,26 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+          'adminindex' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/gestion[/]',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaProduct\Controller\Admin',
+                      'action'     => 'index',
+                  ),
+              ),
+          ),
+          'papermenupdf' => array(
+              'type' => 'Zend\Mvc\Router\Http\Literal',
+              'options' => array(
+                  'route'    => '/gestion/menupdf',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaProduct\Controller\PaperMenu',
+                      'action'     => 'generatepdf',
+                  ),
+              ),
+          ),
           'fetchimage' => array(
               'type' => 'Zend\Mvc\Router\Http\Literal',
               'options' => array(

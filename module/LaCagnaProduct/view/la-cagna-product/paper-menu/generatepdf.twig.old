@@ -1,0 +1,26 @@
+<html>
+<style type="text/css">
+  @page teacher {
+    size: A4 portrait;
+    margin: 2cm;
+  }
+
+  .menuPage {
+     page: teacher;
+     page-break-after: always;
+  }
+</style>
+
+{{ url('admineditcategory') }}
+<div class="menuPage">
+  <ul>
+    <li>{{ name }}</li>
+  </ul>
+</div>
+
+<div class="menuPage">
+  <ul>
+    <li>{{ name }}</li>
+  </ul>
+</div>
+</html>

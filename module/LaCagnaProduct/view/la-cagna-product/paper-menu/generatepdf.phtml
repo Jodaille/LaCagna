@@ -1,0 +1,73 @@
+<html>
+<style type="text/css">
+  @page teacher {
+    size: A4 portrait;
+    margin: 2cm;
+  }
+
+  .menuPage {
+     page: teacher;
+     page-break-after: always;
+  }
+  body {
+    background-image: url("/img/qrcode.png");
+    background-repeat:no-repeat;
+    /*background-position: 400px 700px;*/
+    background-position: 600px 400px;
+    margin-left: 100px;
+  }
+  h1{
+    text-align : center;
+    background-image: url("/img/LaCagna.png");
+    background-repeat:no-repeat;
+    background-position: 700px 15px;
+  }
+
+  ul
+  {
+      list-style-type: none;
+  }
+</style>
+<body>
+<h1>Le Menu de La Cagna
+<?php /*echo '<img src="' . getcwd() . '/public/img/LaCagna.png'. '"/>';*/ ?>
+</h1>
+<div class="menuPage">
+<?php
+
+  foreach($categories as $c):
+    if(count($c->getProducts()) > 0) :
+?>
+      <h2><?php echo $c->getTitle(); ?></h2>
+
+      <ul>
+        <?php foreach($c->getProducts() as $p): ?>
+          <li><?php echo $p->getTitle();
+          if($p->getMainMedia())
+          {
+            @file_get_contents('http://' . $_SERVER['HTTP_HOST'] . $this->thumb()
+                   ->getSlug($p->getMainMedia()->getSlug(), 60));
+           if(is_file(getcwd() . '/public'
+                              . $this->thumb()->getSlug(
+                                    $p->getMainMedia()->getSlug(),
+                                    60
+                                  )))
+            {
+              echo '<img src="' . getcwd() . '/public'
+              . $this->thumb()
+                     ->getSlug($p->getMainMedia()->getSlug(), 60)
+                     . '"/>';
+             }
+          }
+          ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+
+<?php
+    endif;
+  endforeach;
+?>
+</div>
+</body>
+</html>

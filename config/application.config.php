@@ -19,6 +19,7 @@ return array(
         'LaCagnaProduct',
         'ZendDeveloperTools',
         'LaCagnaContent',
+        'DOMPDFModule',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
