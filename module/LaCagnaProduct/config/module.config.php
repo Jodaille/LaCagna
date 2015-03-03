@@ -162,6 +162,17 @@ return array(
               ),
           ),
 
+          'parentcategories' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/gestion/parentcategories[/]',
+
+                  'defaults' => array(
+                      'controller' => 'LaCagnaProduct\Controller\Admin',
+                      'action'     => 'parentcategories',
+                  ),
+              ),
+          ),
           'adminproductsCategory' => array(
               'type' => 'Segment',
               'options' => array(

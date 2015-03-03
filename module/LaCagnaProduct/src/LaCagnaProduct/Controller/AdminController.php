@@ -52,6 +52,23 @@ class AdminController extends AbstractActionController
       return new ViewModel();
     }
 
+    public function parentcategoriesAction()
+    {
+        $categories = $this->getServiceLocator()->get('Categories');
+
+        $cids       = $this->params()->fromPost('category_ids', FALSE);
+        $parent_id  = $this->params()->fromPost('parent_id', FALSE);
+
+        foreach($cids as $cid)
+        {
+                $categories->chooseParent($cid, $parent_id);
+        }
+
+        $this->plugin('redirect')->toRoute('admincategorieslist');
+
+        return new ViewModel();
+    }
+
     public function qrcodeAction()
     {
         $url = 'http://lacagna.jodaille.org';
