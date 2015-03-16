@@ -20,6 +20,11 @@ class Price
     private $value;
 
     /**
+     * @var float
+     */
+    private $specialValue;
+
+    /**
      * @var \DateTime
      */
     private $created_at;
@@ -66,6 +71,29 @@ class Price
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Set specialValue
+     *
+     * @param float $specialValue
+     * @return Price
+     */
+    public function setSpecialValue($specialValue)
+    {
+        $this->specialValue = $specialValue;
+
+        return $this;
+    }
+
+    /**
+     * Get specialValue
+     *
+     * @return float 
+     */
+    public function getSpecialValue()
+    {
+        return $this->specialValue;
     }
 
     /**

@@ -11,6 +11,9 @@ LaCagnaProduct\Entity\Price:
         value:
             type: float
             nullable: false
+        specialValue:
+            type: float
+            nullable: true
         created_at:
             type: datetime
             nullable: false
