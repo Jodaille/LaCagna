@@ -1,46 +1,70 @@
-<form action="{{ url(admineditproduct)}}{{ product.getId() }}" method="POST">
+<h1>{% if product %}Modifier le produit {{ product.getId() }}{% else %}Ajouter un produit{% endif %}</h1>
+
+{% if flashMessenger().hasMessages() %}
+    {% for message in flashMessenger().getMessages() %}
+    <span class="alert alert-success" role="alert">
+        {{ message }}
+    </span>
+    {% endfor %}
+{% endif %}
+<hr />
+
+<form action="{{ url(admineditproduct)}}{{ product.getId() }}" method="POST" class="form-horizontal">
 
     <input type="hidden" name="id" value="{{ product.getId() }}" />
 
-    <label for="titre">Titre produit</label><br />
-    <input type="text" name="title" value="{{ product.getTitle() }}" />
-    <hr />
-    <label for="description">Description : </label><br />
-    <textarea name="description"
-        style="min-width: 480px;">{{ product.getDescription() }}</textarea>
-    <br /><br />
-    <label for="state">Status : </label><br />
-    <select name="state">
-        <option value="" >Choisir</option>
-        {% for state in states %}
-        <option value="{{ state.getId() }}"
-        {% if product.getState() == state %}selected="selected"{% endif %}
-        >{{ state.getName() }}</option>
-        {% endfor %}
-    </select>
-    <hr />
-    <label for="type">Type : </label><br />
-    <select name="type">
-        <option value="" >Choisir</option>
-        {% for type in types %}
-        <option value="{{ type.getId() }}"
-            {% if product.getType() == type %}selected="selected"{% endif %}
-            >{{ type.getName() }}</option>
-        {% endfor %}
-    </select>
-    <hr />
-    <label for="categories">Catégories : </label><br />
-    <select multiple name="categories[]">
+    <div class="form-group">
+        <label for="titre"  class="col-sm-2 control-label">Nom : </label>
+        <input type="text" name="title" value="{{ product.getTitle() }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description : </label>
+        <textarea name="description"
+            style="min-width: 480px;">{{ product.getDescription() }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="state" class="col-sm-2 control-label">Status : </label><br />
+        <select name="state">
+            <option value="" >Choisir</option>
+            {% for state in states %}
+            <option value="{{ state.getId() }}"
+            {% if product.getState() == state %}selected="selected"{% endif %}
+            >{{ state.getName() }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="type" class="col-sm-2 control-label">Type : </label><br />
+        <select name="type">
+            <option value="" >Choisir</option>
+            {% for type in types %}
+            <option value="{{ type.getId() }}"
+                {% if product.getType() == type %}selected="selected"{% endif %}
+                >{{ type.getName() }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+<div class="form-group">
+    <label for="categories" class="col-sm-2 control-label">Catégories : </label>
+    <select multiple name="categories[]" class="selectpicker">
         {% for category in categories %}
         <option value="{{ category.id }}"
         {% if category.selected %}selected="selected"{% endif %}
         >{{ category.title }}</option>
         {% endfor %}
     </select>
-    <br />
-    <a href="{{ url('admineditcategory') }}" >Ajouter une catégorie</a>
-    <hr />
-    <label for="ingredients">Ingrédients : </label><br />
+
+    <a href="{{ url('admineditcategory') }}"class="btn btn-primary pull-right"  >Ajouter une catégorie</a>
+
+</div>
+
+<div class="form-group">
+    <label for="ingredients" class="col-sm-2 control-label">Ingrédients : </label><br />
     <select multiple name="ingredients[]">
         {% for ingredient in ingredients %}
         <option value="{{ ingredient.id }}"
@@ -48,13 +72,17 @@
         >{{ ingredient.name }}</option>
         {% endfor %}
     </select>
-    <br />
-    <a href="{{ url('admineditingredient') }}" >Ajouter un ingrédient</a>
-    <hr />
-    <input type="submit" value="Valider" />
+    <a href="{{ url('admineditingredient') }}" class="btn btn-primary pull-right"  >Ajouter un ingrédient</a>
+</div>
+<div class="form-group text-centered">
+
+        <button class="btn btn-large btn-primary  center-block" type="button">Valider</button>
+
+</div>
+
 </form>
 <p>
     <a href="{{ url('admincategorieslist') }}">Listing catégories</a> |
-    <a href="{{ url('adminproductslist') }}">Listing produits</a> | 
+    <a href="{{ url('adminproductslist') }}">Listing produits</a> |
     <a href="{{ url('admineditproduct') }}" >Ajouter un produit</a>
 </p>
