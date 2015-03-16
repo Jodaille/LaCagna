@@ -14,9 +14,29 @@ class ProductsListing
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->add('select', 'p')
-        ->add('from', 'LaCagnaProduct\Entity\Product p')
-        ->leftJoin('p.type', 't');
-        $qb->orderBy('t.name', 'ASC');
+            ->add('from', 'LaCagnaProduct\Entity\Product p')
+            ->leftJoin('p.type', 't');
+        $qb->leftJoin('p.categories', 'c');
+
+        $qb->orderBy('p.title', 'ASC');
+
+        $query = $qb->getQuery();
+        $results = $query->getResult();
+        return $results;
+    }
+
+    public function getListWithoutCategory()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', 'p')
+            ->add('from', 'LaCagnaProduct\Entity\Product p')
+            ->leftJoin('p.type', 't');
+        $qb->leftJoin('p.categories', 'c');
+
+        $qb->where('c.id IS NULL');
+
+        $qb->orderBy('p.title', 'ASC');
+
         $query = $qb->getQuery();
         $results = $query->getResult();
         return $results;
@@ -34,13 +54,13 @@ class ProductsListing
         //\Doctrine\Common\Util\Debug::dump($typename);
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->add('select', 'p')
-        ->add('from', 'LaCagnaProduct\Entity\Product p')
-        ->leftJoin('p.type', 't')
-        ->leftJoin('p.state', 'state')
-        ->where('t.name = :typename')
-        ->andWhere('state.name = :state')
-        ->setParameter(':state', $state)
-        ->setParameter(':typename', $typename);
+            ->add('from', 'LaCagnaProduct\Entity\Product p')
+            ->leftJoin('p.type', 't')
+            ->leftJoin('p.state', 'state')
+            ->where('t.name = :typename')
+            ->andWhere('state.name = :state')
+            ->setParameter(':state', $state)
+            ->setParameter(':typename', $typename);
         $qb->orderBy('p.title', 'ASC');
         $query = $qb->getQuery();
         $results = $query->getResult();
