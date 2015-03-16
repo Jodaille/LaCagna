@@ -10,13 +10,17 @@ class Categories
     protected $em;
     protected $servicelocator;
 
-
     public function getList()
     {
-        $categoryRepository = $this->getEntityManager()
-                                ->getRepository('LaCagnaProduct\Entity\Category');
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', 'c')
+            ->add('from', 'LaCagnaProduct\Entity\Category c');
+        $qb->orderBy('c.title', 'ASC');
+        $qb->addOrderBy('c.rgt', 'ASC');
 
-        return $categoryRepository->findAll();
+        $query = $qb->getQuery();
+        $results = $query->getResult();
+        return $results;
     }
 
     public function getProductList($product)
@@ -139,6 +143,8 @@ class Categories
         $code           = @$values['code'];
         $title          = $values['title'];
         $displayorder   = @$values['displayorder'];
+        if(empty($displayorder))
+            $displayorder = 0;
 
         if(empty($code))
         {
