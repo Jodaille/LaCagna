@@ -83,10 +83,12 @@ class AdminController extends AbstractActionController
     {
         $productsListing    = $this->getServiceLocator()->get('ProductsListing');
         $productsList       = $productsListing->getList();
+        $orphans            = $productsListing->getListWithoutCategory();
 
         return new ViewModel(
             array(
-                'products' => $productsList
+                'products' => $productsList,
+                'orphans'  => $orphans,
             )
         );
     }
@@ -134,6 +136,8 @@ class AdminController extends AbstractActionController
             $values['displayorder'] = $this->params()->fromPost('displayorder', FALSE);
 
             $category               = $categories->edit($id, $values);
+            $this->flashMessenger()->addMessage('Mise à jour effectuée :-)');
+            return $this->redirect()->toRoute('admincategorieslist');
         }
         else
         {
@@ -199,6 +203,8 @@ class AdminController extends AbstractActionController
             $values['ingredients']  = $this->params()->fromPost('ingredients', FALSE);
 
             $product                = $products->edit($posted_id, $values);
+            $this->flashMessenger()->addMessage('Mise à jour effectuée :-)');
+            return $this->redirect()->toRoute('adminproductslist');
         }
         else
         {
