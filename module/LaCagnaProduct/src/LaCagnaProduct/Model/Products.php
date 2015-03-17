@@ -103,7 +103,7 @@ class Products
             if($article->getCharacteristicsvalues() &&
                 !$article->getCharacteristicsvalues()->contains($value))
             {
-                $article->addCharacteristicsvalue($value);                
+                $article->addCharacteristicsvalue($value);
             }
             $this->getEntityManager()->flush();
         }
