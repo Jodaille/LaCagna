@@ -3,6 +3,10 @@
 namespace LaCagnaProduct\Model;
 
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use LaCagnaProduct\Entity\Article as Article;
+use LaCagnaProduct\Entity\Price as Price;
+use LaCagnaProduct\Entity\CharacteristicValue as CharacteristicValue;
+use LaCagnaProduct\Entity\Characteristic as Characteristic;
 
 
 class Products
@@ -22,6 +26,161 @@ class Products
         return $ProductRepository = $this->getEntityManager()
         ->getRepository('LaCagnaProduct\Entity\Product')
         ->find($id);
+    }
+
+    public function getProductArticleWithCharac($productid, $charac, $value, $limit = 1)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', 'a')
+            ->add('from', 'LaCagnaProduct\Entity\Article a')
+            ->leftJoin('a.products', 'p');
+        $qb->leftJoin('a.characteristicsvalues', 'values');
+        $qb->leftJoin('values.characteristic', 'characteristic');
+
+        $qb->leftJoin('a.prices', 'prices');
+
+        $qb->andWhere('p.id = :productid');
+        $qb->andWhere('values.value = :value');
+        $qb->andWhere('characteristic.abbreviation = :charac')
+
+            ->setParameter(':value', $value)
+            ->setParameter(':charac', $charac)
+
+            ->setParameter(':productid', $productid);
+
+        $qb->orderBy('values.value', 'ASC');
+        if($limit == 1)
+        {
+            $qb->setMaxResults($limit);
+            $query = $qb->getQuery();
+            $results = $query->getOneOrNullResult();
+        }
+        else
+        {
+            if($limit)
+                $qb->setMaxResults($limit);
+            $query = $qb->getQuery();
+            $results = $query->getResult();
+        }
+
+        return $results;
+    }
+
+    public function getArticleWithVolume($productid, $volume, $limit = 1)
+    {
+        $results = $this->getProductArticleWithCharac($productid, 'Volume', $volume, $limit);
+        return $results;
+    }
+
+    public function addArticleVolume($productid, $volume)
+    {
+        $article = $this->getArticleWithVolume($productid, $volume);
+
+        //\Doctrine\Common\Util\Debug::dump($article);die();
+        if(!$article)
+        {
+            $p_repository = $this->getEntityManager()
+                                ->getRepository('LaCagnaProduct\Entity\Product');
+            $a_repository = $this->getEntityManager()
+                                ->getRepository('LaCagnaProduct\Entity\Article');
+
+            $p = $p_repository->find($productid);
+            $pcode = $p->getCode();
+            $acode = $pcode . $volume;
+            $article = $a_repository->findOneByCode($acode);
+            if(!$article)
+                $article = new Article();
+            $article->setCode($acode);
+
+            if($p->getArticles() && !$p->getArticles()->contains($article))
+            {
+                $p->addArticle($article);
+            }
+
+            $this->getEntityManager()->persist($article);
+            $this->getEntityManager()->persist($p);
+            $value = $this->addCharacteristic('Volume', $volume);
+            if($article->getCharacteristicsvalues() &&
+                !$article->getCharacteristicsvalues()->contains($value))
+            {
+                $article->addCharacteristicsvalue($value);                
+            }
+            $this->getEntityManager()->flush();
+        }
+        return $article;
+    }
+
+    public function addVolumePrice($productid, $volume, $priceValue, $specialPrice = false)
+    {
+        $article = $this->addArticleVolume($productid, $volume);
+        foreach($article->getPrices() as $price)
+        {
+            $this->getEntityManager()->remove($price);
+        }
+        $this->getEntityManager()->flush();
+
+        $this->getEntityManager()->persist($article);
+        $price = new Price();
+        $price->setValue($priceValue);
+        $price->setSpecialValue($specialPrice);
+        $price->setArticle($article);
+
+        $this->getEntityManager()->persist($price);
+        $this->getEntityManager()->persist($article);
+        $this->getEntityManager()->flush();
+        return $article;
+    }
+
+    public function addCharacteristic($abbreviation = 'Volume', $value)
+    {
+        $repository = $this->getEntityManager()->getRepository('LaCagnaProduct\Entity\Characteristic');
+
+        $charac = $repository->getCharacteristicValue($abbreviation, $value);
+
+    //\Doctrine\Common\Util\Debug::dump($charac);die();
+        if(!$charac)
+        {
+            $cvalue = new CharacteristicValue();
+            $cvalue->setValue($value);
+            $charac = $this->getCharacteristic($abbreviation);
+
+        }
+        else
+        {
+            $cvalues = $charac->getCharacteristicsvalues();
+            if($cvalues)
+                $cvalue = $cvalues->first();
+        }
+        $cvalue->setCharacteristic($charac);
+        $this->getEntityManager()->persist($cvalue);
+        $this->getEntityManager()->flush();
+        return $cvalue;
+    }
+
+    public function getCharacteristic($abbreviation = 'Volume')
+    {
+        $repository = $this->getEntityManager()->getRepository('LaCagnaProduct\Entity\Characteristic');
+        $charac = $repository->findOneByAbbreviation($abbreviation);
+        if(!$charac)
+        {
+            $charac = new Characteristic();
+            $charac->setAbbreviation($abbreviation);
+            $this->getEntityManager()->persist($charac);
+            $this->getEntityManager()->flush();
+        }
+        return $charac;
+    }
+
+
+    public function editArticle($id = false, $product, $values)
+    {
+        $ArticleRepository = $this->getEntityManager()
+                            ->getRepository('LaCagnaProduct\Entity\Article');
+        /*
+        $values['volume']
+        $values['price']
+        $values['specialPrice']
+        */
     }
 
     public function edit($id = false, $values)

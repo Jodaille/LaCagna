@@ -255,6 +255,19 @@ return array(
                     ),
                 ),
             ),
+            'admineditarticles' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/gestion/edition/articles[/][/:id[/]]',
+                    'constraints' => array(
+                        'id'    => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'editarticles',
+                    ),
+                ),
+            ),
             'qrcode' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

@@ -176,6 +176,48 @@ class AdminController extends AbstractActionController
             return "Category not created\n";
     }
 
+    public function editarticlesAction()
+    {
+        if (!$this->isAllowed('product', 'add'))
+        {
+            throw new \BjyAuthorize\Exception\UnAuthorizedException('Grow a beard first!');
+        }
+        $id         = $this->params('id',false);
+        $posted_id  = $this->params()->fromPost('id', FALSE);
+
+        $productManager = $this->getServiceLocator()->get('ProductManager');
+        $products       = $productManager->Products();
+
+
+        if($id)
+            $product   = $products->get($id);
+        elseif($posted_id)
+            $product   = $products->get($posted_id);
+        else
+            throw new \Exception('Product is missing');
+
+        if($this->request->isPost())
+        {
+            $values['volume']         = $this->params()->fromPost('volume', FALSE);
+            $values['price']        = $this->params()->fromPost('price', FALSE);
+            $values['specialPrice']  = $this->params()->fromPost('specialPrice', 0);
+
+            $products->addVolumePrice($posted_id,
+                                    $values['volume'],
+                                    $values['price'],
+                                    $values['specialPrice']);
+            //$product                = $products->editArticle($posted_id, $product, $values);
+            $this->flashMessenger()->addMessage('Mise à jour effectuée :-)');
+            return $this->redirect()->toRoute('adminproductslist');
+        }
+
+        return new ViewModel(
+                    array(
+                        'product'       => $product,
+                        )
+                    );
+    }
+
     public function editproductAction()
     {
         if (!$this->isAllowed('product', 'add'))

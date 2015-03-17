@@ -1,0 +1,49 @@
+<h1>{% if product %}Modifier le produit {{ product.getId() }} {{ product.getTitle() }}{% else %}Ajouter un produit{% endif %}</h1>
+
+{% if flashMessenger().hasMessages() %}
+    {% for message in flashMessenger().getMessages() %}
+    <span class="alert alert-success" role="alert">
+        {{ message }}
+    </span>
+    {% endfor %}
+{% endif %}
+<hr />
+
+<form action="{{ url(admineditarticles)}}{{ product.getId() }}" method="POST" class="form-horizontal">
+        <input type="hidden" name="id" value="{{ product.getId() }}" />
+
+<ul>
+{% for article in product.getArticles %}
+    <li>{{ article.getId() }} {{ article.getCode() }} {{ article.getPrices().first().getValue() }}</li>
+{% endfor %}
+</ul>
+
+    <div class="form-group">
+
+        <label for="volume"  class="col-sm-2 control-label">Volume : </label>
+        <input type="text" name="volume" value="" />
+    </div>
+    <div class="form-group">
+
+        <label for="price"  class="col-sm-2 control-label">Prix : </label>
+        <input type="text" name="price" value="" />
+    </div>
+    <div class="form-group">
+
+        <label for="specialPrice"  class="col-sm-2 control-label">Prix HH : </label>
+        <input type="text" name="specialPrice" value="" />
+    </div>
+
+
+<div class="form-group text-centered">
+
+
+<input type="submit" value="Valider" class="btn btn-large btn-primary  center-block"  />
+</div>
+
+</form>
+<p>
+    <a href="{{ url('admincategorieslist') }}">Listing catégories</a> |
+    <a href="{{ url('adminproductslist') }}">Listing produits</a> |
+    <a href="{{ url('admineditproduct') }}" >Ajouter un produit</a>
+</p>
