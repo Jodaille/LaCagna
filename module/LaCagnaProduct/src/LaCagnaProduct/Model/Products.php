@@ -122,7 +122,8 @@ class Products
         $this->getEntityManager()->persist($article);
         $price = new Price();
         $price->setValue($priceValue);
-        $price->setSpecialValue($specialPrice);
+        if($specialPrice)
+            $price->setSpecialValue($specialPrice);
         $price->setArticle($article);
 
         $this->getEntityManager()->persist($price);

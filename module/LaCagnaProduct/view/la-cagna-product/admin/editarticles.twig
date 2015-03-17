@@ -1,4 +1,4 @@
-<h1>{% if product %}Modifier le produit {{ product.getId() }} {{ product.getTitle() }}{% else %}Ajouter un produit{% endif %}</h1>
+<h1>{% if product %}Modifier le produit {{ product.getTitle() }} ( {{ product.getId() }}){% else %}Ajouter un produit{% endif %}</h1>
 
 {% if flashMessenger().hasMessages() %}
     {% for message in flashMessenger().getMessages() %}
@@ -7,16 +7,30 @@
     </span>
     {% endfor %}
 {% endif %}
-<hr />
+
 
 <form action="{{ url(admineditarticles)}}{{ product.getId() }}" method="POST" class="form-horizontal">
         <input type="hidden" name="id" value="{{ product.getId() }}" />
 
-<ul>
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>Code article</th>
+        <th>Volume</th>
+        <th>Prix</th>
+        <th>Prix special (HH)</th>
+    </tr>
 {% for article in product.getArticles %}
-    <li>{{ article.getId() }} {{ article.getCode() }} {{ article.getPrices().first().getValue() }}</li>
+    <tr>
+        <td>{{ article.getId() }}</td>
+        <td>{{ article.getCode() }}</td>
+        <td>{{ article.getCharacteristicsvalues().first().getValue() }}</td>
+        <td>{{ article.getPrices().first().getValue() }}</td>
+        <td>{{ article.getPrices().first().getSpecialValue() }}</td>
+    </tr>
+
 {% endfor %}
-</ul>
+</table>
 
     <div class="form-group">
 
