@@ -62,19 +62,28 @@ You can find a basic configuration file for Apache web server: [VHost]
 
 ### User creation and administrator role
 
-Your database will be empty.
+Now database has its structure but is still empty.
 
-If previous steps are done, you will be able to create a user,
-following link in menu.
+Now we need to create a user:
+http://lacagna.local/user/register
 
-In order to be able to see products administration pages,
-you will have to add in table **user_role_linker** the id of your user,
-and the id of then role administrator (4)
 
-For example for user with id 1 :
+In order to see administration pages,
+you have to add your user id in table **user_role_linker**,
+and the id of the administrator role (4)
+
+For example for user with id = 1 :
 ```sql
 INSERT INTO `user_role_linker` (`user_id`, `role_id`) VALUES
 (1, 4);
+```
+## Add entries in menu
+
+```sql
+INSERT INTO `menu` (`id`, `label`, `route`, `displayorder`, `role`) VALUES
+(1, 'BO', 'adminindex', 50, 4),
+(2, 'Produits', 'adminproductslist', 10, 1),
+(3, 'Catégories', 'admincategorieslist', 15, 1);
 ```
 
 
