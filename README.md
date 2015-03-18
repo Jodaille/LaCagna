@@ -16,10 +16,13 @@ php composer.phar update
 ### Create database
 
 You will find a simple SQL file: [DbSample]
-That will create a database named lacagna,
-with a user valtom having a passowrd CHANGEME
+
+That will create a database named **lacagna**,
+
+with a user **valtom** having a password **CHANGEME**
 
 ### Database configuration
+
 rename or duplicate the file
 **doctrine.local.php.dist.dist** to **doctrine.local.php**
 
