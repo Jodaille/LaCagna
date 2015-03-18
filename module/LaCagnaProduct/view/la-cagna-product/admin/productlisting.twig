@@ -45,7 +45,9 @@
         <td style="text-align: center">{{ product.getType().getName() }}</td>
         <td>{{ product.getState().getName() }}</td>
         <td><a href="{{ url('admineditproduct') }}{{ product.getId() }}" >Éditer</a></td>
-        <td><a href="{{ url('fetchimage') }}?product_id={{ product.getId() }}" >Ajouter</a></td>
+        <td><a href="{{ url('fetchimage') }}?product_id={{ product.getId() }}" >
+            {% if product.getMainMedia().slug() %}Modifier{% else %}Ajouter{% endif %}</a>
+        </td>
     </tr>
 {% endfor %}
 </table>
