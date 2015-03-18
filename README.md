@@ -3,6 +3,21 @@
 
 LaCagna: a Zend Framework application
 
+LaCagna is a menu application, it allow to manage products.
+
+We use [ZendSkeletonApplication] as default layout/CSS,
+It should be "mobile first".
+
+## Objectives
+
+- [x] Products listing
+- [x] Categories management (tree)
+- [x] Simple images fetch (thumbs generation)
+- [x] User roles
+- [x] Dynamic navigation
+- [ ] Articles/characteristics/prices management
+- [ ] Generate ready to print menu
+
 ## Installation
 
 Install dependencies (use composer.json)
@@ -43,3 +58,4 @@ Then you can add roles using [RoleEntries] SQL file.
 [Entities]:https://github.com/Jodaille/LaCagna/tree/master/module/LaCagnaProduct/src/LaCagnaProduct/Entity
 [DbSample]:https://github.com/Jodaille/LaCagna/blob/master/docs/create_database_sample.sql
 [RoleEntries]:https://github.com/Jodaille/LaCagna/blob/master/docs/add_role_entries.sql
+[ZendSkeletonApplication]:https://github.com/zendframework/ZendSkeletonApplication
