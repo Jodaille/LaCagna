@@ -10,7 +10,9 @@
         DirectoryIndex index.php
         Options FollowSymLinks Indexes
         AllowOverride All
-        Require all granted
+
+        # seem needed on MacOs:
+        #Require all granted
         #Order allow,deny
         allow from All
     </Directory>
