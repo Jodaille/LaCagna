@@ -5,7 +5,7 @@ LaCagna: a Zend Framework application
 
 LaCagna is a menu application, it allows to manage products.
 
-The first aim was to be able to easily choice your drink :-)
+The first aim was to be able to easily choose your drink :-)
 
 We use [ZendSkeletonApplication] as default layout/CSS,
 It should be "mobile first".
