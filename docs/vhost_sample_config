@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+
+    DocumentRoot /home/jodaille/LaCagna/public
+
+    ServerName lacagna.local
+
+    SetEnv APPLICATION_ENV "development"
+
+    <Directory /home/jodaille/LaCagna/public>
+        DirectoryIndex index.php
+        Options FollowSymLinks Indexes
+        AllowOverride All
+        Require all granted
+        #Order allow,deny
+        allow from All
+    </Directory>
+
+</VirtualHost>
