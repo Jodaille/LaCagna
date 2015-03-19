@@ -1,7 +1,7 @@
 {% if orphans|length > 0 %}
 {% set iProducts = products|length %}
 {% set iOrphans = orphans|length %}
-{*% set progressPercent = (iOrphans * 100 / iProducts)| number_format %*}
+{#% set progressPercent = (iOrphans * 100 / iProducts)| number_format %#}
 {% set progressPercent = 100 - (iProducts * iOrphans / 100 )| number_format %}
 
 {% if flashMessenger().hasMessages() %}
@@ -34,8 +34,9 @@
         <th width="15%">Titre</th>
         <th width="45%">Description</th>
         <th width="20%" style="text-align: center">Type</th>
-        <th width="10%">Status</th>
-        <th width="10%">Action</th>
+        <th width="5%">Status</th>
+        <th width="5%">Action</th>
+        <th width="5%">Prix</th>
         <th width="10%">Image</th>
     </tr>
     {% for product in products %}
@@ -43,8 +44,13 @@
         <td><strong>{{ product.getTitle() }}</strong></td>
         <td>{{ product.getDescription() }}</td>
         <td style="text-align: center">{{ product.getType().getName() }}</td>
-        <td>{{ product.getState().getName() }}</td>
+        <td>{% if product.getState().getName() == 'disponible' %}
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            {% else %}
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            {% endif %}</td>
         <td><a href="{{ url('admineditproduct') }}{{ product.getId() }}" >Éditer</a></td>
+        <td><a href="{{ url('admineditarticles') }}{{ product.getId() }}" > [+] </a></td>
         <td><a href="{{ url('fetchimage') }}?product_id={{ product.getId() }}" >
             {% if product.getMainMedia().slug() %}Modifier{% else %}Ajouter{% endif %}</a>
         </td>
@@ -53,7 +59,8 @@
 </table>
 <hr />
 <p>
-    <a href="{{ url('admineditproduct') }}" >Ajouter un produit</a> |
-    <a href="{{ url('admincategorieslist') }}">Listing catégories</a>
+<a href="{{ url('admineditproduct') }}" class="btn btn-default"  >Ajouter un produit</a>
+<a href="{{ url('adminproductslist') }}" class="btn btn-default"  >Lister les poduits</a>
+<a href="{{ url('admincategorieslist') }}" class="btn btn-default"  >Lister les catégories</a>
 
 </p>
