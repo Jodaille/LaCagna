@@ -38,6 +38,8 @@ That will create a database named **lacagna**,
 
 with a user **valtom** having a password **CHANGEME**
 
+You will find details in docs directory [InstallNotes]
+
 ### Database configuration
 
 rename or duplicate the file
@@ -92,5 +94,5 @@ INSERT INTO `menu` (`id`, `label`, `route`, `displayorder`, `role`) VALUES
 [DbSample]:https://github.com/Jodaille/LaCagna/blob/master/docs/create_database_sample.sql
 [RoleEntries]:https://github.com/Jodaille/LaCagna/blob/master/docs/add_role_entries.sql
 [VHost]:https://github.com/Jodaille/LaCagna/blob/master/docs/vhost_sample_config
-
+[InstallNotes]:https://github.com/Jodaille/LaCagna/blob/master/docs/README.md
 [ZendSkeletonApplication]:https://github.com/zendframework/ZendSkeletonApplication

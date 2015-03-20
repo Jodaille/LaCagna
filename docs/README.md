@@ -32,7 +32,7 @@ add ServerName of your virtual host config in file /etc/hosts
 
 In the example file it is: lacagna.local
 
-The entries will be for a server running localy:
+The entry will be for a server running locally:
 
 
 > 127.0.0.1 lacagna.local
