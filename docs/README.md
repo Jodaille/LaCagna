@@ -3,9 +3,16 @@
 
 ## How to load a sql file ?
 
+For creating the database:
 
 ```sh
 mysql -uroot -p < ./docs/create_database_sample.sql
+```
+
+To load a file in database named: **lacagna**
+
+```sh
+mysql -uroot -p lacagna < ./docs/add_role_entries.sql
 ```
 
 ## Add virtual host to apache2 (on Debian)
