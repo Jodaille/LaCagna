@@ -20,6 +20,7 @@ return array(
         'ZendDeveloperTools',
         'LaCagnaContent',
         'DOMPDFModule',
+        'TwigDoctrineDump',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

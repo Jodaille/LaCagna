@@ -23,6 +23,7 @@
         "imagine/Imagine": "0.3.*",
         "aferrandini/phpqrcode": "1.0.1",
         "dino/dompdf-module": "dev-master",
-        "zendframework/zend-developer-tools": "dev-master"
+        "zendframework/zend-developer-tools": "dev-master",
+        "legallais/zf2-twig-doctrine-dump": "dev-master"
     }
 }

@@ -13,6 +13,52 @@ class AdminController extends AbstractActionController
     {
         return new ViewModel();
     }
+    public function pricesAction()
+    {
+      $cid          = $this->params()->fromPost('category_id', 5);
+      $product_ids  = $this->params()->fromPost('product_ids', array());
+
+      $productManager = $this->getServiceLocator()->get('ProductManager');
+
+      $categories     = $productManager->Categories();
+      $products     = $productManager->Products();
+      //$productsList = $products->getListOfTreeCategory($cid);
+      $productsListing    = $this->getServiceLocator()->get('ProductsListing');
+      $productsList       = $productsListing->getListOfTreeCategory($cid);
+      $tree               = $categories->listCategoriesAsTree();
+
+      $volume       = $this->params()->fromPost('volume', FALSE);
+      $price        = $this->params()->fromPost('price', FALSE);
+      $specialPrice = $this->params()->fromPost('specialPrice', 0);
+
+      if($this->request->isPost())
+      {
+        $iNbArticles = 0;
+        foreach($product_ids as $pid)
+        {
+          $products->addVolumePrice($pid,
+                                  $volume,
+                                  $price,
+                                  $specialPrice);
+          $iNbArticles++;
+        }
+
+
+        $this->flashMessenger()
+            ->addMessage($iNbArticles .' articles mis à jour :-)');
+      }
+      //echo '<pre>';\Doctrine\Common\Util\Debug::dump($cid);die();
+        return new ViewModel(
+            array(
+                'products' => $productsList,
+                'categories'  => $tree,
+                'category_id'  => $cid,
+                'volume' => $volume,
+                'price' => $price,
+                'specialPrice' => $specialPrice
+            )
+        );
+    }
     public function addcategoryAction()
     {
       $categories = $this->getServiceLocator()->get('Categories');

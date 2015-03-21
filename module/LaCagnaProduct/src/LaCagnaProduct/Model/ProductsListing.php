@@ -42,6 +42,12 @@ class ProductsListing
         return $results;
     }
 
+    public function getListOfTreeCategory($category_id)
+    {
+      $prdRepository = $this->getEntityManager()
+                              ->getRepository('LaCagnaProduct\Entity\Product');
+      return $prdRepository->getProductsOfChildCategories($category_id);
+    }
     public function getTypes()
     {
         $typeRepository = $this->getEntityManager()

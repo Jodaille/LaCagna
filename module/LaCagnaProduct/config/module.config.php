@@ -232,6 +232,16 @@ return array(
                     ),
                 ),
             ),
+            'adminprices' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/gestion/prix',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaProduct\Controller\Admin',
+                        'action'     => 'prices',
+                    ),
+                ),
+            ),
             'adminproductslist' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
