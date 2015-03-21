@@ -1,0 +1,80 @@
+{% if flashMessenger().hasMessages() %}
+    {% for message in flashMessenger().getMessages() %}
+    <span class="alert alert-success" role="alert">
+        {{ message }}
+    </span>
+    {% endfor %}
+{% endif %}
+<hr />
+<h3>Prix produit</h3>
+<form action="{{ url('adminprices')}}" method="POST">
+  <div class="form-group">
+      <label for="category_id" class="col-sm-2 control-label">Categorie : </label><br />
+      <select name="category_id">
+          <option value="" >Choisir</option>
+          {% for category in categories %}
+          <option value="{{ category.category_id }}"
+          {% if category.category_id == category_id %} selected="selected" {% endif %}
+          >{{ category.title }}</option>
+          {% endfor %}
+      </select>
+  </div>
+  <div class="form-group">
+      <label for="volume"  class="col-sm-2 control-label">Volume : </label>
+      <input type="text" name="volume" value="{{ volume }}" />
+  </div>
+  <div class="form-group">
+      <label for="price"  class="col-sm-2 control-label">Prix : </label>
+      <input type="text" name="price" value="{{ price }}" />
+  </div>
+  <div class="form-group">
+      <label for="specialPrice"  class="col-sm-2 control-label">Prix HH : </label>
+      <input type="text" name="specialPrice" value="{{ specialPrice }}" />
+  </div>
+  <div class="form-group text-centered">
+    <input type="submit" value="Valider" class="btn btn-large btn-primary  center-block"  />
+  </div>
+<table name="products">
+    <tr>
+        <th width="25%">Titre</th>
+        <th width="20%" style="text-align: center">Type</th>
+        <th width="20%" style="text-align: center">Prix</th>
+        <th width="5%">Status</th>
+        <th width="10%">Image</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td><input type="checkbox" name="product_ids[]" value="{{ product.getid() }}" />
+        <strong>{{ product.getTitle() }}</strong>
+        </td>
+        <td><ul>
+        {% for article in product.getArticles() %}
+        <li>
+        {{ article.getPrices().first().getValue() }}
+        {{article.getCharacteristicsvalues().first().getCharacteristic().getAbbreviation() }}
+        {{ article.getCharacteristicsvalues().first().getValue() }}
+
+        </li>
+        {% endfor %}
+        </ul></td>
+        <td style="text-align: center">{{ product.getType().getName() }}</td>
+        <td>{% if product.getState().getName() == 'disponible' %}
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            {% else %}
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            {% endif %}</td>
+        <td><a href="{{ url('fetchimage') }}?product_id={{ product.getId() }}" >
+            {% if product.getMainMedia().slug() %}Modifier{% else %}Ajouter{% endif %}</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+</form>
+<hr />
+<p>
+<a href="{{ url('admineditproduct') }}" class="btn btn-default"  >Ajouter un produit</a>
+<a href="{{ url('adminproductslist') }}" class="btn btn-default"  >Lister les poduits</a>
+<a href="{{ url('admincategorieslist') }}" class="btn btn-default"  >Lister les catégories</a>
+
+</p>
