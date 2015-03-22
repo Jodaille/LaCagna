@@ -87,8 +87,29 @@ INSERT INTO `menu` (`id`, `label`, `route`, `displayorder`, `role`) VALUES
 (2, 'Produits', 'adminproductslist', 10, 1),
 (3, 'Catégories', 'admincategorieslist', 15, 1);
 ```
+## Create first category
 
+Categories use Nested set model.
 
+To create a root category named "Accueil",
+in your terminal in your project directory:
+
+```sql
+php public/index.php create root Accueil
+```
+
+## Writables directories
+
+some directories needs to be writable by apache.
+
+- [ ] **data**
+- [ ] **public/img**
+
+**data** for cache and images upload.
+
+**public/img** for thumbnails of images.
+
+[ChangeRights]:https://github.com/Jodaille/LaCagna/tree/master/home/jody/LaCagna/ChangeRights.sh
 [autoload]:https://github.com/Jodaille/LaCagna/tree/master/config/autoload
 [Entities]:https://github.com/Jodaille/LaCagna/tree/master/module/LaCagnaProduct/src/LaCagnaProduct/Entity
 [DbSample]:https://github.com/Jodaille/LaCagna/blob/master/docs/create_database_sample.sql
