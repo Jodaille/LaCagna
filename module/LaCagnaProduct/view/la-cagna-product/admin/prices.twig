@@ -7,6 +7,7 @@
 {% endif %}
 <hr />
 <h3>Prix produit</h3>
+{{ doctrineDump(category_id)| raw }}
 <form action="{{ url('adminprices')}}" method="POST">
   <div class="form-group">
       <label for="category_id" class="col-sm-2 control-label">Categorie : </label><br />
@@ -37,10 +38,13 @@
 <table name="products">
     <tr>
         <th width="25%">Titre</th>
-        <th width="20%" style="text-align: center">Type</th>
         <th width="20%" style="text-align: center">Prix</th>
+        <th width="20%" style="text-align: center">Type</th>
+
         <th width="5%">Status</th>
         <th width="10%">Image</th>
+        <th width="20%" >Edition</th>
+
     </tr>
     {% for product in products %}
     <tr>
@@ -50,9 +54,15 @@
         <td><ul>
         {% for article in product.getArticles() %}
         <li>
-        {{ article.getPrices().first().getValue() }}
-        {{article.getCharacteristicsvalues().first().getCharacteristic().getAbbreviation() }}
-        {{ article.getCharacteristicsvalues().first().getValue() }}
+          {{ article.getCode() }}
+          {% for price in article.getPrices() %}
+            {{ price.getValue() }} €
+          {% endfor %}
+
+          {% for value in article.getCharacteristicsvalues() %}
+            {{ value.getCharacteristic().getAbbreviation() }}:
+            {{ value.getValue() }}
+          {% endfor %}
 
         </li>
         {% endfor %}
@@ -66,6 +76,8 @@
         <td><a href="{{ url('fetchimage') }}?product_id={{ product.getId() }}" >
             {% if product.getMainMedia().slug() %}Modifier{% else %}Ajouter{% endif %}</a>
         </td>
+        <td><a href="{{ url('admineditarticles') }}{{ product.getId() }}" > [+] </a></td>
+
     </tr>
 {% endfor %}
 </table>

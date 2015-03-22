@@ -11,12 +11,25 @@ class AdminController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel();
+        $largeur          = $this->params()->fromPost('largeur', false);
+        $longueur          = $this->params()->fromPost('longueur', false);
+        $view = new ViewModel();
+        $view->largeur = $largeur;
+        $view->longueur = $longueur;
+
+        $perimetre = ($largeur + $longueur) * 2;
+        $aire = $largeur * $longueur;
+
+        $view->perimetre = $perimetre;
+        $view->aire = $aire;
+
+        return $view;
     }
     public function pricesAction()
     {
-      $cid          = $this->params()->fromPost('category_id', 5);
+      $category_id  = $this->params()->fromPost('category_id', 5);
       $product_ids  = $this->params()->fromPost('product_ids', array());
+    //   echo '<pre>';\Doctrine\Common\Util\Debug::dump($category_id);die();
 
       $productManager = $this->getServiceLocator()->get('ProductManager');
 
@@ -24,7 +37,6 @@ class AdminController extends AbstractActionController
       $products     = $productManager->Products();
       //$productsList = $products->getListOfTreeCategory($cid);
       $productsListing    = $this->getServiceLocator()->get('ProductsListing');
-      $productsList       = $productsListing->getListOfTreeCategory($cid);
       $tree               = $categories->listCategoriesAsTree();
 
       $volume       = $this->params()->fromPost('volume', FALSE);
@@ -43,16 +55,20 @@ class AdminController extends AbstractActionController
           $iNbArticles++;
         }
 
-
         $this->flashMessenger()
             ->addMessage($iNbArticles .' articles mis à jour :-)');
+        //$this->plugin('redirect')->toRoute('adminprices');
+
       }
-      //echo '<pre>';\Doctrine\Common\Util\Debug::dump($cid);die();
+
+      $productsList = $productsListing->getListOfTreeCategory($category_id);
+
         return new ViewModel(
             array(
+                'ptitle' => 'prixs',
                 'products' => $productsList,
                 'categories'  => $tree,
-                'category_id'  => $cid,
+                'category_id'  => $category_id,
                 'volume' => $volume,
                 'price' => $price,
                 'specialPrice' => $specialPrice
@@ -228,8 +244,10 @@ class AdminController extends AbstractActionController
         {
             throw new \BjyAuthorize\Exception\UnAuthorizedException('Grow a beard first!');
         }
-        $id         = $this->params('id',false);
-        $posted_id  = $this->params()->fromPost('id', FALSE);
+        $id          = $this->params('id',false);
+        $posted_id   = $this->params()->fromPost('id', FALSE);
+        $article_id  = $this->params()->fromPost('article_id', FALSE);
+
 
         $productManager = $this->getServiceLocator()->get('ProductManager');
         $products       = $productManager->Products();
@@ -252,6 +270,7 @@ class AdminController extends AbstractActionController
                                     $values['volume'],
                                     $values['price'],
                                     $values['specialPrice']);
+
             //$product                = $products->editArticle($posted_id, $product, $values);
             $this->flashMessenger()->addMessage('Mise à jour effectuée :-)');
             return $this->redirect()->toRoute('adminproductslist');
@@ -259,6 +278,7 @@ class AdminController extends AbstractActionController
 
         return new ViewModel(
                     array(
+                        'title' => 'articles',
                         'product'       => $product,
                         )
                     );

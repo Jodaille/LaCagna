@@ -1,6 +1,31 @@
+<h1>Calcul de l'air et du périmètre pour Kyliann</h1>
 
+<form action="{{ url('adminindex')}}" method="POST">
+  <div class="form-group">
+      <label for="largeur"  class="col-sm-2 control-label">largeur (cm): </label>
+      <input type="text" name="largeur" value="{{ largeur }}" />
+  </div>
+  <div class="form-group">
+      <label for="longueur"  class="col-sm-2 control-label">longueur (cm): </label>
+      <input type="text" name="longueur" value="{{ longueur }}" />
+  </div>
+  <div class="form-group text-centered">
+    <input type="submit" value="calcul" class="btn btn-large btn-primary  center-block"  />
+  </div>
 
-
+  <div class="form-group text-centered">
+      {% if perimetre %}
+          <div class="alert alert-success" role="alert">
+              Le périmètre est de: {{ perimetre }} cm
+          </div>
+      {% endif %}
+      <br />
+      {% if aire %}
+          <div class="alert alert-success" role="alert">
+              L'air est de: {{ aire }} cm2
+          </div>
+      {% endif %}
+  </div>
 <p>
     <a href="{{ url('adminproductslist') }}">Liste des produits</a> |
     <a href="{{ url('admincategorieslist') }}">Liste des catégories</a> |

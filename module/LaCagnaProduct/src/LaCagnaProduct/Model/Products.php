@@ -72,7 +72,7 @@ class Products
         return $results;
     }
 
-    public function addArticleVolume($productid, $volume)
+    public function addProductVolume($productid, $volume)
     {
         $article = $this->getArticleWithVolume($productid, $volume);
 
@@ -99,20 +99,30 @@ class Products
 
             $this->getEntityManager()->persist($article);
             $this->getEntityManager()->persist($p);
-            $value = $this->addCharacteristic('Volume', $volume);
-            if($article->getCharacteristicsvalues() &&
-                !$article->getCharacteristicsvalues()->contains($value))
-            {
-                $article->addCharacteristicsvalue($value);
-            }
-            $this->getEntityManager()->flush();
+
         }
+        $article = $this->addArticleVolume($article, $volume);
+
+
+        $this->getEntityManager()->flush();
+        return $article;
+    }
+    public function addArticleVolume($article, $volume)
+    {
+        $value = $this->addCharacteristic('Volume', $volume);
+        if($article->getCharacteristicsvalues() &&
+            !$article->getCharacteristicsvalues()->contains($value))
+        {
+            $article->addCharacteristicsvalue($value);
+        }
+        $this->getEntityManager()->persist($article);
+
         return $article;
     }
 
     public function addVolumePrice($productid, $volume, $priceValue, $specialPrice = false)
     {
-        $article = $this->addArticleVolume($productid, $volume);
+        $article = $this->addProductVolume($productid, $volume);
         foreach($article->getPrices() as $price)
         {
             $this->getEntityManager()->remove($price);
