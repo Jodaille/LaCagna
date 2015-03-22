@@ -1,7 +1,10 @@
 # LaCagna
-===========
+
 
 **LaCagna**: a Zend Framework application.
+
+**How to choose your drink without paper menu ?**
+
 
 
 This little application uses many modules:
@@ -13,7 +16,6 @@ This little application uses many modules:
 - images: Imagine/Imagick
 - DomPDF: dino/dompdf-module
 
-**How to choose your drink without paper menu ?**
 
 
 
