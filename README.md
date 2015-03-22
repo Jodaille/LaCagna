@@ -1,11 +1,21 @@
 # LaCagna
 ===========
 
-LaCagna: a Zend Framework application
+**LaCagna**: a Zend Framework application.
 
-LaCagna is a menu application, it allows to manage products.
 
-The first aim was to be able to easily choose your drink :-)
+This little application uses many modules:
+
+- view/templates: zfc-twig
+- database ORM: Doctrine
+- user: zfc-user + zfc-user-doctrine-orm + bjyoungblood/bjy-authorize
+- categories: cbsi/doctrine2nestedset
+- images: Imagine/Imagick
+- DomPDF: dino/dompdf-module
+
+**How to choose your drink without paper menu ?**
+
+
 
 We use [ZendSkeletonApplication] as default layout/CSS,
 It should be "mobile first".
@@ -22,15 +32,31 @@ It should be "mobile first".
 
 ## Installation
 
-Install dependencies (use composer.json)
+### Clone project
+
+```sh
+git clone git@github.com:Jodaille/LaCagna.git
+```
+
+It will create a directory **LaCagna**
+
+Go inside it:
+
+```sh
+cd LaCagna
+```
+
+### Install dependencies
 
 ```sh
 php composer.phar update
 ```
 
+Nb: use composer.json
+
 > It could take some time to get ZendFramework and so on
 
-### Create database
+### Create a database
 
 You will find a simple SQL file: [DbSample]
 
