@@ -22,12 +22,23 @@ class ProductController extends AbstractActionController
         $type = $this->params('type', false);
         $productsListing = $this->getServiceLocator()->get('ProductsListing');
         $products = $productsListing->byType($type);
-        //\Doctrine\Common\Util\Debug::dump($cocktails);
         return array('products' => $products);
     }
 
-
-
+    public function bycategoryslugAction()
+    {
+        $slug = $this->params('slug', false);
+        $productsListing = $this->getServiceLocator()->get('ProductsListing');
+        $products = $productsListing->byCategorySlug($slug);
+        return array('products' => $products);
+    }
+    public function bycategorycodeAction()
+    {
+        $code = $this->params('code', false);
+        $productsListing = $this->getServiceLocator()->get('ProductsListing');
+        $products = $productsListing->byCategoryCode($code);
+        return array('products' => $products);
+    }
     public function indexAction()
     {
         $id   = $this->params()->fromPost('id', FALSE);

@@ -55,6 +55,14 @@ class ProductsListing
         return $typeRepository->findAll();
     }
 
+
+    public function byCategoryCode($code, $state = 'disponible')
+    {
+        $prdRepository = $this->getEntityManager()
+                                ->getRepository('LaCagnaProduct\Entity\Product');
+        return $prdRepository->byCategoryCode($code);
+    }
+
     public function byType($typename, $state = 'disponible')
     {
         //\Doctrine\Common\Util\Debug::dump($typename);

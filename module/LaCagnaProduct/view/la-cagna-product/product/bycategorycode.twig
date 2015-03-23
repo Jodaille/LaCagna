@@ -1,0 +1,31 @@
+<hr />
+{# {{ doctrineDump(products)| raw }} #}
+
+
+{% for product in products %}
+    <article class="product " itemscope="" itemtype="http://schema.org/Product">
+        <div class="row">
+            <div class="col-md-4">
+                <span itemprop="title"><strong>{{ product.getTitle() }}</strong></span>
+            </div>
+            <div class="col-md-8">
+                <span itemprop="picture">
+                    {% if product.getMainMedia() %}
+                        <img src="{{ thumb().getSlug(product.getMainMedia().slug(),120) }}"
+                            class="img-rounded img-responsive" />
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <span itemprop="description">{{ product.getDescription() }}</span>
+                </p>
+            </div>
+        </div>
+    </article>
+
+
+<hr />
+{% endfor %}
