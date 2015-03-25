@@ -26,7 +26,10 @@ class ProductRepository extends EntityRepository
         );
     $qb->orderBy('p.title', 'ASC');
     $query = $qb->getQuery();
-    return $query->getResult();
+    $results = $query->getResult();
+    //echo '<pre>';\Doctrine\Common\Util\Debug::dump($results);die();
+    return $results;
+
   }
   public function byCategoryCode($code, $state = 'disponible')
   {
@@ -34,29 +37,32 @@ class ProductRepository extends EntityRepository
     $category = $this->getEntityManager()
                     ->getRepository('LaCagnaProduct\Entity\Category')
                     ->findOneByCode($code);
-
-
     $left           = $category->GetLeftValue();
     $right          = $category->GetRightValue();
+
     $qb = $this->getEntityManager()->createQueryBuilder();
     $qb->select('p,c')
-    ->from('LaCagnaProduct\Entity\Product', 'p')
-    ->leftJoin('p.categories', 'c')
-    ->where('c.lft >= :left')
-    ->andWhere('c.rgt <= :right')
-    //->andWhere('p.state = :state')
-    ->setParameters(
-        array(':left' => $left,
-              ':right' => $right,
-              //':state' => $state,
-              )
-        );
+        ->from('LaCagnaProduct\Entity\Product', 'p')
+        ->leftJoin('p.categories', 'c')
+        ->leftJoin('p.state', 's')
+
+        ->where('c.lft >= :left')
+        ->andWhere('c.rgt <= :right')
+        ->andWhere('s.name = :state')
+        ->setParameters(
+            array(':left' => $left,
+                  ':right' => $right,
+                  ':state' => $state,
+                  )
+            );
 
     $qb->orderBy('p.title', 'ASC');
-    $query = $qb->getQuery();
-    //var_dump($query->getSql(),$left,$right, $code);
 
-    return $query->getResult();
+    $query = $qb->getQuery();
+
+    $results = $query->getResult();
+
+    return $results;
   }
 
   public function byCategorySlug($slug, $state = 'disponible')
@@ -67,23 +73,23 @@ class ProductRepository extends EntityRepository
                     ->findOneBySlug($slug);
     $left =     $category->GetLeftValue();
     $right =     $category->GetRightValue();
+
     $qb = $this->getEntityManager()->createQueryBuilder();
     $qb->select('p,c')
-    ->from('LaCagnaProduct\Entity\Product', 'p')
-    ->leftJoin('p.categories', 'c')
-    ->where('c.lft >= :left')
-    ->andWhere('c.rgt <= :right')
-    ->andWhere('p.state = :state')
-    ->andWhere('c.slug = :slug')
+        ->from('LaCagnaProduct\Entity\Product', 'p')
+        ->leftJoin('p.categories', 'c')
+        ->leftJoin('p.state', 's')
 
-    ->setParameters(
-        array(':left' => $left,
-              ':right' => $right,
-              ':state' => $state,
-              ':slug' => $slug,
+        ->where('c.lft >= :left')
+        ->andWhere('c.rgt <= :right')
+        ->andWhere('s.name = :state')
 
-              )
-        );
+        ->setParameters(
+            array(':left' => $left,
+                  ':right' => $right,
+                  ':state' => $state,
+                  )
+            );
     $qb->orderBy('p.title', 'ASC');
     $query = $qb->getQuery();
     return $query->getResult();
