@@ -1,37 +1,25 @@
-<hr />
 {# {{ doctrineDump(products)| raw }} #}
-
-
+    <div class="row">
 {% for product in products %}
-    <article class="product " itemscope="" itemtype="http://schema.org/Product">
-        <div class="row">
-            <div class="col-md-4">
-                <span itemprop="title"><strong>{{ product.getTitle() }}</strong></span>
-            </div>
-            <div class="col-md-4">
-                <span itemprop="picture">
-                    {% if product.getMainMedia() %}
-                        <img src="{{ thumb().getSlug(product.getMainMedia().slug(),120) }}"
-                            class="img-rounded img-responsive" />
-                    {% endif %}
-                </span>
-            </div>
-            <div class="col-md-4">
 
-            </div
+
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+        {% if product.getMainMedia() %}
+              <img src="{{ thumb().getSlug(product.getMainMedia().slug(),120) }}"
+                          class="" />
+        {% endif %}
+          <div class="caption">
+            <h3>{{ product.getTitle() }}</h3>
+            <p>{{ product.getDescription() }}</p>
+            <p>
+                <a href="#" class="btn btn-primary" role="button">Commander</a>
+                <a href="#" class="btn btn-default" role="button">
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                </a>
+            </p>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <p>
-                    <span itemprop="description">{{ product.getDescription() }}</span>
-                </p>
-            </div>
-            <div class="col-md-4">
-
-            </div
-        </div>
-    </article>
-
-
-<hr />
+      </div>
 {% endfor %}
+    </div>
