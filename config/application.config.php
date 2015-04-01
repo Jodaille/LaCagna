@@ -19,7 +19,7 @@ return array(
         'LaCagnaUser',
         'LaCagnaProduct',
         'LaCagnaContent',
-        'LaCagnaThema',
+        //'LaCagnaThema',
         'DOMPDFModule',
         'TwigDoctrineDump',
         //'ZendDeveloperTools',
