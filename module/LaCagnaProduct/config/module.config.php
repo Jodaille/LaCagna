@@ -54,6 +54,8 @@ return array(
             'Categories'        => 'LaCagnaProduct\Factory\CategoriesFactory',
             'Products'          => 'LaCagnaProduct\Factory\ProductsFactory',
             'ProductManager'    => 'LaCagnaProduct\Factory\ProductManager',
+            'Prices'            => 'LaCagnaProduct\Factory\PricesFactory',
+
         ),
         'invokables' => array(
           'ImagineGd'      => 'Imagine\Gd\Imagine',
@@ -63,6 +65,8 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             'thumb' => 'LaCagnaProduct\View\Helper\Thumb',
+            'price' => 'LaCagnaProduct\View\Helper\Price',
+
         )
     ),
     'view_manager' => array(

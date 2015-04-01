@@ -37,7 +37,15 @@ class ProductController extends AbstractActionController
         $code = $this->params('code', false);
         $productsListing = $this->getServiceLocator()->get('ProductsListing');
         $products = $productsListing->byCategoryCode($code);
-        return array('products' => $products);
+
+        $productManager = $this->getServiceLocator()->get('ProductManager');
+        $categories     = $productManager->Categories();
+        /*$category = $categories->byCategoryCode($code);
+        $children = $category->getChildren();*/
+
+        return array(
+                    'products' => $products,
+                /*'children' => $children*/);
     }
     public function indexAction()
     {

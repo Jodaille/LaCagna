@@ -1,5 +1,13 @@
 {# {{ doctrineDump(products)| raw }} #}
+
     <div class="row">
+        {% for category in categories %}
+
+        {% endfor %}
+    </div>
+
+    <div class="row">
+
 {% for product in products %}
 
 
@@ -12,6 +20,15 @@
           <div class="caption">
             <h3>{{ product.getTitle() }}</h3>
             <p>{{ product.getDescription() }}</p>
+            <p>
+            {% set price = price().getProductPrice(product,'Volume',1) %}
+            {% set volume = price.article.getCharacteristicsvalues().first().getValue() %}
+            {% if price %}
+                <strong>{{ price.getValue() }}€</strong> ({{ volume }} cl)
+            {% endif %}
+
+            </p>
+
             <p>
                 <a href="#" class="btn btn-primary" role="button">Commander</a>
                 <a href="#" class="btn btn-default" role="button">

@@ -60,6 +60,11 @@
 </form>
 {% endfor %}
 
+
+<form action="{{ url(admineditarticles)}}{{ product.getId() }}"
+                        method="POST" class="form-horizontal">
+    <input type="hidden" name="id" value="{{ product.getId() }}" />
+
     <div class="form-group">
         <label for="volume"  class="col-sm-2 control-label">Volume : </label>
         <input type="text" name="volume" value="" />
@@ -77,6 +82,8 @@
   <div class="form-group text-centered">
     <input type="submit" value="Valider" class="btn btn-large btn-primary  center-block"  />
   </div>
+</form>
+
 
 
 <p>
