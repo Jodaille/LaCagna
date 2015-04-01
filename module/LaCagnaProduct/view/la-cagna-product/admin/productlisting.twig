@@ -28,18 +28,21 @@
 </div>
 {% endif %}
 <h3>Listing produit</h3>
-<table name="products">
+<table name="products" class="table">
     <tr>
 
         <th width="15%">Titre</th>
-        <th width="45%">Description</th>
+        <th width="25%">Description</th>
         <th width="20%" style="text-align: center">Type</th>
         <th width="5%">Status</th>
         <th width="5%">Action</th>
-        <th width="5%">Prix</th>
+        <th width="15%">Prix</th>
         <th width="10%">Image</th>
     </tr>
     {% for product in products %}
+    {% set price = price().getProductPrice(product,'Volume',1) %}
+    {% set volume = price.article.getCharacteristicsvalues().first().getValue() %}
+
     <tr>
         <td><strong>{{ product.getTitle() }}</strong></td>
         <td>{{ product.getDescription() }}</td>
@@ -50,7 +53,9 @@
             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
             {% endif %}</td>
         <td><a href="{{ url('admineditproduct') }}{{ product.getId() }}" >Éditer</a></td>
-        <td><a href="{{ url('admineditarticles') }}{{ product.getId() }}" > [+] </a></td>
+        <td><a href="{{ url('admineditarticles') }}{{ product.getId() }}" > [+]     {% if price %}
+                <strong>{{ price.getValue() }}€</strong> ({{ volume }} cl)
+            {% endif %}</a></td>
         <td><a href="{{ url('fetchimage') }}?product_id={{ product.getId() }}" >
             {% if product.getMainMedia().slug() %}Modifier{% else %}Ajouter{% endif %}</a>
         </td>
