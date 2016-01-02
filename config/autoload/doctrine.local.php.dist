@@ -1,7 +1,8 @@
 <?php
 /**
 *
-* Configuration file for Doctrine DB connection
+* Configuration file sample for Doctrine DB connection
+* remove .dist file extension to ensure loading
 */
 return array(
   'zfctwig' => array(
@@ -16,7 +17,7 @@ return array(
                 'params' => array(
                     'host'     => 'localhost',
                     'port'     => '3306',
-                    'user'     => 'valtom',
+                    'user'     => 'dbuser',
                     'password' => 'CHANGEME',
                     'dbname'   => 'lacagna',
                     'driverOptions' => array(
