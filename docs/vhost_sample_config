@@ -1,20 +1,23 @@
+# Here is a sample of a VirtualHost configuration
+
 <VirtualHost *:80>
+    # server will answer to http://lacagna.local.int
+    # you should edit your /etc/hosts file
+    # to add:
+    # 127.0.0.1 lacagna.local.int
+    ServerName lacagna.local.int
 
-    DocumentRoot /home/jodaille/LaCagna/public
+    # directory where project is
+    DocumentRoot /home/jody/LaCagna/public/
 
-    ServerName lacagna.local
-
+    # Environement variable
     SetEnv APPLICATION_ENV "development"
 
-    <Directory /home/jodaille/LaCagna/public>
+    <Directory /home/jody/LaCagna/public/>
         DirectoryIndex index.php
-        Options FollowSymLinks Indexes
         AllowOverride All
-
-        # seem needed on MacOs:
-        #Require all granted
-        #Order allow,deny
-        allow from All
+        Order allow,deny
+        Allow from all
     </Directory>
 
 </VirtualHost>
