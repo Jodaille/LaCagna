@@ -4,6 +4,11 @@
 * Configuration file for Doctrine DB connection
 */
 return array(
+  'zfctwig' => array(
+    'environment_options' => array(
+        'debug'         => false
+    ),
+  ),
   'doctrine' => array(
         'connection' => array(
             'orm_default' => array(
