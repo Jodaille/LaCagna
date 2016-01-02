@@ -27,7 +27,7 @@ To enable the new configuration (named here lacagna):
 sudo a2ensite lacagna
 ```
 
-The to reload apache configuration:
+Then to reload apache configuration:
 
 ```sh
 sudo service apache2 reload
@@ -43,3 +43,6 @@ The entry will be for a server running locally:
 
 
 > 127.0.0.1 lacagna.local
+
+then you should be able to access to your local site :
+http://lacagna.local
