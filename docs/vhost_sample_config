@@ -13,6 +13,9 @@
     # Environement variable
     SetEnv APPLICATION_ENV "development"
 
+    # Default character set to UTF-8
+    AddDefaultCharset UTF-8
+
     <Directory /home/jody/LaCagna/public/>
         DirectoryIndex index.php
         AllowOverride All
