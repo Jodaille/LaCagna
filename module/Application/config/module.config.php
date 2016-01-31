@@ -92,6 +92,11 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'info' => 'Application\View\Helper\Informations',
+        )
+    ),
     // Placeholder for console routes
     'console' => array(
         'router' => array(
