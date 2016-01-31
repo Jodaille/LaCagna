@@ -1,14 +1,21 @@
+{% extends 'layout/layout' %}
+{# {{ doctrineDump(products)| raw }} #}
+
+{% block content %}
+    {{ parent() }}
+
 <hr />
 {% for product in products %}
-<article class="product " itemscope="" itemtype="http://schema.org/Product">
-<span itemprop="title"><strong>{{ product.getTitle() }}</strong></span>
-<p>
-<span itemprop="description">{{ product.getDescription() }}</span>
-<p>
-{% if product.getMainMedia() %}
-    <img src="{{ thumb().getSlug(product.getMainMedia().slug(),120) }}" />
-{% endif %}
+    <article class="product " itemscope="" itemtype="http://schema.org/Product">
+    <span itemprop="title"><strong>{{ product.getTitle() }}</strong></span>
+    <p>
+    <span itemprop="description">{{ product.getDescription() }}</span>
+    <p>
+    {% if product.getMainMedia() %}
+        <img src="{{ thumb().getSlug(product.getMainMedia().slug(),120) }}" />
+    {% endif %}
 
-</article>
-<hr />
+    </article>
+    <hr />
 {% endfor %}
+{% endblock %}

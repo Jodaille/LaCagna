@@ -1,3 +1,12 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Categories') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
 <table name="categoriesTree">
     <tr>
         <th width="30%">Nom de la catégorie</th>
@@ -55,3 +64,4 @@
 
     </p>
 </p>
+{% endblock %}

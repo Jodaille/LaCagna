@@ -1,3 +1,13 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Home') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
+
 <table name="products">
     <tr>
 
@@ -25,3 +35,5 @@
     <a href="{{ url('admincategorieslist') }}">Listing catégories</a>
 
 </p>
+
+{% endblock %}

@@ -1,3 +1,13 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Ingredients') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
+
 <table name="ingredients">
     <tr>
         <th width="40%">Nom</th>
@@ -6,7 +16,7 @@
     {% for ingredient in ingredients %}
     <tr>
         <td>{{ ingredient.getName() }}</td>
-        <td><a href="#{{ ingredient.getId() }}" >Éditer</a></td>
+        <td><a href="{{ url('admineditingredient') }}{{ ingredient.getId() }}" >Éditer</a></td>
     </tr>
 {% endfor %}
 </table>
@@ -15,4 +25,5 @@
     <a href="{{ url('adminproductslist') }}">Listing produits</a>
 
 </p>
-</p>
+
+{% endblock %}

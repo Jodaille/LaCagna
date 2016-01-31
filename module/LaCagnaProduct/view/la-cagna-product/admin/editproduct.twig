@@ -1,3 +1,13 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Product edition') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
+
 <h1>{% if product %}Modifier le produit {{ product.getId() }}{% else %}Ajouter un produit{% endif %}</h1>
 
 {% if flashMessenger().hasMessages() %}
@@ -86,3 +96,4 @@
 <a href="{{ url('adminproductslist') }}" class="btn btn-default"  >Lister les poduits</a>
 <a href="{{ url('admincategorieslist') }}" class="btn btn-default"  >Lister les catégories</a>
 </p>
+{% endblock %}

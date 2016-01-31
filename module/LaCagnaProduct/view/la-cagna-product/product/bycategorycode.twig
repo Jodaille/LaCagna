@@ -1,5 +1,8 @@
+{% extends 'layout/layout' %}
 {# {{ doctrineDump(products)| raw }} #}
 
+{% block content %}
+    {{ parent() }}
     <div class="row">
         {% for category in categories %}
 
@@ -40,3 +43,4 @@
       </div>
 {% endfor %}
     </div>
+{% endblock %}

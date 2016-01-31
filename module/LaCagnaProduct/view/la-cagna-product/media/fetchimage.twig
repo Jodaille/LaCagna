@@ -1,3 +1,12 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Home') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
 <form action="{{ url(fetchimage)}}" method="POST">
 
     <input type="hidden" name="media_id" value="{{ media_id }}" />
@@ -19,3 +28,4 @@
 {% endif %}
 <hr />
 <a href="{{ url('adminproductslist') }}">Listing produits</a>
+{% endblock %}

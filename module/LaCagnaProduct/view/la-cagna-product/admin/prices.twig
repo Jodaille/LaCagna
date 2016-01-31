@@ -1,3 +1,13 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Home') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
+
 {% if flashMessenger().hasMessages() %}
     {% for message in flashMessenger().getMessages() %}
     <span class="alert alert-success" role="alert">
@@ -90,3 +100,4 @@
 <a href="{{ url('admincategorieslist') }}" class="btn btn-default"  >Lister les catégories</a>
 
 </p>
+{% endblock %}

@@ -1,3 +1,13 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Product listing') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
+
 {% if orphans|length > 0 %}
 {% set iProducts = products|length %}
 {% set iOrphans = orphans|length %}
@@ -69,3 +79,4 @@
 <a href="{{ url('admincategorieslist') }}" class="btn btn-default"  >Lister les catégories</a>
 
 </p>
+{% endblock %}

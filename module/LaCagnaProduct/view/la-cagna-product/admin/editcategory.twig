@@ -1,3 +1,12 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('Home') }} | {{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
 <form action="{{ url('admineditcategory')}}{{ category.getId() }}" method="POST">
 
     <input type="hidden" name="id" value="{{ category.getId() }}" />
@@ -19,3 +28,4 @@
     <a href="{{ url('adminproductslist') }}">Listing produits</a>
 
 </p>
+{% endblock %}
