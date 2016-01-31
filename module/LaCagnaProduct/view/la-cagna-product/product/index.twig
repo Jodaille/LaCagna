@@ -20,7 +20,7 @@
 <p>
 
     <b>Adresse</b> : {{ info().shopAddress}}<br />
-    {#<b>Téléphone</b> : <a href="tel:+33682981912">06 82 98 19 12</a>#}
+    <b>Téléphone</b> : <a href="tel:{{ info().shopPhone(true)}}">{{ info().shopPhone}}</a>
     <br />
     <a href="{{ info().shopMapUrl}}">Nous trouver</a>
 </p>

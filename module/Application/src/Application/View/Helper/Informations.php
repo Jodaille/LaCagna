@@ -31,6 +31,16 @@ class Informations extends AbstractHelper implements ServiceLocatorAwareInterfac
         return $mapUrl;
     }
 
+    public function shopPhone($international = false)
+    {
+        $phone = '02 50 50 26 02';
+        if($international)
+        {
+            $phone = '+33250502602';
+        }
+        return $phone;
+    }
+
     public function disclaimer()
     {
         // first one gives access to other view helpers
