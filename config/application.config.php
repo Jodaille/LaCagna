@@ -8,7 +8,6 @@
 return array(
     'modules' => array(
         'Application',
-        //'HtSession',
         'DoctrineModule',
         'DoctrineORMModule',
         'ZfcBase',
@@ -19,10 +18,9 @@ return array(
         'LaCagnaUser',
         'LaCagnaProduct',
         'LaCagnaContent',
-        //'LaCagnaThema',
         'DOMPDFModule',
         'TwigDoctrineDump',
-        //'ZendDeveloperTools',
+        'VeiThema'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
