@@ -12,6 +12,25 @@ class Informations extends AbstractHelper implements ServiceLocatorAwareInterfac
     protected $em;
     protected $repository;
 
+    public function shopName()
+    {
+        $name = 'Vous Êtes Ici';
+        return $name;
+    }
+
+    public function shopAddress()
+    {
+        return '13 Rue Saint-Sauveur, 14000 Caen';
+    }
+
+    public function shopMapUrl()
+    {
+        $mapUrl = 'https://www.google.fr/maps/place/';
+
+        $mapUrl .= 'Vous+etes+ici/@49.1836762,-0.3686297,17z/data=!3m1!4b1!4m2!3m1!1s0x480a42bfb6520a53:0x1b94e85157bff1af';
+        return $mapUrl;
+    }
+
     public function disclaimer()
     {
         // first one gives access to other view helpers
