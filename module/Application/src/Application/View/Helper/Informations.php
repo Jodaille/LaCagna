@@ -18,6 +18,12 @@ class Informations extends AbstractHelper implements ServiceLocatorAwareInterfac
         return $name;
     }
 
+    public function shopPictoPath()
+    {
+        $imgPath = '/img/vous-etes-ici.png';
+        return $imgPath;
+    }
+
     public function shopAddress()
     {
         return '13 Rue Saint-Sauveur, 14000 Caen';
