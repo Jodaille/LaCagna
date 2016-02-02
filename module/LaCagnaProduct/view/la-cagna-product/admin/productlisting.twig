@@ -7,7 +7,15 @@
 
 {% block content %}
     {{ parent() }}
+    {% if flashMessenger().hasMessages() %}
+        {% for message in flashMessenger().getMessages() %}
+        <span class="alert alert-success" role="alert">
+            {{ message }}
+        </span>
+        {% endfor %}
+        <hr />
 
+    {% endif %}
 {% if orphans|length > 0 %}
 {% set iProducts = products|length %}
 {% set iOrphans = orphans|length %}
