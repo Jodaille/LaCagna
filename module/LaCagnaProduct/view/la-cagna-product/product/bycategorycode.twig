@@ -32,12 +32,23 @@
 
             </p>
 
+            {% if zfcUserIdentity() %}
             <p>
+
                 <a href="#" class="btn btn-primary" role="button">Commander</a>
-                <a href="#" class="btn btn-default" role="button">
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                {% if bookmark().isProductBookmarked(product) %}
+                <a href="#" class="btn btn-default bookmark" role="button" data-product="{{product.id()}}">
+                    <span class="glyphicon glyphicon-heart" data-product="{{product.id()}}" aria-hidden="true"></span>
                 </a>
+                {% else %}
+                <a href="#" class="btn btn-default bookmark" role="button" data-product="{{product.id()}}">
+                    <span class="glyphicon glyphicon-heart-empty" data-product="{{product.id()}}" aria-hidden="true"></span>
+                </a>
+                {% endif %}
+
             </p>
+            {% endif %}
+
           </div>
         </div>
       </div>

@@ -4,6 +4,28 @@ return array(
         'template_path_stack' => array(
             'zfcuser' => __DIR__ . '/../view',
         ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
+    ),
+    'controllers' => array(
+        'invokables' => array(
+            'LaCagnaUser\Controller\Bookmark' => 'LaCagnaUser\Controller\BookmarkController',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+          'tooglebookmark' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/user/bookmark[/:productId]',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaUser\Controller\Bookmark',
+                      'action'     => 'toggle',
+                  ),
+              ),
+          ),
+      ),
     ),
     'doctrine' => array(
         'driver' => array(
@@ -26,6 +48,19 @@ return array(
         'user_entity_class'       => 'LaCagnaUser\Entity\User',
         // telling ZfcUserDoctrineORM to skip the entities it defines
         'enable_default_entities' => false,
+    ),
+
+    'service_manager' => array(
+
+        'factories' => array(
+            'bookmark'        => 'LaCagnaUser\Factory\BookmarkFactory',
+        ),
+    ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'bookmark' => 'LaCagnaUser\View\Helper\Bookmark',
+
+        )
     ),
 
     'bjyauthorize' => array(
