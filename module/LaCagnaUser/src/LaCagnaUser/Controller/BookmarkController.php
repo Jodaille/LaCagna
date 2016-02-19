@@ -32,5 +32,17 @@ class BookmarkController extends AbstractActionController
         return $view;
     }
 
+    public function mybookmarksAction()
+    {
+        //$view = new ViewModel();
+        $view = new JsonModel();
+
+        $bookmark = $this->getServiceLocator()->get('bookmark');
+        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
+        $aBookmarks = $bookmark->getUserBookmarks($auth->getIdentity());
+
+        $view->bookmarks = $aBookmarks;
+        return $view;
+    }
 
 }

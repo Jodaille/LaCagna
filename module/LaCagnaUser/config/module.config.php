@@ -25,6 +25,16 @@ return array(
                   ),
               ),
           ),
+          'mybookmarks' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/user/mybookmarks',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaUser\Controller\Bookmark',
+                      'action'     => 'mybookmarks',
+                  ),
+              ),
+          ),
       ),
     ),
     'doctrine' => array(

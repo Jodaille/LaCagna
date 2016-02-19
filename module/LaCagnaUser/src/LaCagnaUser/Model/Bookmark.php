@@ -15,6 +15,41 @@ class Bookmark implements ServiceLocatorAwareInterface
 {
 	protected $em;
     protected $servicelocator;
+	public function getUserBookmarks($user)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('b')
+            ->from('LaCagnaUser\Entity\Bookmark', 'b')
+            ->where('b.user = :user')
+            ->setParameters(
+                array(':user' => $user,
+                      )
+                );
+        $qb->orderBy('b.updated_at', 'DESC');
+        $query = $qb->getQuery();
+        $results = $query->getResult();
+        $aBookmarks = array();
+        if($results)
+        {
+            foreach($results as $b)
+            {
+                $product = $b->getProduct();
+                $title = $product->getTitle();
+                $id = $product->getId();
+                $media = $product->getMainmedia();
+                $slug = null;
+                if($media)
+                {
+                    $slug = $media->getSlug();
+                }
+                $aBookmarks[] = ['title' => $title,
+                'product_id' => $id,
+                'slug' => $slug,
+                ];
+            }
+        }
+        return $aBookmarks;
+    }
 
 	public function toggle($productId, $user)
 	{
