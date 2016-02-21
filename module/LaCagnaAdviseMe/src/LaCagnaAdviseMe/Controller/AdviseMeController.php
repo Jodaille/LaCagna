@@ -37,12 +37,15 @@ class AdviseMeController extends AbstractActionController
         {
             $products = $advise->simpleAdvise();
         }
-        $products = $advise->getTopN($products, 10);
+        $products = $advise->getTopN($products, 15);
 
         foreach($products as $advice)
         {
             $console->writeLine('productId: ' . $advice['product_id']
-            . ' score: ' . $advice['score'], ColorInterface::BLUE);
+                        . ' score: ' . $advice['score'], ColorInterface::BLUE);
+            $console->writeLine('media_slug: ' . $advice['media_slug']
+                                , ColorInterface::GREEN);
+
 
         }
 

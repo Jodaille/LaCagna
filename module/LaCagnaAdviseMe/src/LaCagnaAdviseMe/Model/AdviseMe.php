@@ -16,10 +16,8 @@ class AdviseMe
         $aAdvise = array();
         foreach($products as $p)
         {
-            $advise = [
-                'product_id' => $p->getId(),
-                'score' => 1,
-                ];
+            $score = 1;
+            $advise = $this->getProductData($p, $score);
             $aAdvise[] = $advise;
         }
 
@@ -40,19 +38,35 @@ class AdviseMe
         foreach($products as $p)
         {
             $score = 1;
-
             if($bookmark->isProductBookmarked($user, $p))
             {
                 $score++;
             }
-            $advise = [
-                'product_id' => $p->getId(),
-                'score' => $score,
-                ];
+            $advise = $this->getProductData($p, $score);
             $aAdvise[] = $advise;
         }
 
         return $aAdvise;
+    }
+
+    public function getProductData($product, $score)
+    {
+        $slug = null;
+        $media = $product->getMainmedia();
+        if($media)
+        {
+            $slug = $media->getSlug();
+        }
+        if($slug)
+        {
+            $score++;
+        }
+        $data = [
+            'product_id' => $product->getId(),
+            'media_slug' => $slug,
+            'score' => $score,
+            ];
+        return $data;
     }
 
     public function getTopN($aAdvise, $iNbELements = 3)
