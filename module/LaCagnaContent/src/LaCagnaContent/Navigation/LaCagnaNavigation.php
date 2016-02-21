@@ -13,6 +13,12 @@ class LaCagnaNavigation extends DefaultNavigationFactory
         $this->role = $role;
     }
 
+    public function getAvailableRoutes()
+    {
+        $router = $this->getServiceLocator()->get('Router');
+        $routes = $router->getRoutes();
+        return $routes;
+    }
 
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {

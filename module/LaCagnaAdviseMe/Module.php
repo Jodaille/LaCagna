@@ -1,5 +1,5 @@
 <?php
-namespace LaCagnaProduct;
+namespace LaCagnaAdviseMe;
 
 use Zend\Console\Adapter\AdapterInterface as Console;
 

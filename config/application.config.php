@@ -20,7 +20,7 @@ return array(
         'LaCagnaContent',
         'DOMPDFModule',
         'TwigDoctrineDump',
-        //'VeiThema'
+        'LaCagnaAdviseMe'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
