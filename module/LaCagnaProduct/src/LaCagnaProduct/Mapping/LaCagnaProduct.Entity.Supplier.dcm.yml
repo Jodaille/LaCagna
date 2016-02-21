@@ -1,0 +1,17 @@
+LaCagnaProduct\Entity\Supplier:
+    type: entity
+    table: suppliers
+    repositoryClass: LaCagnaProduct\Repository\SupplierRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 64
+            nullable: true
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

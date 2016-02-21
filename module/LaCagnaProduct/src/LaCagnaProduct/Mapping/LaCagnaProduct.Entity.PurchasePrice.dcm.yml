@@ -1,0 +1,40 @@
+LaCagnaProduct\Entity\PurchasePrice:
+    type: entity
+    table: purchaseprices
+    repositoryClass:  LaCagnaProduct\Repository\PurchasePriceRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        value:
+            type: float
+            nullable: false
+        purchased_at:
+            type: datetime
+            nullable: false
+        created_at:
+            type: datetime
+            nullable: false
+        updated_at:
+            type: datetime
+            nullable: false
+    manyToOne:
+        article:
+            targetEntity: LaCagnaProduct\Entity\Article
+            inversedBy: purchaseprice
+            joinColumn:
+                name: article_id
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+        supplier:
+            targetEntity: LaCagnaProduct\Entity\Supplier
+            inversedBy: purchaseprice
+            joinColumn:
+                name: supplier_id
+                referencedColumnName: id
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]
