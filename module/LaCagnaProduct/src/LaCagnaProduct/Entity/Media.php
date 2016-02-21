@@ -79,6 +79,7 @@ class Media
      * Set type
      *
      * @param string $type
+     *
      * @return Media
      */
     public function setType($type)
@@ -102,6 +103,7 @@ class Media
      * Set slug
      *
      * @param string $slug
+     *
      * @return Media
      */
     public function setSlug($slug)
@@ -122,9 +124,10 @@ class Media
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Media
      */
     public function setCreatedAt($createdAt)
@@ -135,7 +138,7 @@ class Media
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
      * @return \DateTime
      */
@@ -145,9 +148,10 @@ class Media
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Media
      */
     public function setUpdatedAt($updatedAt)
@@ -158,7 +162,7 @@ class Media
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
      * @return \DateTime
      */
@@ -168,26 +172,27 @@ class Media
     }
 
     /**
-     * Add categories
+     * Add category
      *
-     * @param \LaCagnaProduct\Entity\Category $categories
+     * @param \LaCagnaProduct\Entity\Category $category
+     *
      * @return Media
      */
-    public function addCategory(\LaCagnaProduct\Entity\Category $categories)
+    public function addCategory(\LaCagnaProduct\Entity\Category $category)
     {
-        $this->categories[] = $categories;
+        $this->categories[] = $category;
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove category
      *
-     * @param \LaCagnaProduct\Entity\Category $categories
+     * @param \LaCagnaProduct\Entity\Category $category
      */
-    public function removeCategory(\LaCagnaProduct\Entity\Category $categories)
+    public function removeCategory(\LaCagnaProduct\Entity\Category $category)
     {
-        $this->categories->removeElement($categories);
+        $this->categories->removeElement($category);
     }
 
     /**
@@ -201,26 +206,27 @@ class Media
     }
 
     /**
-     * Add articles
+     * Add article
      *
-     * @param \LaCagnaProduct\Entity\Article $articles
+     * @param \LaCagnaProduct\Entity\Article $article
+     *
      * @return Media
      */
-    public function addArticle(\LaCagnaProduct\Entity\Article $articles)
+    public function addArticle(\LaCagnaProduct\Entity\Article $article)
     {
-        $this->articles[] = $articles;
+        $this->articles[] = $article;
 
         return $this;
     }
 
     /**
-     * Remove articles
+     * Remove article
      *
-     * @param \LaCagnaProduct\Entity\Article $articles
+     * @param \LaCagnaProduct\Entity\Article $article
      */
-    public function removeArticle(\LaCagnaProduct\Entity\Article $articles)
+    public function removeArticle(\LaCagnaProduct\Entity\Article $article)
     {
-        $this->articles->removeElement($articles);
+        $this->articles->removeElement($article);
     }
 
     /**
@@ -234,26 +240,27 @@ class Media
     }
 
     /**
-     * Add products
+     * Add product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
+     *
      * @return Media
      */
-    public function addProduct(\LaCagnaProduct\Entity\Product $products)
+    public function addProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products[] = $products;
+        $this->products[] = $product;
 
         return $this;
     }
 
     /**
-     * Remove products
+     * Remove product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
      */
-    public function removeProduct(\LaCagnaProduct\Entity\Product $products)
+    public function removeProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products->removeElement($products);
+        $this->products->removeElement($product);
     }
 
     /**
@@ -267,26 +274,27 @@ class Media
     }
 
     /**
-     * Add brands
+     * Add brand
      *
-     * @param \LaCagnaProduct\Entity\Brand $brands
+     * @param \LaCagnaProduct\Entity\Brand $brand
+     *
      * @return Media
      */
-    public function addBrand(\LaCagnaProduct\Entity\Brand $brands)
+    public function addBrand(\LaCagnaProduct\Entity\Brand $brand)
     {
-        $this->brands[] = $brands;
+        $this->brands[] = $brand;
 
         return $this;
     }
 
     /**
-     * Remove brands
+     * Remove brand
      *
-     * @param \LaCagnaProduct\Entity\Brand $brands
+     * @param \LaCagnaProduct\Entity\Brand $brand
      */
-    public function removeBrand(\LaCagnaProduct\Entity\Brand $brands)
+    public function removeBrand(\LaCagnaProduct\Entity\Brand $brand)
     {
-        $this->brands->removeElement($brands);
+        $this->brands->removeElement($brand);
     }
 
     /**
@@ -298,22 +306,20 @@ class Media
     {
         return $this->brands;
     }
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
+    }
 
-
-        /**
-        * @ORM\PrePersist
-        */
-        public function prePersist()
-        {
-            $this->created_at = new \DateTime("now");
-            $this->updated_at = new \DateTime("now");
-        }
-
-        /**
-        * @ORM\PreUpdate
-        */
-        public function preUpdate()
-        {
-            $this->updated_at = new \DateTime("now");
-        }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->updated_at = new \DateTime("now");
+    }
 }

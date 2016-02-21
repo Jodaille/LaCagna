@@ -61,6 +61,7 @@ class Brand
      * Set title
      *
      * @param string $title
+     *
      * @return Brand
      */
     public function setTitle($title)
@@ -81,9 +82,10 @@ class Brand
     }
 
     /**
-     * Set id_manufacturer
+     * Set idManufacturer
      *
      * @param integer $idManufacturer
+     *
      * @return Brand
      */
     public function setIdManufacturer($idManufacturer)
@@ -94,7 +96,7 @@ class Brand
     }
 
     /**
-     * Get id_manufacturer
+     * Get idManufacturer
      *
      * @return integer
      */
@@ -104,9 +106,10 @@ class Brand
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Brand
      */
     public function setCreatedAt($createdAt)
@@ -117,7 +120,7 @@ class Brand
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
      * @return \DateTime
      */
@@ -127,9 +130,10 @@ class Brand
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Brand
      */
     public function setUpdatedAt($updatedAt)
@@ -140,7 +144,7 @@ class Brand
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
      * @return \DateTime
      */
@@ -150,26 +154,27 @@ class Brand
     }
 
     /**
-     * Add medias
+     * Add media
      *
-     * @param \LaCagnaProduct\Entity\Media $medias
+     * @param \LaCagnaProduct\Entity\Media $media
+     *
      * @return Brand
      */
-    public function addMedia(\LaCagnaProduct\Entity\Media $medias)
+    public function addMedia(\LaCagnaProduct\Entity\Media $media)
     {
-        $this->medias[] = $medias;
+        $this->medias[] = $media;
 
         return $this;
     }
 
     /**
-     * Remove medias
+     * Remove media
      *
-     * @param \LaCagnaProduct\Entity\Media $medias
+     * @param \LaCagnaProduct\Entity\Media $media
      */
-    public function removeMedia(\LaCagnaProduct\Entity\Media $medias)
+    public function removeMedia(\LaCagnaProduct\Entity\Media $media)
     {
-        $this->medias->removeElement($medias);
+        $this->medias->removeElement($media);
     }
 
     /**
@@ -181,10 +186,9 @@ class Brand
     {
         return $this->medias;
     }
-
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
         $this->created_at = new \DateTime("now");
@@ -192,10 +196,11 @@ class Brand
     }
 
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function preUpdate()
     {
         $this->updated_at = new \DateTime("now");
     }
 }
+

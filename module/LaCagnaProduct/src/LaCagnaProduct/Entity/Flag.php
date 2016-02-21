@@ -3,7 +3,6 @@
 namespace LaCagnaProduct\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Flag
  */
@@ -55,7 +54,7 @@ class Flag
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,6 +65,7 @@ class Flag
      * Set name
      *
      * @param string $name
+     *
      * @return Flag
      */
     public function setName($name)
@@ -78,7 +78,7 @@ class Flag
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -89,6 +89,7 @@ class Flag
      * Set class
      *
      * @param string $class
+     *
      * @return Flag
      */
     public function setClass($class)
@@ -101,7 +102,7 @@ class Flag
     /**
      * Get class
      *
-     * @return string 
+     * @return string
      */
     public function getClass()
     {
@@ -112,6 +113,7 @@ class Flag
      * Set icon
      *
      * @param string $icon
+     *
      * @return Flag
      */
     public function setIcon($icon)
@@ -124,7 +126,7 @@ class Flag
     /**
      * Get icon
      *
-     * @return string 
+     * @return string
      */
     public function getIcon()
     {
@@ -132,9 +134,10 @@ class Flag
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Flag
      */
     public function setCreatedAt($createdAt)
@@ -145,9 +148,9 @@ class Flag
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -155,9 +158,10 @@ class Flag
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Flag
      */
     public function setUpdatedAt($updatedAt)
@@ -168,9 +172,9 @@ class Flag
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -178,32 +182,33 @@ class Flag
     }
 
     /**
-     * Add products
+     * Add product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
+     *
      * @return Flag
      */
-    public function addProduct(\LaCagnaProduct\Entity\Product $products)
+    public function addProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products[] = $products;
+        $this->products[] = $product;
 
         return $this;
     }
 
     /**
-     * Remove products
+     * Remove product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
      */
-    public function removeProduct(\LaCagnaProduct\Entity\Product $products)
+    public function removeProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products->removeElement($products);
+        $this->products->removeElement($product);
     }
 
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {
@@ -214,7 +219,8 @@ class Flag
      */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
@@ -222,6 +228,7 @@ class Flag
      */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
+
     }
 }

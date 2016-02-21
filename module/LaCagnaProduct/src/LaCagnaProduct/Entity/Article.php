@@ -90,6 +90,7 @@ class Article
      * Set code
      *
      * @param string $code
+     *
      * @return Article
      */
     public function setCode($code)
@@ -113,6 +114,7 @@ class Article
      * Set codeprovider
      *
      * @param string $codeprovider
+     *
      * @return Article
      */
     public function setCodeprovider($codeprovider)
@@ -136,6 +138,7 @@ class Article
      * Set state
      *
      * @param string $state
+     *
      * @return Article
      */
     public function setState($state)
@@ -156,9 +159,10 @@ class Article
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Article
      */
     public function setCreatedAt($createdAt)
@@ -169,7 +173,7 @@ class Article
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
      * @return \DateTime
      */
@@ -179,9 +183,10 @@ class Article
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Article
      */
     public function setUpdatedAt($updatedAt)
@@ -192,7 +197,7 @@ class Article
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
      * @return \DateTime
      */
@@ -202,26 +207,27 @@ class Article
     }
 
     /**
-     * Add stocks
+     * Add stock
      *
-     * @param \LaCagnaProduct\Entity\Stock $stocks
+     * @param \LaCagnaProduct\Entity\Stock $stock
+     *
      * @return Article
      */
-    public function addStock(\LaCagnaProduct\Entity\Stock $stocks)
+    public function addStock(\LaCagnaProduct\Entity\Stock $stock)
     {
-        $this->stocks[] = $stocks;
+        $this->stocks[] = $stock;
 
         return $this;
     }
 
     /**
-     * Remove stocks
+     * Remove stock
      *
-     * @param \LaCagnaProduct\Entity\Stock $stocks
+     * @param \LaCagnaProduct\Entity\Stock $stock
      */
-    public function removeStock(\LaCagnaProduct\Entity\Stock $stocks)
+    public function removeStock(\LaCagnaProduct\Entity\Stock $stock)
     {
-        $this->stocks->removeElement($stocks);
+        $this->stocks->removeElement($stock);
     }
 
     /**
@@ -235,26 +241,27 @@ class Article
     }
 
     /**
-     * Add prices
+     * Add price
      *
-     * @param \LaCagnaProduct\Entity\Price $prices
+     * @param \LaCagnaProduct\Entity\Price $price
+     *
      * @return Article
      */
-    public function addPrice(\LaCagnaProduct\Entity\Price $prices)
+    public function addPrice(\LaCagnaProduct\Entity\Price $price)
     {
-        $this->prices[] = $prices;
+        $this->prices[] = $price;
 
         return $this;
     }
 
     /**
-     * Remove prices
+     * Remove price
      *
-     * @param \LaCagnaProduct\Entity\Price $prices
+     * @param \LaCagnaProduct\Entity\Price $price
      */
-    public function removePrice(\LaCagnaProduct\Entity\Price $prices)
+    public function removePrice(\LaCagnaProduct\Entity\Price $price)
     {
-        $this->prices->removeElement($prices);
+        $this->prices->removeElement($price);
     }
 
     /**
@@ -268,26 +275,27 @@ class Article
     }
 
     /**
-     * Add products
+     * Add product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
+     *
      * @return Article
      */
-    public function addProduct(\LaCagnaProduct\Entity\Product $products)
+    public function addProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products[] = $products;
+        $this->products[] = $product;
 
         return $this;
     }
 
     /**
-     * Remove products
+     * Remove product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
      */
-    public function removeProduct(\LaCagnaProduct\Entity\Product $products)
+    public function removeProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products->removeElement($products);
+        $this->products->removeElement($product);
     }
 
     /**
@@ -301,26 +309,27 @@ class Article
     }
 
     /**
-     * Add medias
+     * Add media
      *
-     * @param \LaCagnaProduct\Entity\Media $medias
+     * @param \LaCagnaProduct\Entity\Media $media
+     *
      * @return Article
      */
-    public function addMedia(\LaCagnaProduct\Entity\Media $medias)
+    public function addMedia(\LaCagnaProduct\Entity\Media $media)
     {
-        $this->medias[] = $medias;
+        $this->medias[] = $media;
 
         return $this;
     }
 
     /**
-     * Remove medias
+     * Remove media
      *
-     * @param \LaCagnaProduct\Entity\Media $medias
+     * @param \LaCagnaProduct\Entity\Media $media
      */
-    public function removeMedia(\LaCagnaProduct\Entity\Media $medias)
+    public function removeMedia(\LaCagnaProduct\Entity\Media $media)
     {
-        $this->medias->removeElement($medias);
+        $this->medias->removeElement($media);
     }
 
     /**
@@ -334,26 +343,27 @@ class Article
     }
 
     /**
-     * Add characteristicsvalues
+     * Add characteristicsvalue
      *
-     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues
+     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue
+     *
      * @return Article
      */
-    public function addCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues)
+    public function addCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue)
     {
-        $this->characteristicsvalues[] = $characteristicsvalues;
+        $this->characteristicsvalues[] = $characteristicsvalue;
 
         return $this;
     }
 
     /**
-     * Remove characteristicsvalues
+     * Remove characteristicsvalue
      *
-     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues
+     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue
      */
-    public function removeCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues)
+    public function removeCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue)
     {
-        $this->characteristicsvalues->removeElement($characteristicsvalues);
+        $this->characteristicsvalues->removeElement($characteristicsvalue);
     }
 
     /**
@@ -365,10 +375,9 @@ class Article
     {
         return $this->characteristicsvalues;
     }
-
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
         $this->created_at = new \DateTime("now");
@@ -376,10 +385,11 @@ class Article
     }
 
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function preUpdate()
     {
         $this->updated_at = new \DateTime("now");
     }
 }
+

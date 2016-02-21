@@ -23,7 +23,7 @@ class State
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -34,6 +34,7 @@ class State
      * Set name
      *
      * @param string $name
+     *
      * @return State
      */
     public function setName($name)
@@ -46,7 +47,7 @@ class State
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -57,7 +58,8 @@ class State
      */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
@@ -65,6 +67,6 @@ class State
      */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }

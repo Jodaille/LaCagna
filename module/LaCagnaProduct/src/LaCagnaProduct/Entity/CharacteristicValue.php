@@ -40,7 +40,7 @@ class CharacteristicValue
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -51,6 +51,7 @@ class CharacteristicValue
      * Set value
      *
      * @param string $value
+     *
      * @return CharacteristicValue
      */
     public function setValue($value)
@@ -63,7 +64,7 @@ class CharacteristicValue
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -74,6 +75,7 @@ class CharacteristicValue
      * Set characteristic
      *
      * @param \LaCagnaProduct\Entity\Characteristic $characteristic
+     *
      * @return CharacteristicValue
      */
     public function setCharacteristic(\LaCagnaProduct\Entity\Characteristic $characteristic = null)
@@ -86,7 +88,7 @@ class CharacteristicValue
     /**
      * Get characteristic
      *
-     * @return \LaCagnaProduct\Entity\Characteristic 
+     * @return \LaCagnaProduct\Entity\Characteristic
      */
     public function getCharacteristic()
     {
@@ -94,32 +96,33 @@ class CharacteristicValue
     }
 
     /**
-     * Add articles
+     * Add article
      *
-     * @param \LaCagnaProduct\Entity\Article $articles
+     * @param \LaCagnaProduct\Entity\Article $article
+     *
      * @return CharacteristicValue
      */
-    public function addArticle(\LaCagnaProduct\Entity\Article $articles)
+    public function addArticle(\LaCagnaProduct\Entity\Article $article)
     {
-        $this->articles[] = $articles;
+        $this->articles[] = $article;
 
         return $this;
     }
 
     /**
-     * Remove articles
+     * Remove article
      *
-     * @param \LaCagnaProduct\Entity\Article $articles
+     * @param \LaCagnaProduct\Entity\Article $article
      */
-    public function removeArticle(\LaCagnaProduct\Entity\Article $articles)
+    public function removeArticle(\LaCagnaProduct\Entity\Article $article)
     {
-        $this->articles->removeElement($articles);
+        $this->articles->removeElement($article);
     }
 
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
@@ -130,7 +133,8 @@ class CharacteristicValue
      */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
@@ -138,6 +142,6 @@ class CharacteristicValue
      */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }

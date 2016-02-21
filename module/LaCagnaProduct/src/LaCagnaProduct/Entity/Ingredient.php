@@ -56,6 +56,7 @@ class Ingredient
      * Set name
      *
      * @param string $name
+     *
      * @return Ingredient
      */
     public function setName($name)
@@ -76,9 +77,10 @@ class Ingredient
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Ingredient
      */
     public function setCreatedAt($createdAt)
@@ -89,7 +91,7 @@ class Ingredient
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
      * @return \DateTime
      */
@@ -99,9 +101,10 @@ class Ingredient
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Ingredient
      */
     public function setUpdatedAt($updatedAt)
@@ -112,7 +115,7 @@ class Ingredient
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
      * @return \DateTime
      */
@@ -122,26 +125,27 @@ class Ingredient
     }
 
     /**
-     * Add products
+     * Add product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
+     *
      * @return Ingredient
      */
-    public function addProduct(\LaCagnaProduct\Entity\Product $products)
+    public function addProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products[] = $products;
+        $this->products[] = $product;
 
         return $this;
     }
 
     /**
-     * Remove products
+     * Remove product
      *
-     * @param \LaCagnaProduct\Entity\Product $products
+     * @param \LaCagnaProduct\Entity\Product $product
      */
-    public function removeProduct(\LaCagnaProduct\Entity\Product $products)
+    public function removeProduct(\LaCagnaProduct\Entity\Product $product)
     {
-        $this->products->removeElement($products);
+        $this->products->removeElement($product);
     }
 
     /**
@@ -153,10 +157,9 @@ class Ingredient
     {
         return $this->products;
     }
-
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
         $this->created_at = new \DateTime("now");
@@ -164,8 +167,8 @@ class Ingredient
     }
 
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function preUpdate()
     {
         $this->updated_at = new \DateTime("now");

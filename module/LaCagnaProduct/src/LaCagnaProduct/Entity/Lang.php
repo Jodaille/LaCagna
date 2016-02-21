@@ -38,7 +38,7 @@ class Lang
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -49,6 +49,7 @@ class Lang
      * Set code
      *
      * @param string $code
+     *
      * @return Lang
      */
     public function setCode($code)
@@ -61,7 +62,7 @@ class Lang
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -72,6 +73,7 @@ class Lang
      * Set title
      *
      * @param string $title
+     *
      * @return Lang
      */
     public function setTitle($title)
@@ -84,7 +86,7 @@ class Lang
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -92,9 +94,10 @@ class Lang
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Lang
      */
     public function setCreatedAt($createdAt)
@@ -105,9 +108,9 @@ class Lang
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -115,9 +118,10 @@ class Lang
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Lang
      */
     public function setUpdatedAt($updatedAt)
@@ -128,9 +132,9 @@ class Lang
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -141,7 +145,8 @@ class Lang
      */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
@@ -149,6 +154,6 @@ class Lang
      */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }

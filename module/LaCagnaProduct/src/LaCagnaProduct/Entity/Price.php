@@ -54,6 +54,7 @@ class Price
      * Set value
      *
      * @param float $value
+     *
      * @return Price
      */
     public function setValue($value)
@@ -77,6 +78,7 @@ class Price
      * Set specialValue
      *
      * @param float $specialValue
+     *
      * @return Price
      */
     public function setSpecialValue($specialValue)
@@ -97,9 +99,10 @@ class Price
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Price
      */
     public function setCreatedAt($createdAt)
@@ -110,7 +113,7 @@ class Price
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
      * @return \DateTime
      */
@@ -120,9 +123,10 @@ class Price
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Price
      */
     public function setUpdatedAt($updatedAt)
@@ -133,7 +137,7 @@ class Price
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
      * @return \DateTime
      */
@@ -146,6 +150,7 @@ class Price
      * Set article
      *
      * @param \LaCagnaProduct\Entity\Article $article
+     *
      * @return Price
      */
     public function setArticle(\LaCagnaProduct\Entity\Article $article = null)
@@ -164,10 +169,9 @@ class Price
     {
         return $this->article;
     }
-
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
         $this->created_at = new \DateTime("now");
@@ -175,8 +179,8 @@ class Price
     }
 
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function preUpdate()
     {
         $this->updated_at = new \DateTime("now");

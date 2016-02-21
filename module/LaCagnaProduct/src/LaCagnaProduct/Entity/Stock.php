@@ -38,7 +38,7 @@ class Stock
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -49,6 +49,7 @@ class Stock
      * Set quantity
      *
      * @param integer $quantity
+     *
      * @return Stock
      */
     public function setQuantity($quantity)
@@ -61,7 +62,7 @@ class Stock
     /**
      * Get quantity
      *
-     * @return integer 
+     * @return integer
      */
     public function getQuantity()
     {
@@ -69,9 +70,10 @@ class Stock
     }
 
     /**
-     * Set created_at
+     * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Stock
      */
     public function setCreatedAt($createdAt)
@@ -82,9 +84,9 @@ class Stock
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -92,9 +94,10 @@ class Stock
     }
 
     /**
-     * Set updated_at
+     * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Stock
      */
     public function setUpdatedAt($updatedAt)
@@ -105,9 +108,9 @@ class Stock
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -118,6 +121,7 @@ class Stock
      * Set article
      *
      * @param \LaCagnaProduct\Entity\Article $article
+     *
      * @return Stock
      */
     public function setArticle(\LaCagnaProduct\Entity\Article $article = null)
@@ -130,7 +134,7 @@ class Stock
     /**
      * Get article
      *
-     * @return \LaCagnaProduct\Entity\Article 
+     * @return \LaCagnaProduct\Entity\Article
      */
     public function getArticle()
     {
@@ -141,7 +145,8 @@ class Stock
      */
     public function prePersist()
     {
-        // Add your code here
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**
@@ -149,6 +154,6 @@ class Stock
      */
     public function preUpdate()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime("now");
     }
 }

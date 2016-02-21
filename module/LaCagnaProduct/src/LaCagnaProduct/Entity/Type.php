@@ -23,7 +23,7 @@ class Type
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -34,6 +34,7 @@ class Type
      * Set name
      *
      * @param string $name
+     *
      * @return Type
      */
     public function setName($name)
@@ -46,7 +47,7 @@ class Type
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

@@ -67,6 +67,7 @@ class Characteristic
      * Set abbreviation
      *
      * @param string $abbreviation
+     *
      * @return Characteristic
      */
     public function setAbbreviation($abbreviation)
@@ -90,6 +91,7 @@ class Characteristic
      * Set type
      *
      * @param string $type
+     *
      * @return Characteristic
      */
     public function setType($type)
@@ -113,6 +115,7 @@ class Characteristic
      * Set created_at
      *
      * @param \DateTime $createdAt
+     *
      * @return Characteristic
      */
     public function setCreatedAt($createdAt)
@@ -136,6 +139,7 @@ class Characteristic
      * Set updated_at
      *
      * @param \DateTime $updatedAt
+     *
      * @return Characteristic
      */
     public function setUpdatedAt($updatedAt)
@@ -156,26 +160,27 @@ class Characteristic
     }
 
     /**
-     * Add characteristicsvalues
+     * Add characteristicsvalue
      *
-     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues
+     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue
+     *
      * @return Characteristic
      */
-    public function addCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues)
+    public function addCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue)
     {
-        $this->characteristicsvalues[] = $characteristicsvalues;
+        $this->characteristicsvalues[] = $characteristicsvalue;
 
         return $this;
     }
 
     /**
-     * Remove characteristicsvalues
+     * Remove characteristicsvalue
      *
-     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues
+     * @param \LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue
      */
-    public function removeCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalues)
+    public function removeCharacteristicsvalue(\LaCagnaProduct\Entity\CharacteristicValue $characteristicsvalue)
     {
-        $this->characteristicsvalues->removeElement($characteristicsvalues);
+        $this->characteristicsvalues->removeElement($characteristicsvalue);
     }
 
     /**
@@ -189,26 +194,27 @@ class Characteristic
     }
 
     /**
-     * Add categories
+     * Add category
      *
-     * @param \LaCagnaProduct\Entity\Category $categories
+     * @param \LaCagnaProduct\Entity\Category $category
+     *
      * @return Characteristic
      */
-    public function addCategory(\LaCagnaProduct\Entity\Category $categories)
+    public function addCategory(\LaCagnaProduct\Entity\Category $category)
     {
-        $this->categories[] = $categories;
+        $this->categories[] = $category;
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove category
      *
-     * @param \LaCagnaProduct\Entity\Category $categories
+     * @param \LaCagnaProduct\Entity\Category $category
      */
-    public function removeCategory(\LaCagnaProduct\Entity\Category $categories)
+    public function removeCategory(\LaCagnaProduct\Entity\Category $category)
     {
-        $this->categories->removeElement($categories);
+        $this->categories->removeElement($category);
     }
 
     /**
@@ -220,10 +226,9 @@ class Characteristic
     {
         return $this->categories;
     }
-
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
         $this->created_at = new \DateTime("now");
@@ -231,10 +236,11 @@ class Characteristic
     }
 
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function preUpdate()
     {
         $this->updated_at = new \DateTime("now");
     }
 }
+
