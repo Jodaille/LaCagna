@@ -3,7 +3,9 @@
 namespace LaCagnaAdviseMe\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 
 use Zend\Console\Request as ConsoleRequest;
 
@@ -17,7 +19,40 @@ class AdviseMeController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel();
+
+        $advise = $this->getServiceLocator()->get('advise');
+        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
+        $view = new ViewModel();
+
+        if ($auth->hasIdentity()) {
+            $products = $advise->userAdvise($auth->getIdentity()->getId());
+        }
+        else
+        {
+            $products = $advise->simpleAdvise();
+        }
+        $products = $advise->getTopN($products, false);
+        $view->products = $products;
+        return $view;
+    }
+
+    public function getadviseAction()
+    {
+
+        $advise = $this->getServiceLocator()->get('advise');
+        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
+        $view = new JsonModel();
+
+        if ($auth->hasIdentity()) {
+            $products = $advise->userAdvise($auth->getIdentity()->getId());
+        }
+        else
+        {
+            $products = $advise->simpleAdvise();
+        }
+        $products = $advise->getTopN($products, false);
+        $view->products = $products;
+        return $view;
     }
 
     public function bestAdviceAction()

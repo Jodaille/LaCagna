@@ -12,6 +12,36 @@ return array(
             'advise'        => 'LaCagnaAdviseMe\Factory\AdviseMeFactory',
         ),
     ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            //getadvise
+            'getadvise' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/getadvise',
+                    'defaults' => array(
+                        'controller' => 'LaCagnaAdviseMe\Controller\AdviseMe',
+                        'action'     => 'getadvise',
+                    ),
+                ),
+            ),
+            'adviseme' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/adviseme',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaAdviseMe\Controller\AdviseMe',
+                      'action'     => 'index',
+                  ),
+              ),
+            ),
+      ),
+    ),
     'console' => array(
         'router' => array(
             'routes' => array(

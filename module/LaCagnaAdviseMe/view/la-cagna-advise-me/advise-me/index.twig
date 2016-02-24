@@ -1,0 +1,15 @@
+{% extends 'layout/layout' %}
+{# {{ doctrineDump(products)| raw }} #}
+
+{% block content %}
+    {{ parent() }}
+    <div class="row">
+        <p>
+            <button id="getAdvise">Click Me</button>
+        </p>
+    {{ doctrineDump(products)| raw }}
+    </div>
+    <div class="row" id="myAnimation"></div>
+    <script type='text/javascript' src="{{basePath()}}/js/adviseme.js"></script>
+
+{% endblock %}

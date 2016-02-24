@@ -69,10 +69,18 @@ class AdviseMe
         return $data;
     }
 
+    /**
+    * Get top product sorted by score
+    * @param array $aAdvise
+    * @param int $iNbELements
+    */
     public function getTopN($aAdvise, $iNbELements = 3)
     {
         uasort($aAdvise, self::sortByScore());
-        $aAdvise = array_slice($aAdvise, 0, $iNbELements);
+        if($iNbELements)
+        {
+            $aAdvise = array_slice($aAdvise, 0, $iNbELements);
+        }
         return $aAdvise;
     }
 
