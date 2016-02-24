@@ -13,9 +13,7 @@ $(document).ready(function() {
 
                   if(result.products)
                   {
-                      //console.log(result.products[0]['product_id']);
-
-                      animateMe(result.products);
+                      animateMe(result);
                   }
 
               },
@@ -25,29 +23,55 @@ $(document).ready(function() {
           });
       });
 });
-function animateMe(products) {
-  var $products = products;
-  var nbElt = $products.length;
-  console.log('animateMe ' + $products[0]['product_id'] + " nbElt:" + nbElt);
-  if($products)
+
+var products;
+function animateMe(results) {
+  products = results.products;
+  var elem = document.getElementById("myBar");
+  var width = 0;
+
+  var $nbElt = 0;
+  $nbElt = Object.keys(products).length;
+  minimum = 0;
+  var randomnumber = Math.floor(Math.random() * ($nbElt - minimum + 1)) + minimum;
+  if(products)
   {
+
       var pos = 0;
-      var id = setInterval(frame(), 10);
+
+      var id = setInterval(frame, 100);
       function frame() {
-          console.log($products[0]['product_id'] + ' ' + pos);
+          $nbElt = Object.keys(products).length;
 
-        if (pos == nbElt) {
-          clearInterval(id);
+          var product = products[pos];
+
+
+        if (pos == $nbElt) {
+          pos = 0;
         } else {
-          pos++;
-          if($products[pos])
-          {
-              //console.log('img ' . $products[pos]['media_slug']);
 
+          if(products)
+          {
+              var myImg = document.getElementById("myProduct");
+              if(product.media_slug)
+              {
+                  myImg.src = product.media_slug;
+
+              }
+              elem.style.width = pos + '%';
           }
-          //elem.style.top = pos + 'px';
-          //elem.style.left = pos + 'px';
+          pos++;
+        }
+        if( randomnumber == pos)
+        {
+            clearInterval(id);
+            mybutton = document.getElementById("getAdvise");
+            mybutton.innerHTML = "Found: " + product.product_title;
         }
       }
+  }
+  else
+  {
+      console.log('no products ');
   }
 }
