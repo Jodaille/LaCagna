@@ -63,6 +63,7 @@ class AdviseMe
         }
         $data = [
             'product_id' => $product->getId(),
+            'product_title' => $product->getTitle(),
             'media_slug' => $slug,
             'score' => $score,
             ];
