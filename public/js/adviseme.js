@@ -4,8 +4,6 @@ $(document).ready(function() {
 
           event.preventDefault(); // To prevent following the link (optional)
 
-          console.log('y click');
-
           $.ajax({
               url: '/getadvise',
               type: 'GET',
@@ -24,14 +22,17 @@ $(document).ready(function() {
       });
 });
 
-var products;
+
 function animateMe(results) {
   products = results.products;
+  var myProgress = document.getElementById("myProgress");
   var elem = document.getElementById("myBar");
   var width = 0;
 
   var $nbElt = 0;
   $nbElt = Object.keys(products).length;
+  myProgress.width = '100%';
+
   minimum = 0;
   var randomnumber = Math.floor(Math.random() * ($nbElt - minimum + 1)) + minimum;
   if(products)
@@ -55,8 +56,13 @@ function animateMe(results) {
               var myImg = document.getElementById("myProduct");
               if(product.media_slug)
               {
-                  myImg.src = product.media_slug;
-
+                  var slug = product.media_slug;
+                  var imgSrc = slug.replace('/img/','/img/150/');
+                  myImg.src = imgSrc;
+              }
+              else
+              {
+                  myImg.src = '';
               }
               elem.style.width = pos + '%';
           }
@@ -67,6 +73,7 @@ function animateMe(results) {
             clearInterval(id);
             mybutton = document.getElementById("getAdvise");
             mybutton.innerHTML = "Found: " + product.product_title;
+            elem.style.width = 100 + '%';
         }
       }
   }
