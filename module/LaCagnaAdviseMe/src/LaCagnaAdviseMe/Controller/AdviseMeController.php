@@ -50,7 +50,8 @@ class AdviseMeController extends AbstractActionController
         {
             $products = $advise->simpleAdvise();
         }
-        $products = $advise->getTopN($products, 25);
+        $products = $advise->increaseProbability($products);
+        $products = $advise->getTopN($products, false);
         $view->products = $products;
         return $view;
     }
