@@ -58,7 +58,7 @@ function findProduct(products) {
             if(product.media_slug)
             {
                 var slug = product.media_slug;
-                var imgSrc = slug.replace('/img/','/img/150/');
+                var imgSrc = slug.replace('/img/','/img/250/');
                 myImg.src = imgSrc;
             }
             else

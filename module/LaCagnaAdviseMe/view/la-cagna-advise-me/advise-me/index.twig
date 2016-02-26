@@ -7,25 +7,30 @@
         <div id="myProgress">
             <div id="myBar"></div>
         </div>
-
-<br>
-
-        <p>
-            <button id="getAdvise">Click Me</button>
-        </p>
-    {# { doctrineDump(products)| raw } #}
+        <br>
     </div>
-    <div class="row" id="myAnimation">
-        <img src="" id="myProduct"/>
+    <div class="row">
+        <div id="myAnimation">
+            <img src="" id="myProduct" width="250px" />
+
+            <img src="/jackpot-bar.svg" id="getAdvise"/>
+        </div>
     </div>
+
+
     <script type='text/javascript' src="{{basePath()}}/js/adviseme.js"></script>
 
 
 
     <style>
+    #getAdvise {
+        width: 66px;
+        height: 144px;
+    }
     #myAnimation {
         min-height: 250px;
         min-width: 250px;
+        display: block;
     }
     #myProgress {
       width: 100%;
