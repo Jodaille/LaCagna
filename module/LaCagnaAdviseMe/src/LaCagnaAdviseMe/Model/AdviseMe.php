@@ -85,6 +85,20 @@ class AdviseMe
         return $aAdvise;
     }
 
+    public function increaseProbability($aAdvise)
+    {
+        $products = array();
+        foreach($aAdvise as $advise)
+        {
+            $score = $advise['score'];
+            for($i =0;$i<$score;$i++)
+            {
+                $products[] = $advise;
+            }
+        }
+        return $products;
+    }
+
     public static function sortByScore($key = 'score') {
         return
             function ($a, $b) use ($key) {
