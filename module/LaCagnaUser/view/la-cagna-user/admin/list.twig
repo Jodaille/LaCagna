@@ -1,0 +1,44 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+    {{ translate('User listing') }} | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    {% if flashMessenger().hasMessages() %}
+        {% for message in flashMessenger().getMessages() %}
+        <span class="alert alert-success" role="alert">
+            {{ message }}
+        </span>
+        {% endfor %}
+        <hr />
+
+    {% endif %}
+
+    <h3>Listing Users</h3>
+    <table name="users" class="table">
+        <tr>
+            <th width="15%">Username</th>
+            <th width="25%">eMail</th>
+            <th width="20%" style="text-align: center">displayName</th>
+            <th width="5%">State</th>
+            <th width="5%">Action</th>
+        </tr>
+        {% for user in users %}
+
+        <tr>
+            <td><strong>{{ user.getUsername() }}</strong></td>
+            <td>{{ user.getEmail() }}</td>
+            <td style="text-align: center">{{ user.getDisplayName() }}</td>
+            <td>{% if user.getState().getName() == 'disponible' %}
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                {% else %}
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                {% endif %}</td>
+            <td><a href="{{ url('adminuseredit') }}{{ user.getId() }}" >Éditer</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
