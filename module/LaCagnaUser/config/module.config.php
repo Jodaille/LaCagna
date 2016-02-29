@@ -11,6 +11,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'LaCagnaUser\Controller\Bookmark' => 'LaCagnaUser\Controller\BookmarkController',
+            'LaCagnaUser\Controller\Admin' => 'LaCagnaUser\Controller\AdminController',
+
         ),
     ),
     'router' => array(
@@ -35,6 +37,31 @@ return array(
                   ),
               ),
           ),
+          'adminuserlist' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/admin/userlist',
+                  'defaults' => array(
+                      'controller' => 'LaCagnaUser\Controller\Admin',
+                      'action'     => 'list',
+                  ),
+              ),
+          ),
+
+          'adminuseredit' => array(
+              'type' => 'Segment',
+              'options' => array(
+                  'route'    => '/admin/user/edit/list[/][/:id[/]]',
+                  'constraints' => array(
+                      'id'    => '[0-9]+',
+                  ),
+                  'defaults' => array(
+                      'controller' => 'LaCagnaUser\Controller\Admin',
+                      'action'     => 'edit',
+                  ),
+              ),
+          ),
+
       ),
     ),
     'doctrine' => array(
@@ -64,6 +91,7 @@ return array(
 
         'factories' => array(
             'bookmark'        => 'LaCagnaUser\Factory\BookmarkFactory',
+            'UserAdmin'        => 'LaCagnaUser\Factory\UserAdminFactory',
         ),
     ),
     'view_helpers' => array(
