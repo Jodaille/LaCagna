@@ -108,6 +108,8 @@ return array(
         'resource_providers' => array(
             'BjyAuthorize\Provider\Resource\Config' => array(
                 'product' => array(),
+                'user' => array(),
+
             ),
         ),
         'rule_providers' => array(
@@ -115,6 +117,8 @@ return array(
                 'allow' => array(
                     //          role
                     array(array('administrator'), 'product', array('list', 'add')),
+                    array(array('administrator'), 'user', array('list', 'edit')),
+
                 ),
             ),
         ),
