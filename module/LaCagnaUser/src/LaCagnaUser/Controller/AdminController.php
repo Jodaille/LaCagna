@@ -15,6 +15,9 @@ class AdminController extends AbstractActionController
 
     public function listAction()
     {
+        if (!$this->isAllowed('user', 'list')) {
+            throw new \BjyAuthorize\Exception\UnAuthorizedException('Grow a beard first!');
+        }
         $view = new ViewModel();
         $UserAdmin = $this->getServiceLocator()->get('UserAdmin');
         $view->users = $UserAdmin->getList();
@@ -23,6 +26,9 @@ class AdminController extends AbstractActionController
 
     public function editAction()
     {
+        if (!$this->isAllowed('user', 'edit')) {
+            throw new \BjyAuthorize\Exception\UnAuthorizedException('Grow a beard first!');
+        }
         $view = new ViewModel();
         $userId  = $this->params()->fromPost('id',$this->params('id', false));
 
@@ -39,7 +45,9 @@ class AdminController extends AbstractActionController
             //$UserAdmin->updateUser($aParams);
             $view->user = $UserAdmin->updateUser($aParams);
             $this->flashMessenger()
-                ->addMessage(' user mis à jour :-)');
+                ->addMessage(' user ' . $aParams['user_name'] . ' mis à jour :-)');
+            $this->plugin('redirect')->toRoute('adminuserlist');
+
         }
 
         return $view;
