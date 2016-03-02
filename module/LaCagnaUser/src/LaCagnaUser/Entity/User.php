@@ -231,4 +231,15 @@ class User implements UserInterface, ProviderInterface
     {
         $this->roles[] = $role;
     }
+
+    /**
+     * Remove role
+     *
+     * @param $role
+     */
+    public function removeRole($role)
+    {
+        $this->roles->removeElement($role);
+    }
+
 }
