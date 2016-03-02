@@ -47,12 +47,37 @@ class UserAdmin implements ServiceLocatorAwareInterface
 				$user->setUsername($aParams['user_name']);
 				$user->setEmail($aParams['user_email']);
 				$user->setDisplayName($aParams['user_display_name']);
+				if(@$aParams['role_id'])
+				{
+					$user = $this->updateRole($user,$aParams['role_id']);
+				}
 				//$user->setState();
 				$this->getEntityManager()->persist($user);
 		        $this->getEntityManager()->flush();
 			}
 		}
 		return $user;
+	}
+
+	public function updateRole($user, $roleId)
+	{
+		$newrole = $this->getEntityManager()
+				->getRepository('LaCagnaUser\Entity\Role')->find($roleId);
+		foreach($user->getRoles() as $role)
+		{
+			$user->removeRole($role);
+		}
+		$user->addRole($newrole);
+		return $user;
+	}
+
+	public function getRoles()
+	{
+		$roles = $this->getEntityManager()
+				->getRepository('LaCagnaUser\Entity\Role')->findAll();
+
+		//echo '<pre>';\Doctrine\Common\Util\Debug::dump($user->getRoles());die();
+		return $roles;
 	}
 
     public function getEntityManager()

@@ -29,6 +29,17 @@
         <input type="text" name="email" value="{{ user.getEmail() }}" />
         <hr />
 
+        <label for"userRoles">Roles: </label>
+        <select name="userRoles">
+            {% for role in roles %}
+            <option value="{{ role.getId() }}"
+            {% for urole in user.getRoles() %}
+                {%
+                if urole.getId() == role.getId()
+                %}selected="selected"{%
+                endif %}{% endfor %}>{{ role.getRoleId() }}</option>
+            {% endfor %}
+        </select>
         <input type="submit" value="Valider" />
     </form>
 

@@ -21,6 +21,7 @@ class AdminController extends AbstractActionController
         $view = new ViewModel();
         $UserAdmin = $this->getServiceLocator()->get('UserAdmin');
         $view->users = $UserAdmin->getList();
+        $view->roles = $UserAdmin->getRoles();
         return $view;
     }
 
@@ -34,6 +35,7 @@ class AdminController extends AbstractActionController
 
         $UserAdmin = $this->getServiceLocator()->get('UserAdmin');
         $view->user = $UserAdmin->getUser($userId);
+        $view->roles = $UserAdmin->getRoles();
 
         if($this->request->isPost())
         {
@@ -41,6 +43,8 @@ class AdminController extends AbstractActionController
             $aParams['user_name'] = $this->params()->fromPost('name', FALSE);
             $aParams['user_email'] = $this->params()->fromPost('email', FALSE);
             $aParams['user_display_name'] = $this->params()->fromPost('display_name', FALSE);
+            $aParams['role_id'] = $this->params()->fromPost('userRoles', FALSE);
+
 
             //$UserAdmin->updateUser($aParams);
             $view->user = $UserAdmin->updateUser($aParams);
