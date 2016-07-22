@@ -1,4 +1,4 @@
-# LaCagna
+# LaCagna OpenBar app
 
 
 **LaCagna**: a Zend Framework application.
